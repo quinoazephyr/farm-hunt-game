@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://ceqblr0leqrym"]
+
+[ext_resource type="PackedScene" uid="uid://xopw8jd5wmyh" path="res://source/nodes/scenes/test_scene_base.tscn" id="1_cio8k"]
+[ext_resource type="Script" path="res://source/scripts/test/test_quest_issuer.gd" id="2_n6w4g"]
+[ext_resource type="Script" path="res://source/scripts/quests/quest_base.gd" id="3_iv6sh"]
+[ext_resource type="Script" path="res://source/scripts/test/goal_enter_area.gd" id="4_bl4jv"]
+
+[sub_resource type="Resource" id="Resource_63ps5"]
+script = ExtResource("4_bl4jv")
+_area_name = "TestQuests/FinishArea"
+_title = "Enter purple area"
+_description = "RIGHT IN FRONT OF YOU"
+
+[sub_resource type="Resource" id="Resource_i7bn0"]
+script = ExtResource("3_iv6sh")
+_id = 1
+_title = "Enter finish area"
+_description = "You can go find it"
+_goals = Array[Resource("res://source/scripts/quests/quest_goal_base.gd")]([SubResource("Resource_63ps5")])
+_actions_on_start = Array[Resource("res://source/scripts/quests/action_base.gd")]([])
+_actions_on_finish = Array[Resource("res://source/scripts/quests/action_base.gd")]([])
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k22wq"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1kao"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.716667, 0, 1, 0.313726)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tb8rr"]
+material = SubResource("StandardMaterial3D_v1kao")
+size = Vector3(4, 4, 4)
+
+[node name="TestQuests" instance=ExtResource("1_cio8k")]
+
+[node name="DebugQuestIssuer" type="Node" parent="." index="12"]
+script = ExtResource("2_n6w4g")
+_quests = Array[ExtResource("3_iv6sh")]([SubResource("Resource_i7bn0")])
+
+[node name="FinishArea" type="Area3D" parent="." index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.071, -8)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishArea" index="0"]
+shape = SubResource("BoxShape3D_k22wq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishArea" index="1"]
+mesh = SubResource("BoxMesh_tb8rr")
+
+[editable path="MenuUI/InventoryUI/QuickMenu"]

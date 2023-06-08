@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://g18t51xl8iap"]
+
+[ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_ybceu"]
+[ext_resource type="Resource" uid="uid://c4ko46u1y3vlg" path="res://source/resources/test/watermelon_item.tres" id="2_5pprl"]
+[ext_resource type="Texture2D" uid="uid://bmiirxcwq8pvi" path="res://assets/images/material_textures/items/watermelon_skin.png" id="2_afy2k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dc3ym"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cpyj"]
+albedo_texture = ExtResource("2_afy2k")
+
+[sub_resource type="SphereMesh" id="SphereMesh_pxhk2"]
+material = SubResource("StandardMaterial3D_2cpyj")
+
+[node name="Watermelon" instance=ExtResource("1_ybceu")]
+_item = ExtResource("2_5pprl")
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_dc3ym")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
+mesh = SubResource("SphereMesh_pxhk2")

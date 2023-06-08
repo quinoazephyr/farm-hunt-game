@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5wjp1mfa1lyp"]
+
+[ext_resource type="PackedScene" uid="uid://xopw8jd5wmyh" path="res://source/nodes/scenes/test_scene_base.tscn" id="1_occme"]
+
+[node name="TestItems" instance=ExtResource("1_occme")]
+
+[node name="Watermelon" parent="Spawners/PlaceholderSpawner/Placeholders" index="0" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.460654, 0.52437, -3.55905)
+
+[node name="WhiteCube" parent="Spawners/PlaceholderSpawner/Placeholders" index="1" instance_placeholder="res://source/nodes/test/white_cube.tscn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98782, 0.52437, -2.4764)
+
+[node name="Watermelon2" parent="Spawners/PlaceholderSpawner/Placeholders" index="2" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.594008, 0.52437, -3.28378)
+
+[node name="Watermelon3" parent="Spawners/PlaceholderSpawner/Placeholders" index="3" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.890936, 0.52437, -3.60917)
+
+[editable path="CameraParent"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceupprpsteype"]
+
+[ext_resource type="PackedScene" uid="uid://xopw8jd5wmyh" path="res://source/nodes/scenes/test_scene_base.tscn" id="1_dkphi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nh6j7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crv2b"]
+albedo_color = Color(0.780392, 0.164706, 0.164706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jhdno"]
+material = SubResource("StandardMaterial3D_crv2b")
+
+[node name="TestPhysics" instance=ExtResource("1_dkphi")]
+
+[node name="Box" type="RigidBody3D" parent="Objects" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55844, 0.585875, -4.61145)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Box" index="0"]
+shape = SubResource("BoxShape3D_nh6j7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Box" index="1"]
+mesh = SubResource("BoxMesh_jhdno")

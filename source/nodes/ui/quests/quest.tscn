@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2j8p0ouei0bv"]
+
+[ext_resource type="Script" path="res://source/scripts/quests/quest_ui.gd" id="1_0yv4f"]
+[ext_resource type="PackedScene" uid="uid://mvbhb7xeoak0" path="res://source/nodes/ui/quests/goal.tscn" id="2_mcmje"]
+
+[node name="Quest" type="VBoxContainer"]
+theme_override_constants/separation = -8
+script = ExtResource("1_0yv4f")
+_goal_packed_scene = ExtResource("2_mcmje")
+
+[node name="Title" type="Label" parent="."]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Quest title"
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="."]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+text = "Description"
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Goals" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = -8

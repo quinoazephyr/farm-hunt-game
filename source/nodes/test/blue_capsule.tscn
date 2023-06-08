@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://de48v50qh8ips"]
+
+[ext_resource type="PackedScene" uid="uid://jvkq5evujxhf" path="res://source/nodes/test/white_cube.tscn" id="1_ph1r2"]
+[ext_resource type="Resource" uid="uid://cq2tdvnnc1f6l" path="res://source/resources/test/blue_capsule_item.tres" id="2_ap6ge"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2cu77"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8rfe"]
+albedo_color = Color(0.180392, 0.686275, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_it2mx"]
+material = SubResource("StandardMaterial3D_l8rfe")
+
+[node name="BlueCapsule" instance=ExtResource("1_ph1r2")]
+_item = ExtResource("2_ap6ge")
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("CapsuleShape3D_2cu77")
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("CapsuleMesh_it2mx")

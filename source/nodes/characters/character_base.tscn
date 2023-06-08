@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://uac31dd38fvb"]
+
+[ext_resource type="Script" path="res://source/scripts/characters/character_base.gd" id="1_u13ok"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a0w0p"]
+friction = 0.0
+
+[node name="CharacterBase" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_a0w0p")
+script = ExtResource("1_u13ok")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="Mesh" type="Node3D" parent="."]

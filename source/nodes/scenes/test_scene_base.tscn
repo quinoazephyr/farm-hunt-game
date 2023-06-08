@@ -1,0 +1,507 @@
+[gd_scene load_steps=32 format=3 uid="uid://xopw8jd5wmyh"]
+
+[ext_resource type="Environment" uid="uid://1vi1iwjunjii" path="res://source/resources/world_environments/soft_bloom_environment.tres" id="1_5snjs"]
+[ext_resource type="Script" path="res://source/scripts/core/controls/timescale_control.gd" id="1_oi6un"]
+[ext_resource type="Script" path="res://source/scripts/core/input_controls/world_input_controls.gd" id="1_q07sc"]
+[ext_resource type="Script" path="res://source/scripts/core/input_controls/movement_input_control.gd" id="1_wt2mp"]
+[ext_resource type="PackedScene" uid="uid://0jdkvta3mhj2" path="res://source/nodes/cameras/camera_parent.tscn" id="2_mirwc"]
+[ext_resource type="Script" path="res://source/scripts/core/input_controls/action_input_control.gd" id="3_7k0u2"]
+[ext_resource type="PackedScene" uid="uid://c27rxdc1x1gyk" path="res://source/nodes/characters/player_character.tscn" id="3_hn0y1"]
+[ext_resource type="Texture2D" uid="uid://455ct5vrafwj" path="res://assets/images/controls/pc/letter-e.png" id="3_rkosi"]
+[ext_resource type="Script" path="res://source/scripts/core/controls/items_control.gd" id="4_3h8rf"]
+[ext_resource type="Script" path="res://source/scripts/core/ui/pick_up_action_ui.gd" id="5_00jm6"]
+[ext_resource type="Script" path="res://source/scripts/core/items_spawner.gd" id="5_mjlji"]
+[ext_resource type="Script" path="res://source/scripts/core/input_controls/menu_input_controls.gd" id="5_pt1r3"]
+[ext_resource type="Script" path="res://source/scripts/core/placeholder_spawner.gd" id="6_3whec"]
+[ext_resource type="Script" path="res://source/scripts/synchronizers/player_inventory_synchronizer.gd" id="6_vd64a"]
+[ext_resource type="PackedScene" uid="uid://de48v50qh8ips" path="res://source/nodes/test/blue_capsule.tscn" id="6_wr7o6"]
+[ext_resource type="PackedScene" uid="uid://jvkq5evujxhf" path="res://source/nodes/test/white_cube.tscn" id="7_0v82n"]
+[ext_resource type="Script" path="res://source/scripts/core/ui/screen_space_label.gd" id="8_boyn3"]
+[ext_resource type="PackedScene" uid="uid://g18t51xl8iap" path="res://source/nodes/test/watermelon.tscn" id="8_v03aw"]
+[ext_resource type="Script" path="res://source/scripts/core/ui/world_ui.gd" id="11_ehqoi"]
+[ext_resource type="Script" path="res://source/scripts/core/ui/inventory_ui.gd" id="16_y837w"]
+[ext_resource type="PackedScene" uid="uid://comkfbdci1gu1" path="res://source/nodes/ui/inventory/inventory_slot.tscn" id="17_55esj"]
+[ext_resource type="PackedScene" uid="uid://c2j8p0ouei0bv" path="res://source/nodes/ui/quests/quest.tscn" id="18_qmr78"]
+[ext_resource type="Script" path="res://source/scripts/quests/quests_ui.gd" id="18_uq56c"]
+[ext_resource type="PackedScene" uid="uid://b82kd2vni3b1k" path="res://source/nodes/ui/quick_menu.tscn" id="19_jno4m"]
+[ext_resource type="Script" path="res://source/scripts/core/ui/quick_menu_ui_inventory.gd" id="20_cqd5j"]
+[ext_resource type="Texture2D" uid="uid://dib43qo3hwu5o" path="res://assets/images/controls/pc/down-arrow.png" id="21_56o6i"]
+[ext_resource type="Texture2D" uid="uid://bbnrf4ati72ty" path="res://assets/images/controls/pc/left-arrow.png" id="22_xglxu"]
+[ext_resource type="Texture2D" uid="uid://c65l21x17vlpv" path="res://assets/images/controls/pc/enter.png" id="23_n0kci"]
+[ext_resource type="Texture2D" uid="uid://vmmvtyj6sb1h" path="res://assets/images/controls/pc/escape.png" id="24_h1pgu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_68xw7"]
+size = Vector3(50, 0.2, 50)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_36eb0"]
+size = Vector2(50, 50)
+
+[node name="TestSceneBase" type="Node3D"]
+
+[node name="TimescaleControl" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("1_oi6un")
+
+[node name="WorldInputControls" type="Node" parent="."]
+process_mode = 1
+script = ExtResource("1_q07sc")
+_player_character_node_path = NodePath("../PlayerCharacter")
+_timescale_control_path = NodePath("../TimescaleControl")
+_world_ui_path = NodePath("../WorldUI")
+
+[node name="MovementInputControl" type="Node" parent="WorldInputControls"]
+script = ExtResource("1_wt2mp")
+
+[node name="ActionInputControl" type="Node" parent="WorldInputControls"]
+script = ExtResource("3_7k0u2")
+
+[node name="MenuInputControls" type="Node" parent="."]
+process_mode = 2
+script = ExtResource("5_pt1r3")
+_timescale_control_path = NodePath("../TimescaleControl")
+_inventory_ui_path = NodePath("../MenuUI/InventoryUI")
+
+[node name="ActionInputControl" type="Node" parent="MenuInputControls"]
+script = ExtResource("3_7k0u2")
+
+[node name="Spawners" type="Node" parent="."]
+
+[node name="PlaceholderSpawner" type="Node" parent="Spawners"]
+script = ExtResource("6_3whec")
+_placeholders_parent_path = NodePath("Placeholders")
+_placeholders_spawned_parent_path = NodePath("Spawned")
+
+[node name="Placeholders" type="Node" parent="Spawners/PlaceholderSpawner"]
+
+[node name="Spawned" type="Node" parent="Spawners/PlaceholderSpawner"]
+
+[node name="ItemsSpawner" type="Node" parent="Spawners"]
+script = ExtResource("5_mjlji")
+_pool_size = 2
+_items_packed_scenes = Array[PackedScene]([ExtResource("6_wr7o6"), ExtResource("7_0v82n"), ExtResource("8_v03aw")])
+
+[node name="GameControls" type="Node" parent="."]
+
+[node name="ItemsControl" type="Node" parent="GameControls"]
+script = ExtResource("4_3h8rf")
+_item_spawner_path = NodePath("../../Spawners/ItemsSpawner")
+_placeholder_spawner_path = NodePath("../../Spawners/PlaceholderSpawner")
+_chars_with_bags_node_paths = Array[NodePath]([NodePath("../../PlayerCharacter")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_5snjs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, 0, 30, 0)
+directional_shadow_mode = 1
+
+[node name="WorldUI" type="CanvasLayer" parent="."]
+script = ExtResource("11_ehqoi")
+_player_character_node_path = NodePath("../PlayerCharacter")
+
+[node name="ScreenSpaceLabel" type="Control" parent="WorldUI"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("8_boyn3")
+_player_camera_path = NodePath("../../CameraParent/CameraPlayer")
+_label_path = NodePath("Label")
+
+[node name="Label" type="Label" parent="WorldUI/ScreenSpaceLabel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="WorldUI/ScreenSpaceLabel/Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.705882)
+
+[node name="PickUpActionGraphic" type="HBoxContainer" parent="WorldUI"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("5_00jm6")
+
+[node name="ButtonGraphic" type="TextureRect" parent="WorldUI/PickUpActionGraphic"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_rkosi")
+expand_mode = 1
+
+[node name="DescriptionLabel" type="Label" parent="WorldUI/PickUpActionGraphic"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Pick up"
+
+[node name="OpenInventory" type="HBoxContainer" parent="WorldUI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 105.0
+offset_bottom = 45.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ButtonGraphic" type="TextureRect" parent="WorldUI/OpenInventory"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("24_h1pgu")
+expand_mode = 1
+
+[node name="DescriptionLabel" type="Label" parent="WorldUI/OpenInventory"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Inventory"
+
+[node name="QuestsScrollBox" type="ScrollContainer" parent="WorldUI"]
+offset_left = 20.0
+offset_top = 70.0
+offset_right = 220.0
+offset_bottom = 270.0
+script = ExtResource("18_uq56c")
+_quest_packed_scene = ExtResource("18_qmr78")
+
+[node name="List" type="VBoxContainer" parent="WorldUI/QuestsScrollBox"]
+layout_mode = 2
+
+[node name="MenuUI" type="CanvasLayer" parent="."]
+process_mode = 2
+layer = 2
+
+[node name="InventoryUI" type="ColorRect" parent="MenuUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.196078, 0.196078, 0.196078, 0.705882)
+script = ExtResource("16_y837w")
+
+[node name="SlotsContainer" type="GridContainer" parent="MenuUI/InventoryUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -120.0
+offset_right = 260.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 4
+
+[node name="InventorySlot" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+layout_mode = 2
+focus_neighbor_right = NodePath("../InventorySlot2")
+focus_neighbor_bottom = NodePath("../InventorySlot5")
+
+[node name="InventorySlot2" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../InventorySlot")
+focus_neighbor_right = NodePath("../InventorySlot3")
+focus_neighbor_bottom = NodePath("../InventorySlot6")
+
+[node name="InventorySlot3" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../InventorySlot2")
+focus_neighbor_right = NodePath("../InventorySlot4")
+focus_neighbor_bottom = NodePath("../InventorySlot7")
+
+[node name="InventorySlot4" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../InventorySlot3")
+focus_neighbor_bottom = NodePath("../InventorySlot8")
+
+[node name="InventorySlot5" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../InventorySlot")
+focus_neighbor_right = NodePath("../InventorySlot6")
+
+[node name="InventorySlot6" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../InventorySlot5")
+focus_neighbor_top = NodePath("../InventorySlot2")
+focus_neighbor_right = NodePath("../InventorySlot7")
+
+[node name="InventorySlot7" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../InventorySlot6")
+focus_neighbor_top = NodePath("../InventorySlot3")
+focus_neighbor_right = NodePath("../InventorySlot8")
+
+[node name="InventorySlot8" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../InventorySlot7")
+focus_neighbor_top = NodePath("../InventorySlot4")
+
+[node name="Description" type="Label" parent="MenuUI/InventoryUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = 181.0
+offset_right = 260.0
+offset_bottom = 211.0
+grow_horizontal = 2
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="QuickMenu" parent="MenuUI/InventoryUI" instance=ExtResource("19_jno4m")]
+visible = false
+layout_mode = 0
+script = ExtResource("20_cqd5j")
+
+[node name="ControlWithOffset" parent="MenuUI/InventoryUI/QuickMenu" index="0"]
+offset_left = 120.0
+offset_right = 270.0
+offset_bottom = 170.0
+
+[node name="HoldMoreButton" type="Button" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../HoldLessButton")
+text = "Hold more"
+
+[node name="HoldLessButton" type="Button" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../HoldMoreButton")
+focus_neighbor_bottom = NodePath("../DropButton")
+disabled = true
+text = "Hold less"
+
+[node name="DropButton" type="Button" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="2"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../HoldLessButton")
+focus_neighbor_bottom = NodePath("../CancelButton")
+disabled = true
+text = "Drop"
+
+[node name="CancelButton" type="Button" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="3"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../DropButton")
+text = "Cancel"
+
+[node name="CountRect" type="ColorRect" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset" index="2"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 32.0
+offset_right = 44.0
+offset_bottom = 72.0
+grow_horizontal = 0
+color = Color(0.196078, 0.196078, 0.196078, 0.705882)
+
+[node name="Highlight" type="ColorRect" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CountHBox" type="HBoxContainer" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Label" type="Label" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect/CountHBox"]
+layout_mode = 2
+text = "x"
+
+[node name="CountLabel" type="Label" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect/CountHBox"]
+layout_mode = 2
+text = "0"
+
+[node name="HelperControls" type="HBoxContainer" parent="MenuUI/InventoryUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.0
+offset_top = -64.0
+offset_right = 178.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="MoveSelection" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonLabels" type="VBoxContainer" parent="MenuUI/InventoryUI/HelperControls/MoveSelection"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("21_56o6i")
+expand_mode = 1
+stretch_mode = 5
+flip_v = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("22_xglxu")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("21_56o6i")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("22_xglxu")
+expand_mode = 1
+flip_h = true
+
+[node name="Label" type="Label" parent="MenuUI/InventoryUI/HelperControls/MoveSelection"]
+layout_mode = 2
+text = "Move selection"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Select" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls/Select"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/Select/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("3_rkosi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MenuUI/InventoryUI/HelperControls/Select/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "/"
+
+[node name="TextureRect2" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/Select/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("23_n0kci")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MenuUI/InventoryUI/HelperControls/Select"]
+layout_mode = 2
+text = "Select"
+
+[node name="Back" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls/Back"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/Back/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("24_h1pgu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MenuUI/InventoryUI/HelperControls/Back"]
+layout_mode = 2
+text = "Back"
+
+[node name="CameraParent" parent="." instance=ExtResource("2_mirwc")]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_hn0y1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+_camera_player_path = NodePath("../CameraParent")
+_inventory_size = 8
+
+[node name="Synchronizers" type="Node" parent="."]
+
+[node name="PlayerInventorySynchronizer" type="Node" parent="Synchronizers"]
+script = ExtResource("6_vd64a")
+_player_character_node_path = NodePath("../../PlayerCharacter")
+_inventory_ui_path = NodePath("../../MenuUI/InventoryUI")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_68xw7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_36eb0")
+
+[node name="DebugUI" type="CanvasLayer" parent="."]
+
+[node name="Version" type="Label" parent="DebugUI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "ver-0.1"
+
+[editable path="MenuUI/InventoryUI/QuickMenu"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://c27rxdc1x1gyk"]
+
+[ext_resource type="Script" path="res://source/scripts/characters/player_character.gd" id="1_6mp0p"]
+[ext_resource type="PackedScene" uid="uid://qqmw3ud2xvnw" path="res://source/nodes/characters/character_with_bag.tscn" id="1_u1v7y"]
+[ext_resource type="PackedScene" uid="uid://csdolkgi1t881" path="res://source/nodes/test/gizmos/forward_vector.tscn" id="3_5m3qp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_00m3h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_usyx5"]
+
+[node name="PlayerCharacter" instance=ExtResource("1_u1v7y")]
+script = ExtResource("1_6mp0p")
+_camera_player_path = null
+_inventory_size = 5
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("CapsuleShape3D_00m3h")
+
+[node name="Body" type="MeshInstance3D" parent="Mesh" index="0"]
+mesh = SubResource("CapsuleMesh_usyx5")
+
+[node name="ForwardVector" parent="Mesh" index="1" instance=ExtResource("3_5m3qp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.475, -1.145)
+
+[node name="CameraPivot" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.487, 0)

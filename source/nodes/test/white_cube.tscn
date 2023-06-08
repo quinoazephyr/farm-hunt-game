@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://jvkq5evujxhf"]
+
+[ext_resource type="Script" path="res://source/scripts/items/item_3_d.gd" id="1_tdsn5"]
+[ext_resource type="Resource" uid="uid://bhuy44dwaslum" path="res://source/resources/test/white_cube_item.tres" id="2_fc5iq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfw4k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d07qr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hpaob"]
+material = SubResource("StandardMaterial3D_d07qr")
+
+[node name="WhiteCube" type="RigidBody3D"]
+collision_layer = 257
+script = ExtResource("1_tdsn5")
+_item = ExtResource("2_fc5iq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yfw4k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hpaob")

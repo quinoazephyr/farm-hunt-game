@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://qqmw3ud2xvnw"]
+
+[ext_resource type="PackedScene" uid="uid://uac31dd38fvb" path="res://source/nodes/characters/character_base.tscn" id="1_w2pxf"]
+[ext_resource type="Script" path="res://source/scripts/characters/character_with_bag.gd" id="2_qqfd2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fo2q8"]
+radius = 1.5
+
+[node name="CharacterWithBag" instance=ExtResource("1_w2pxf")]
+script = ExtResource("2_qqfd2")
+_inventory_size = 0
+
+[node name="ItemDetectionArea3D" type="Area3D" parent="." index="1"]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemDetectionArea3D" index="0"]
+shape = SubResource("SphereShape3D_fo2q8")

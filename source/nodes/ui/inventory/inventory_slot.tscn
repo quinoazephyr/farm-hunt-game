@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://comkfbdci1gu1"]
+
+[ext_resource type="Script" path="res://source/scripts/core/ui/inventory_slot.gd" id="1_g5j4m"]
+
+[node name="InventorySlot" type="Button"]
+custom_minimum_size = Vector2(100, 100)
+flat = true
+script = ExtResource("1_g5j4m")
+
+[node name="Highlight" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.705882)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.705882)
+
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="NameLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="NameLabel"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.705882)
+
+[node name="Count" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = -5.0
+grow_horizontal = 0
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="Label" type="Label" parent="Count"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.705882)
+text = "x"
+
+[node name="CountLabel" type="Label" parent="Count"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.705882)
+text = "0"
