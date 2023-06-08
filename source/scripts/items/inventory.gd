@@ -37,6 +37,8 @@ func get_count_remaining_for_item(item_id : int) -> int: # how many items can fi
 	var slot_index = _get_item_slot_index(item_id)
 	if slot_index == TypeConstants.OUT_OF_BOUNDS:
 		return 0
+	if _items_details[slot_index].item == null:
+		return TypeConstants.MAX_INT
 	return _items_details[slot_index].item.max_count - \
 			_items_details[slot_index].count
 

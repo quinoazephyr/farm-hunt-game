@@ -31,9 +31,10 @@ func _process(delta) -> void:
 
 func pick_up_closest_item() -> void:
 	if _is_close_items_processing_requested:
-		_inventory.add_items(_closest_item._item, 1) # sometimes _closest_item == null
-		picked_up_item.emit(_closest_item)
-		_closest_item = null
+		if _inventory.get_count_remaining_for_item(_closest_item._item.id) > 0:
+			_inventory.add_items(_closest_item._item, 1) # sometimes _closest_item == null
+			picked_up_item.emit(_closest_item)
+			_closest_item = null
 
 func _find_closest_item() -> Item3D:
 	var min_distance = TypeConstants.MAX_INT

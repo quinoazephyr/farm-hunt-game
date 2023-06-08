@@ -8,4 +8,5 @@ script = ExtResource("1_wmwkb")
 _id = 0
 _name = "Blue Capsule"
 _description = "Such blue! So grace!"
+_max_count = 999
 _image = ExtResource("1_2ttcb")
