@@ -1,3 +1,6 @@
 class_name TypeConstants
 
+const OUT_OF_BOUNDS = -1
+
+const MIN_INT = -9223372036854775807
 const MAX_INT = 9223372036854775807

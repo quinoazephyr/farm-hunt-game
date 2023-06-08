@@ -3,7 +3,7 @@ extends CanvasItem
 
 signal inventory_focused
 signal quick_menu_focused
-signal drop_items_requested(items : Item, count : int)
+signal drop_items_requested(slot_index : int, count : int)
 signal inventory_opened
 signal inventory_closed
 
@@ -12,7 +12,7 @@ var is_open:
 		return visible
 
 var _slots : Array[InventorySlot]
-var _current_focused_slot : InventorySlot
+var _current_focused_slot_index : int
 
 @onready var _slots_container = $SlotsContainer
 @onready var _description_label = $Description
@@ -20,9 +20,10 @@ var _current_focused_slot : InventorySlot
 
 func _ready() -> void:
 	var slot_nodes = _slots_container.get_children()
-	for node in slot_nodes:
+	for i in range(0, slot_nodes.size()):
+		var node = slot_nodes[i]
 		node.focus_entered.connect(_fill_item_description.bind(node))
-		node.focus_entered.connect(_set_current_focused_slot.bind(node))
+		node.focus_entered.connect(_set_current_focused_slot.bind(i))
 		_slots.append(node)
 	
 	_quick_menu.quick_menu_visible.connect(_set_focus_to_quick_menu)
@@ -30,28 +31,20 @@ func _ready() -> void:
 	
 	_quick_menu.drop_requested.connect(_drop_items)
 
-func add_item(item : Item) -> void:
-	add_items(item, 1)
-
-func add_items(items : Item, count : int) -> void:
-	var inventory_slot = _get_suitable_inventory_slot(items)
+func add_items(items : Item, count : int, slot_index : int) -> void:
+	var inventory_slot = _slots[slot_index]
 	if inventory_slot.is_empty:
 		inventory_slot.set_item(items)
 	inventory_slot.add_items(count)
 
-#func remove_item(item : Item) -> void:
-#	var inventory_slot = _get_suitable_inventory_slot(item)
-#	remove_child(inventory_slot)
-#	inventory_slot.queue_free()
-
-func remove_items_from_current_slot(count : int) -> void:
-	drop_items_requested.emit(_current_focused_slot._item, count)
+func remove_items_from_slot(slot_index : int, count : int) -> void:
+	drop_items_requested.emit(slot_index, count)
 
 func call_menu_on_current_slot():
-	if _current_focused_slot.is_empty:
+	if _slots[_current_focused_slot_index].is_empty:
 		return
 	
-	_quick_menu.show_for_slot(_current_focused_slot)
+	_quick_menu.show_for_slot(_slots[_current_focused_slot_index])
 
 func close_menu():
 	_quick_menu.hide_and_reset()
@@ -64,35 +57,25 @@ func open_inventory():
 	inventory_focused.emit()
 
 func _drop_items(count : int) -> void:
-	remove_items_from_current_slot(count)
+	remove_items_from_slot(_current_focused_slot_index, count)
 	close_menu()
 	close_inventory()
 
 func close_inventory():
-	_current_focused_slot = null
+	_current_focused_slot_index = TypeConstants.OUT_OF_BOUNDS
 	_set_slots_non_focusable()
 	visible = false
 	inventory_closed.emit()
 
 func _set_focus_to_quick_menu():
 	_set_slots_non_focusable()
-	_current_focused_slot.highlight(true)
+	_slots[_current_focused_slot_index].highlight(true)
 	quick_menu_focused.emit()
 
 func _set_focus_to_inventory():
 	_set_slots_focusable()
-	_current_focused_slot.grab_focus()
+	_slots[_current_focused_slot_index].grab_focus()
 	inventory_focused.emit()
-
-func _get_suitable_inventory_slot(item : Item) -> InventorySlot:
-	for slot in _slots:
-		if slot.has_exact_item(item):
-			return slot
-	for slot in _slots:
-		if slot.is_empty:
-			return slot
-	assert(false)
-	return null
 
 func _focus_first_slot() -> void:
 	var first_slot = _slots.front()
@@ -101,8 +84,8 @@ func _focus_first_slot() -> void:
 func _fill_item_description(slot : InventorySlot) -> void:
 	_description_label.text = slot.item_description 
 
-func _set_current_focused_slot(slot : InventorySlot) -> void:
-	_current_focused_slot = slot
+func _set_current_focused_slot(slot_index : int) -> void:
+	_current_focused_slot_index = slot_index
 
 func _set_slots_focusable():
 	for slot in _slots:

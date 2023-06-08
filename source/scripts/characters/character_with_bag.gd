@@ -20,7 +20,7 @@ func _ready() -> void:
 	
 	_inventory = Inventory.new()
 	_inventory.init(_inventory_size)
-	_inventory.items_removed.connect(_emit_items_dropped)
+	_inventory.items_removed.connect(_emit_items_dropped.unbind(1))
 	
 	_item_detection_area.body_entered.connect(_add_item_to_items_close)
 	_item_detection_area.body_exited.connect(_remove_item_from_items_close)

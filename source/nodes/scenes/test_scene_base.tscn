@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://xopw8jd5wmyh"]
+[gd_scene load_steps=31 format=3 uid="uid://xopw8jd5wmyh"]
 
 [ext_resource type="Environment" uid="uid://1vi1iwjunjii" path="res://source/resources/world_environments/soft_bloom_environment.tres" id="1_5snjs"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/timescale_control.gd" id="1_oi6un"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c27rxdc1x1gyk" path="res://source/nodes/characters/player_character.tscn" id="3_hn0y1"]
 [ext_resource type="Texture2D" uid="uid://455ct5vrafwj" path="res://assets/images/controls/pc/letter-e.png" id="3_rkosi"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/items_control.gd" id="4_3h8rf"]
-[ext_resource type="Script" path="res://source/scripts/core/ui/pick_up_action_ui.gd" id="5_00jm6"]
 [ext_resource type="Script" path="res://source/scripts/core/items_spawner.gd" id="5_mjlji"]
 [ext_resource type="Script" path="res://source/scripts/core/input_controls/menu_input_controls.gd" id="5_pt1r3"]
 [ext_resource type="Script" path="res://source/scripts/core/placeholder_spawner.gd" id="6_3whec"]
@@ -141,7 +140,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 alignment = 1
-script = ExtResource("5_00jm6")
 
 [node name="ButtonGraphic" type="TextureRect" parent="WorldUI/PickUpActionGraphic"]
 custom_minimum_size = Vector2(25, 25)
