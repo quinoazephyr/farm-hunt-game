@@ -18,7 +18,14 @@ func _integrate_forces(state) -> void:
 	look_at(_point_looking_at)
 	
 	if _is_jump_requested: # todo: add ground check
-		state.apply_central_impulse(Vector3.UP * 2.5)
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D\
+				.create(global_transform.origin, \
+				global_transform.origin - Vector3.ONE)
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		if result:
+			state.apply_central_impulse(Vector3.UP * 2.5)
 		_is_jump_requested = false
 	
 	# lock rotation

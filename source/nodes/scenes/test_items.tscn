@@ -16,4 +16,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.594008, 0.52437, -3.28378)
 [node name="Watermelon3" parent="Spawners/PlaceholderSpawner/Placeholders" index="3" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.890936, 0.52437, -3.60917)
 
+[editable path="MenuUI/InventoryUI/QuickMenu"]
 [editable path="CameraParent"]
