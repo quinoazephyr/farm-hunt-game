@@ -1,20 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5wjp1mfa1lyp"]
+[gd_scene load_steps=4 format=3 uid="uid://b5wjp1mfa1lyp"]
 
 [ext_resource type="PackedScene" uid="uid://xopw8jd5wmyh" path="res://source/nodes/scenes/test_scene_base.tscn" id="1_occme"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eluac"]
+size = Vector3(2.22621, 1, 2)
+
+[sub_resource type="PrismMesh" id="PrismMesh_uutvj"]
+left_to_right = 1.0
+size = Vector3(2, 1, 2)
 
 [node name="TestItems" instance=ExtResource("1_occme")]
 
 [node name="Watermelon" parent="Spawners/PlaceholderSpawner/Placeholders" index="0" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.460654, 0.52437, -3.55905)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.75807, 0.52437, -0.704711)
 
 [node name="WhiteCube" parent="Spawners/PlaceholderSpawner/Placeholders" index="1" instance_placeholder="res://source/nodes/test/white_cube.tscn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98782, 0.52437, -2.4764)
 
 [node name="Watermelon2" parent="Spawners/PlaceholderSpawner/Placeholders" index="2" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.594008, 0.52437, -3.28378)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.62472, 0.52437, -0.429441)
 
 [node name="Watermelon3" parent="Spawners/PlaceholderSpawner/Placeholders" index="3" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.890936, 0.52437, -3.60917)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.32779, 0.52437, -0.754831)
+
+[node name="Stairs" type="StaticBody3D" parent="." index="13"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -0.727, 0.5, -6.187)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stairs" index="0"]
+transform = Transform3D(0.894934, -0.446198, 0, 0.446198, 0.894934, 0, 0, 0, 1, 0.221235, -0.446481, -0.00103796)
+shape = SubResource("BoxShape3D_eluac")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stairs" index="1"]
+mesh = SubResource("PrismMesh_uutvj")
 
 [editable path="MenuUI/InventoryUI/QuickMenu"]
 [editable path="CameraParent"]

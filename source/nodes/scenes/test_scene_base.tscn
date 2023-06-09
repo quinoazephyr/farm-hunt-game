@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://source/scripts/core/items_spawner.gd" id="5_mjlji"]
 [ext_resource type="Script" path="res://source/scripts/core/input_controls/menu_input_controls.gd" id="5_pt1r3"]
 [ext_resource type="Script" path="res://source/scripts/core/placeholder_spawner.gd" id="6_3whec"]
-[ext_resource type="Script" path="res://source/scripts/synchronizers/player_inventory_synchronizer.gd" id="6_vd64a"]
 [ext_resource type="PackedScene" uid="uid://de48v50qh8ips" path="res://source/nodes/test/blue_capsule.tscn" id="6_wr7o6"]
 [ext_resource type="PackedScene" uid="uid://jvkq5evujxhf" path="res://source/nodes/test/white_cube.tscn" id="7_0v82n"]
 [ext_resource type="Script" path="res://source/scripts/core/ui/screen_space_label.gd" id="8_boyn3"]
@@ -23,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://c2j8p0ouei0bv" path="res://source/nodes/ui/quests/quest.tscn" id="18_qmr78"]
 [ext_resource type="Script" path="res://source/scripts/quests/quests_ui.gd" id="18_uq56c"]
 [ext_resource type="PackedScene" uid="uid://b82kd2vni3b1k" path="res://source/nodes/ui/quick_menu.tscn" id="19_jno4m"]
+[ext_resource type="Script" path="res://source/scripts/core/ui/pause_ui.gd" id="19_v5ubj"]
 [ext_resource type="Script" path="res://source/scripts/core/ui/quick_menu_ui_inventory.gd" id="20_cqd5j"]
 [ext_resource type="Texture2D" uid="uid://dib43qo3hwu5o" path="res://assets/images/controls/pc/down-arrow.png" id="21_56o6i"]
 [ext_resource type="Texture2D" uid="uid://bbnrf4ati72ty" path="res://assets/images/controls/pc/left-arrow.png" id="22_xglxu"]
@@ -41,6 +41,13 @@ size = Vector2(50, 50)
 process_mode = 3
 script = ExtResource("1_oi6un")
 
+[node name="CameraParent" parent="." instance=ExtResource("2_mirwc")]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_hn0y1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+_camera_player_path = NodePath("../CameraParent")
+_inventory_size = 8
+
 [node name="WorldInputControls" type="Node" parent="."]
 process_mode = 1
 script = ExtResource("1_q07sc")
@@ -58,7 +65,7 @@ script = ExtResource("3_7k0u2")
 process_mode = 2
 script = ExtResource("5_pt1r3")
 _timescale_control_path = NodePath("../TimescaleControl")
-_inventory_ui_path = NodePath("../MenuUI/InventoryUI")
+_inventory_ui_path = NodePath("../PauseUI/InventoryUI")
 
 [node name="ActionInputControl" type="Node" parent="MenuInputControls"]
 script = ExtResource("3_7k0u2")
@@ -186,11 +193,13 @@ _quest_packed_scene = ExtResource("18_qmr78")
 [node name="List" type="VBoxContainer" parent="WorldUI/QuestsScrollBox"]
 layout_mode = 2
 
-[node name="MenuUI" type="CanvasLayer" parent="."]
+[node name="PauseUI" type="CanvasLayer" parent="."]
 process_mode = 2
 layer = 2
+script = ExtResource("19_v5ubj")
+_player_character_node_path = NodePath("../PlayerCharacter")
 
-[node name="InventoryUI" type="ColorRect" parent="MenuUI"]
+[node name="InventoryUI" type="ColorRect" parent="PauseUI"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,7 +210,7 @@ mouse_filter = 1
 color = Color(0.196078, 0.196078, 0.196078, 0.705882)
 script = ExtResource("16_y837w")
 
-[node name="SlotsContainer" type="GridContainer" parent="MenuUI/InventoryUI"]
+[node name="SlotsContainer" type="GridContainer" parent="PauseUI/InventoryUI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -218,51 +227,51 @@ theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 40
 columns = 4
 
-[node name="InventorySlot" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+[node name="InventorySlot" parent="PauseUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
 layout_mode = 2
 focus_neighbor_right = NodePath("../InventorySlot2")
 focus_neighbor_bottom = NodePath("../InventorySlot5")
 
-[node name="InventorySlot2" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+[node name="InventorySlot2" parent="PauseUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../InventorySlot")
 focus_neighbor_right = NodePath("../InventorySlot3")
 focus_neighbor_bottom = NodePath("../InventorySlot6")
 
-[node name="InventorySlot3" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+[node name="InventorySlot3" parent="PauseUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../InventorySlot2")
 focus_neighbor_right = NodePath("../InventorySlot4")
 focus_neighbor_bottom = NodePath("../InventorySlot7")
 
-[node name="InventorySlot4" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+[node name="InventorySlot4" parent="PauseUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../InventorySlot3")
 focus_neighbor_bottom = NodePath("../InventorySlot8")
 
-[node name="InventorySlot5" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+[node name="InventorySlot5" parent="PauseUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../InventorySlot")
 focus_neighbor_right = NodePath("../InventorySlot6")
 
-[node name="InventorySlot6" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+[node name="InventorySlot6" parent="PauseUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../InventorySlot5")
 focus_neighbor_top = NodePath("../InventorySlot2")
 focus_neighbor_right = NodePath("../InventorySlot7")
 
-[node name="InventorySlot7" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+[node name="InventorySlot7" parent="PauseUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../InventorySlot6")
 focus_neighbor_top = NodePath("../InventorySlot3")
 focus_neighbor_right = NodePath("../InventorySlot8")
 
-[node name="InventorySlot8" parent="MenuUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
+[node name="InventorySlot8" parent="PauseUI/InventoryUI/SlotsContainer" instance=ExtResource("17_55esj")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../InventorySlot7")
 focus_neighbor_top = NodePath("../InventorySlot4")
 
-[node name="Description" type="Label" parent="MenuUI/InventoryUI"]
+[node name="Description" type="Label" parent="PauseUI/InventoryUI"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -279,23 +288,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="QuickMenu" parent="MenuUI/InventoryUI" instance=ExtResource("19_jno4m")]
+[node name="QuickMenu" parent="PauseUI/InventoryUI" instance=ExtResource("19_jno4m")]
 visible = false
 layout_mode = 0
 script = ExtResource("20_cqd5j")
 
-[node name="ControlWithOffset" parent="MenuUI/InventoryUI/QuickMenu" index="0"]
+[node name="ControlWithOffset" parent="PauseUI/InventoryUI/QuickMenu" index="0"]
 offset_left = 120.0
 offset_right = 270.0
 offset_bottom = 170.0
 
-[node name="HoldMoreButton" type="Button" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="0"]
+[node name="HoldMoreButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="0"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../HoldLessButton")
 text = "Hold more"
 
-[node name="HoldLessButton" type="Button" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="1"]
+[node name="HoldLessButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="1"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../HoldMoreButton")
@@ -303,7 +312,7 @@ focus_neighbor_bottom = NodePath("../DropButton")
 disabled = true
 text = "Hold less"
 
-[node name="DropButton" type="Button" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="2"]
+[node name="DropButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="2"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../HoldLessButton")
@@ -311,13 +320,13 @@ focus_neighbor_bottom = NodePath("../CancelButton")
 disabled = true
 text = "Drop"
 
-[node name="CancelButton" type="Button" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="3"]
+[node name="CancelButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="3"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../DropButton")
 text = "Cancel"
 
-[node name="CountRect" type="ColorRect" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset" index="2"]
+[node name="CountRect" type="ColorRect" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset" index="2"]
 visible = false
 layout_mode = 1
 anchors_preset = 1
@@ -330,7 +339,7 @@ offset_bottom = 72.0
 grow_horizontal = 0
 color = Color(0.196078, 0.196078, 0.196078, 0.705882)
 
-[node name="Highlight" type="ColorRect" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect"]
+[node name="Highlight" type="ColorRect" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = -1
@@ -343,22 +352,22 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CountHBox" type="HBoxContainer" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect"]
+[node name="CountHBox" type="HBoxContainer" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect/CountHBox"]
+[node name="Label" type="Label" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect/CountHBox"]
 layout_mode = 2
 text = "x"
 
-[node name="CountLabel" type="Label" parent="MenuUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect/CountHBox"]
+[node name="CountLabel" type="Label" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect/CountHBox"]
 layout_mode = 2
 text = "0"
 
-[node name="HelperControls" type="HBoxContainer" parent="MenuUI/InventoryUI"]
+[node name="HelperControls" type="HBoxContainer" parent="PauseUI/InventoryUI"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -374,14 +383,14 @@ grow_vertical = 0
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="MoveSelection" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls"]
+[node name="MoveSelection" type="HBoxContainer" parent="PauseUI/InventoryUI/HelperControls"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ButtonLabels" type="VBoxContainer" parent="MenuUI/InventoryUI/HelperControls/MoveSelection"]
+[node name="ButtonLabels" type="VBoxContainer" parent="PauseUI/InventoryUI/HelperControls/MoveSelection"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels"]
+[node name="TextureRect" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("21_56o6i")
@@ -389,95 +398,81 @@ expand_mode = 1
 stretch_mode = 5
 flip_v = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("22_xglxu")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("21_56o6i")
 expand_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("22_xglxu")
 expand_mode = 1
 flip_h = true
 
-[node name="Label" type="Label" parent="MenuUI/InventoryUI/HelperControls/MoveSelection"]
+[node name="Label" type="Label" parent="PauseUI/InventoryUI/HelperControls/MoveSelection"]
 layout_mode = 2
 text = "Move selection"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Select" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls"]
+[node name="Select" type="HBoxContainer" parent="PauseUI/InventoryUI/HelperControls"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls/Select"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseUI/InventoryUI/HelperControls/Select"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/Select/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/Select/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("3_rkosi")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MenuUI/InventoryUI/HelperControls/Select/HBoxContainer"]
+[node name="Label" type="Label" parent="PauseUI/InventoryUI/HelperControls/Select/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "/"
 
-[node name="TextureRect2" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/Select/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/Select/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("23_n0kci")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MenuUI/InventoryUI/HelperControls/Select"]
+[node name="Label" type="Label" parent="PauseUI/InventoryUI/HelperControls/Select"]
 layout_mode = 2
 text = "Select"
 
-[node name="Back" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls"]
+[node name="Back" type="HBoxContainer" parent="PauseUI/InventoryUI/HelperControls"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuUI/InventoryUI/HelperControls/Back"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseUI/InventoryUI/HelperControls/Back"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuUI/InventoryUI/HelperControls/Back/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/Back/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("24_h1pgu")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MenuUI/InventoryUI/HelperControls/Back"]
+[node name="Label" type="Label" parent="PauseUI/InventoryUI/HelperControls/Back"]
 layout_mode = 2
 text = "Back"
-
-[node name="CameraParent" parent="." instance=ExtResource("2_mirwc")]
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("3_hn0y1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-_camera_player_path = NodePath("../CameraParent")
-_inventory_size = 8
-
-[node name="Synchronizers" type="Node" parent="."]
-
-[node name="PlayerInventorySynchronizer" type="Node" parent="Synchronizers"]
-script = ExtResource("6_vd64a")
-_player_character_node_path = NodePath("../../PlayerCharacter")
-_inventory_ui_path = NodePath("../../MenuUI/InventoryUI")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -502,4 +497,4 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "ver-0.1"
 
-[editable path="MenuUI/InventoryUI/QuickMenu"]
+[editable path="PauseUI/InventoryUI/QuickMenu"]
