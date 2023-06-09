@@ -1,11 +1,11 @@
 class_name InventoryUI
 extends CanvasItem
 
-signal inventory_focused
-signal quick_menu_focused
+signal self_focused
+signal slot_menu_focused
 signal drop_items_requested(slot_index : int, count : int)
-signal inventory_opened
-signal inventory_closed
+signal opened
+signal closed
 
 var is_open:
 	get:
@@ -53,8 +53,8 @@ func open_inventory():
 	_set_slots_focusable()
 	_focus_first_slot()
 	visible = true
-	inventory_opened.emit()
-	inventory_focused.emit()
+	opened.emit()
+	self_focused.emit()
 
 func _drop_items(count : int) -> void:
 	remove_items_from_slot(_current_focused_slot_index, count)
@@ -65,17 +65,17 @@ func close_inventory():
 	_current_focused_slot_index = TypeConstants.OUT_OF_BOUNDS
 	_set_slots_non_focusable()
 	visible = false
-	inventory_closed.emit()
+	closed.emit()
 
 func _set_focus_to_quick_menu():
 	_set_slots_non_focusable()
 	_slots[_current_focused_slot_index].highlight(true)
-	quick_menu_focused.emit()
+	slot_menu_focused.emit()
 
 func _set_focus_to_inventory():
 	_set_slots_focusable()
 	_slots[_current_focused_slot_index].grab_focus()
-	inventory_focused.emit()
+	self_focused.emit()
 
 func _focus_first_slot() -> void:
 	var first_slot = _slots.front()

@@ -48,28 +48,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 _camera_player_path = NodePath("../CameraParent")
 _inventory_size = 8
 
-[node name="WorldInputControls" type="Node" parent="."]
-process_mode = 1
-script = ExtResource("1_q07sc")
-_player_character_node_path = NodePath("../PlayerCharacter")
-_timescale_control_path = NodePath("../TimescaleControl")
-_world_ui_path = NodePath("../WorldUI")
-
-[node name="MovementInputControl" type="Node" parent="WorldInputControls"]
-script = ExtResource("1_wt2mp")
-
-[node name="ActionInputControl" type="Node" parent="WorldInputControls"]
-script = ExtResource("3_7k0u2")
-
-[node name="MenuInputControls" type="Node" parent="."]
-process_mode = 2
-script = ExtResource("5_pt1r3")
-_timescale_control_path = NodePath("../TimescaleControl")
-_inventory_ui_path = NodePath("../PauseUI/InventoryUI")
-
-[node name="ActionInputControl" type="Node" parent="MenuInputControls"]
-script = ExtResource("3_7k0u2")
-
 [node name="Spawners" type="Node" parent="."]
 
 [node name="PlaceholderSpawner" type="Node" parent="Spawners"]
@@ -473,6 +451,29 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="PauseUI/InventoryUI/HelperControls/Back"]
 layout_mode = 2
 text = "Back"
+
+[node name="WorldInputControls" type="Node" parent="."]
+process_mode = 1
+script = ExtResource("1_q07sc")
+_timescale_control_path = NodePath("../TimescaleControl")
+_player_character_node_path = NodePath("../PlayerCharacter")
+_world_ui_path = NodePath("../WorldUI")
+
+[node name="MovementInputControl" type="Node" parent="WorldInputControls"]
+script = ExtResource("1_wt2mp")
+
+[node name="ActionInputControl" type="Node" parent="WorldInputControls"]
+script = ExtResource("3_7k0u2")
+
+[node name="MenuInputControls" type="Node" parent="."]
+process_mode = 2
+script = ExtResource("5_pt1r3")
+_timescale_control_path = NodePath("../TimescaleControl")
+_player_character_node_path = NodePath("../PlayerCharacter")
+_pause_ui_path = NodePath("../PauseUI")
+
+[node name="ActionInputControl" type="Node" parent="MenuInputControls"]
+script = ExtResource("3_7k0u2")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 

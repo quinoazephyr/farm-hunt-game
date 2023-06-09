@@ -1,12 +1,12 @@
 class_name WorldInputControls
 extends Node
 
-@export_node_path("PlayerCharacter") var _player_character_node_path
 @export_node_path("TimescaleControl") var _timescale_control_path
+@export_node_path("PlayerCharacter") var _player_character_node_path
 @export_node_path("WorldUI") var _world_ui_path
 
-@onready var _player_character = get_node(_player_character_node_path)
 @onready var _timescale_control = get_node(_timescale_control_path)
+@onready var _player_character = get_node(_player_character_node_path)
 @onready var _world_ui = get_node(_world_ui_path)
 @onready var _movement_input_control = $MovementInputControl
 @onready var _action_input_control = $ActionInputControl
