@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://source/scripts/camera/camera_player.gd" id="1_3r6ac"]
 
 [node name="CameraParent" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.746)
 script = ExtResource("1_3r6ac")
 _invert_x = true
 
 [node name="CameraPlayer" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 3)
+transform = Transform3D(1, 0, 0, 0, 0.906307, 0.422618, 0, -0.422618, 0.906307, 0, 5, 8)
+fov = 45.0
 size = 10.0
