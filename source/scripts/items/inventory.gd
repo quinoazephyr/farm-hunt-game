@@ -9,20 +9,24 @@ var _items_details : Array[Inventory.ItemDetails]
 func init(size : int) -> void:
 	resize(size)
 
-func add_items(item : Item, count : int) -> void:
+func try_add_items(item : Item, count : int) -> void:
 	var slot_index = _get_item_slot_index(item.id)
 	if slot_index == TypeConstants.OUT_OF_BOUNDS:
 		return
+	var can_add_count = _get_count_remaining_for_item(item.id)
+	if can_add_count == 0:
+		return
+	var result_add_count = min(can_add_count, count)
 	_items_details[slot_index].item = item
-	_items_details[slot_index].count += count
-	items_added.emit(item, count, slot_index)
+	_items_details[slot_index].count += result_add_count
+	items_added.emit(item, result_add_count, slot_index)
 
 func remove_items(slot_index : int, count : int) -> void:
 	_items_details[slot_index].count = \
 			max(0, _items_details[slot_index].count - count)
 	items_removed.emit(_items_details[slot_index].item, count, slot_index)
 	if _items_details[slot_index].count == 0:
-		_items_details[slot_index].item == null
+		_items_details[slot_index].item = null
 
 func resize(new_size : int) -> void:
 	var old_size = _items_details.size()
@@ -33,7 +37,7 @@ func resize(new_size : int) -> void:
 			_items_details[i] = item_details
 	resized.emit(new_size)
 
-func get_count_remaining_for_item(item_id : int) -> int: # how many items can fit into inventory
+func _get_count_remaining_for_item(item_id : int) -> int: # how many items can fit into inventory
 	var slot_index = _get_item_slot_index(item_id)
 	if slot_index == TypeConstants.OUT_OF_BOUNDS:
 		return 0
@@ -48,7 +52,7 @@ func _get_item_slot_index(item_id : int) -> int:
 				_items_details[i].item.id == item_id:
 			return i
 	for i in range(0, _items_details.size()):
-		if _items_details[i].count == 0:
+		if _items_details[i].item == null:
 			return i
 	return TypeConstants.OUT_OF_BOUNDS
 

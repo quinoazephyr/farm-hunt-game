@@ -4,6 +4,7 @@ extends CharacterBase
 signal found_closest_item(item : Item)
 signal no_items_close_detected
 signal picked_up_item(item : Item)
+signal items_added(item : Item, count : int)
 signal items_dropped(item : Item, count : int)
 
 @export var _inventory_size : int
@@ -20,6 +21,7 @@ func _ready() -> void:
 	
 	_inventory = Inventory.new()
 	_inventory.init(_inventory_size)
+	_inventory.items_added.connect(_emit_items_added.unbind(1))
 	_inventory.items_removed.connect(_emit_items_dropped.unbind(1))
 	
 	_item_detection_area.body_entered.connect(_add_item_to_items_close)
@@ -31,10 +33,9 @@ func _process(delta) -> void:
 
 func pick_up_closest_item() -> void:
 	if _is_close_items_processing_requested:
-		if _inventory.get_count_remaining_for_item(_closest_item._item.id) > 0:
-			_inventory.add_items(_closest_item._item, 1) # sometimes _closest_item == null
-			picked_up_item.emit(_closest_item)
-			_closest_item = null
+		_inventory.items_added.connect(_on_picked_up_items_added_to_inventory.unbind(3))
+		_inventory.try_add_items(_closest_item._item, 1)
+		_inventory.items_added.disconnect(_on_picked_up_items_added_to_inventory.unbind(3))
 
 func _find_closest_item() -> Item3D:
 	var min_distance = TypeConstants.MAX_INT
@@ -68,6 +69,13 @@ func _process_close_items() -> void:
 	_closest_item = _find_closest_item()
 	assert(_closest_item != null)
 	found_closest_item.emit(_closest_item)
+
+func _on_picked_up_items_added_to_inventory():
+	picked_up_item.emit(_closest_item)
+	_closest_item = null
+
+func _emit_items_added(items : Item, count : int):
+	items_added.emit(items, count)
 
 func _emit_items_dropped(items : Item, count : int):
 	items_dropped.emit(items, count)

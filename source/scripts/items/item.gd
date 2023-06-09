@@ -20,5 +20,5 @@ var image:
 @export var _id : int = -1
 @export var _name : String
 @export_multiline var _description : String
-@export var _max_count : int = 1
+@export var _max_count : int = 999
 @export var _image : Texture2D
