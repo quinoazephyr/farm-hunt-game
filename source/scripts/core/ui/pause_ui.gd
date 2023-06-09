@@ -27,12 +27,12 @@ func set_controls(action_input_control : ActionInputControl) -> void:
 	_inventory_ui.closed\
 			.connect(_disconnect_inventory_controls.bind(action_input_control))
 	_inventory_ui.self_focused\
-			.connect(set_controls_on_inventory.bind(action_input_control))
+			.connect(_set_controls_on_inventory.bind(action_input_control))
 	_inventory_ui.slot_menu_focused\
-			.connect(set_controls_on_inventory_slot_menu\
+			.connect(_set_controls_on_inventory_slot_menu\
 			.bind(action_input_control))
 
-func set_controls_on_inventory(\
+func _set_controls_on_inventory(\
 		action_input_control : ActionInputControl) -> void:
 	if _is_quick_menu_controls_connected(action_input_control):
 		_disconnect_quick_menu_controls(action_input_control)
@@ -43,7 +43,7 @@ func set_controls_on_inventory(\
 	action_input_control.ui_accept_requested\
 			.connect(_inventory_ui.call_menu_on_current_slot)
 
-func set_controls_on_inventory_slot_menu(\
+func _set_controls_on_inventory_slot_menu(\
 		action_input_control : ActionInputControl) -> void:
 	if _is_inventory_controls_connected(action_input_control):
 		_disconnect_inventory_controls(action_input_control)
