@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c27rxdc1x1gyk"]
+[gd_scene load_steps=5 format=3 uid="uid://c27rxdc1x1gyk"]
 
 [ext_resource type="Script" path="res://source/scripts/characters/player_character.gd" id="1_6mp0p"]
 [ext_resource type="PackedScene" uid="uid://qqmw3ud2xvnw" path="res://source/nodes/characters/character_with_bag.tscn" id="1_u1v7y"]
-[ext_resource type="PackedScene" uid="uid://csdolkgi1t881" path="res://source/nodes/test/gizmos/forward_vector.tscn" id="3_5m3qp"]
+[ext_resource type="PackedScene" uid="uid://cv2k1kpilxhv5" path="res://assets/models/fox/fox.glb" id="3_4w8lh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_00m3h"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_usyx5"]
+height = 1.4
 
 [node name="PlayerCharacter" instance=ExtResource("1_u1v7y")]
 script = ExtResource("1_6mp0p")
@@ -14,13 +13,26 @@ _camera_player_path = null
 _inventory_size = 5
 
 [node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
 shape = SubResource("CapsuleShape3D_00m3h")
 
-[node name="Body" type="MeshInstance3D" parent="Mesh" index="0"]
-mesh = SubResource("CapsuleMesh_usyx5")
+[node name="fox" parent="Mesh" index="0" instance=ExtResource("3_4w8lh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
-[node name="ForwardVector" parent="Mesh" index="1" instance=ExtResource("3_5m3qp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.475, -1.145)
+[node name="Skeleton3D" parent="Mesh/fox/IdleDemo" index="0"]
+bones/4/rotation = Quaternion(0.00712332, 0.0857733, 0.0706368, 0.993782)
+bones/8/rotation = Quaternion(-0.27509, -0.633692, 0.0614595, 0.720405)
+bones/9/rotation = Quaternion(-8.77963e-07, -2.52326e-07, -0.326406, 0.94523)
+bones/10/rotation = Quaternion(0.533371, -0.153332, 0.166412, 0.815053)
+bones/11/position = Vector3(0.42925, 0.270252, -0.00717328)
+bones/11/rotation = Quaternion(-0.707747, -0.0107031, -0.110599, 0.697673)
+bones/12/rotation = Quaternion(-0.707747, -0.0107031, -0.110599, 0.697673)
+bones/16/rotation = Quaternion(-0.707747, -0.0107031, -0.110599, 0.697673)
+bones/17/rotation = Quaternion(-0.707747, -0.0107031, -0.110599, 0.697673)
+bones/22/rotation = Quaternion(0.993782, -0.0706372, 0.085773, 0.00712556)
+bones/22/scale = Vector3(1.00001, 1, 0.999643)
 
 [node name="CameraPivot" type="Node3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.487, 0)
+
+[editable path="Mesh/fox"]

@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://csfsq7c4pbyqg"
+path.s3tc="res://.godot/imported/Orange-a4f540e688e11cf3d4d91f352deb0874_OrangeUV.png-d933e4d51937080f5a417e5b6be22bf7.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={}
+
+[deps]
+
+source_file="res://assets/models/items/Orange/Orange-a4f540e688e11cf3d4d91f352deb0874_OrangeUV.png"
+dest_files=["res://.godot/imported/Orange-a4f540e688e11cf3d4d91f352deb0874_OrangeUV.png-d933e4d51937080f5a417e5b6be22bf7.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

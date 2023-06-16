@@ -14,16 +14,29 @@ var is_open:
 var _slots : Array[InventorySlot]
 var _current_focused_slot_index : int
 
-@onready var _slots_container = $SlotsContainer
-@onready var _description_label = $Description
+@onready var _slots_container = $ResourcesSlotsContainer
+@onready var _name_label = $DescriptionRect/Name
+@onready var _description_label = $DescriptionRect/Description
 @onready var _quick_menu = $QuickMenu
 
 func _ready() -> void:
+	var slot_columns = _slots_container.columns
 	var slot_nodes = _slots_container.get_children()
 	for i in range(0, slot_nodes.size()):
 		var node = slot_nodes[i]
 		node.focus_entered.connect(_fill_item_description.bind(node))
 		node.focus_entered.connect(_set_current_focused_slot.bind(i))
+		
+		# focus order
+		node.focus_neighbor_left = "" if i % slot_columns == 0 \
+				else slot_nodes[i - 1].get_path()
+		node.focus_neighbor_right = "" if i % slot_columns == slot_columns - 1 \
+				else slot_nodes[i + 1].get_path()
+		node.focus_neighbor_top = "" if i < slot_columns \
+				else slot_nodes[i - slot_columns].get_path()
+		node.focus_neighbor_bottom = "" if i > slot_nodes.size() - 1 - slot_columns \
+				else slot_nodes[i + slot_columns].get_path()
+		
 		_slots.append(node)
 	
 	_quick_menu.quick_menu_visible.connect(_set_focus_to_quick_menu)
@@ -82,6 +95,7 @@ func _focus_first_slot() -> void:
 	first_slot.grab_focus()
 
 func _fill_item_description(slot : InventorySlot) -> void:
+	_name_label.text = slot.item_name
 	_description_label.text = slot.item_description 
 
 func _set_current_focused_slot(slot_index : int) -> void:

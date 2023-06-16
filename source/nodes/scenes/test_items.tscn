@@ -1,6 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5wjp1mfa1lyp"]
+[gd_scene load_steps=14 format=3 uid="uid://b5wjp1mfa1lyp"]
 
 [ext_resource type="PackedScene" uid="uid://xopw8jd5wmyh" path="res://source/nodes/scenes/test_scene_base.tscn" id="1_occme"]
+[ext_resource type="PackedScene" uid="uid://davyj20pyaxy" path="res://source/nodes/items/banana.tscn" id="2_1okmr"]
+[ext_resource type="PackedScene" uid="uid://cyd4s2ovh8yyi" path="res://source/nodes/items/meat_slice.tscn" id="2_6diq3"]
+[ext_resource type="PackedScene" uid="uid://bjq5seguxxiey" path="res://source/nodes/items/meat_chunk.tscn" id="2_voch0"]
+[ext_resource type="PackedScene" uid="uid://5a4inoa2y1wx" path="res://source/nodes/items/daikon.tscn" id="3_6aiur"]
+[ext_resource type="PackedScene" uid="uid://g18t51xl8iap" path="res://source/nodes/test/watermelon.tscn" id="3_113tb"]
+[ext_resource type="PackedScene" uid="uid://njhe7o7dwos3" path="res://source/nodes/items/red_apple.tscn" id="4_n37u6"]
+[ext_resource type="PackedScene" uid="uid://jijyjjojki33" path="res://source/nodes/items/orange.tscn" id="8_oc6ll"]
+[ext_resource type="PackedScene" uid="uid://ba7naafku0en3" path="res://source/nodes/items/parsnip.tscn" id="9_1jyrf"]
+[ext_resource type="PackedScene" uid="uid://kr6rfcukbxbb" path="res://source/nodes/items/pear.tscn" id="10_0g8xq"]
+[ext_resource type="PackedScene" uid="uid://cwkte4owdos0" path="res://source/nodes/items/radish.tscn" id="11_vwfmv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eluac"]
 size = Vector3(2.22621, 1, 2)
@@ -11,19 +21,46 @@ size = Vector3(2, 1, 2)
 
 [node name="TestItems" instance=ExtResource("1_occme")]
 
-[node name="Watermelon" parent="Spawners/PlaceholderSpawner/Placeholders" index="0" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
+[node name="Banana" parent="Spawners/PlaceholderSpawner/Placeholders" index="0" instance_placeholder="res://source/nodes/items/banana.tscn"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.95837, 0.533486, -3.84643)
+
+[node name="Daikon" parent="Spawners/PlaceholderSpawner/Placeholders" index="1" instance_placeholder="res://source/nodes/items/daikon.tscn"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.99241, 0.384456, -7.10226)
+
+[node name="RedApple" parent="Spawners/PlaceholderSpawner/Placeholders" index="2" instance_placeholder="res://source/nodes/items/red_apple.tscn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90796, 0.337149, -4.54038)
+
+[node name="Watermelon" parent="Spawners/PlaceholderSpawner/Placeholders" index="3" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.75807, 0.52437, -0.704711)
 
-[node name="WhiteCube" parent="Spawners/PlaceholderSpawner/Placeholders" index="1" instance_placeholder="res://source/nodes/test/white_cube.tscn"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98782, 0.52437, -2.4764)
-
-[node name="Watermelon2" parent="Spawners/PlaceholderSpawner/Placeholders" index="2" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
+[node name="Watermelon2" parent="Spawners/PlaceholderSpawner/Placeholders" index="4" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.62472, 0.52437, -0.429441)
 
-[node name="Watermelon3" parent="Spawners/PlaceholderSpawner/Placeholders" index="3" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
+[node name="Watermelon3" parent="Spawners/PlaceholderSpawner/Placeholders" index="5" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.32779, 0.52437, -0.754831)
 
-[node name="Stairs" type="StaticBody3D" parent="." index="13"]
+[node name="MeatSlice" parent="Spawners/PlaceholderSpawner/Placeholders" index="6" instance_placeholder="res://source/nodes/items/meat_slice.tscn"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1, 0.2, -2)
+
+[node name="MeatChunk" parent="Spawners/PlaceholderSpawner/Placeholders" index="7" instance_placeholder="res://source/nodes/items/meat_chunk.tscn"]
+transform = Transform3D(0.0457639, -0.920519, 0.388009, -3.39564e-08, -0.388416, -0.921484, 0.998952, 0.0421707, -0.0177755, 1, 0.5, -3)
+
+[node name="Orange" parent="Spawners/PlaceholderSpawner/Placeholders" index="8" instance_placeholder="res://source/nodes/items/orange.tscn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.2, -2)
+
+[node name="Parsnip" parent="Spawners/PlaceholderSpawner/Placeholders" index="9" instance_placeholder="res://source/nodes/items/parsnip.tscn"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -3, 1, -1)
+
+[node name="Pear" parent="Spawners/PlaceholderSpawner/Placeholders" index="10" instance_placeholder="res://source/nodes/items/pear.tscn"]
+transform = Transform3D(0.825458, 0.564463, 0, -0.564463, 0.825458, 0, 0, 0, 1, 2.78331, 0.219, -2.18981)
+
+[node name="Radish" parent="Spawners/PlaceholderSpawner/Placeholders" index="11" instance_placeholder="res://source/nodes/items/radish.tscn"]
+transform = Transform3D(0.627936, -0.778265, 0, 0.778265, 0.627936, 0, 0, 0, 1, -2.98609, 0.271913, -1.47046)
+
+[node name="ItemsSpawner" parent="Spawners" index="1"]
+_items_packed_scenes = Array[PackedScene]([ExtResource("3_113tb"), ExtResource("4_n37u6"), ExtResource("2_1okmr"), ExtResource("3_6aiur"), ExtResource("2_6diq3"), ExtResource("2_voch0"), ExtResource("8_oc6ll"), ExtResource("9_1jyrf"), ExtResource("10_0g8xq"), ExtResource("11_vwfmv")])
+
+[node name="Stairs" type="StaticBody3D" parent="." index="12"]
 transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -0.727, 0.5, -6.187)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stairs" index="0"]
@@ -33,5 +70,5 @@ shape = SubResource("BoxShape3D_eluac")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Stairs" index="1"]
 mesh = SubResource("PrismMesh_uutvj")
 
-[editable path="MenuUI/InventoryUI/QuickMenu"]
 [editable path="CameraParent"]
+[editable path="PauseUI/InventoryUI/QuickMenu"]

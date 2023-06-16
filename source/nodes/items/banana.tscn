@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://davyj20pyaxy"]
+
+[ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_g6auu"]
+[ext_resource type="ArrayMesh" uid="uid://dgxmokjroew3b" path="res://source/resources/models/items/banana_mesh.res" id="2_7tv6w"]
+[ext_resource type="Texture2D" uid="uid://dv1g4rtsmvnc3" path="res://assets/images/items/banana.png" id="2_65ou1"]
+[ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_3dtye"]
+
+[sub_resource type="Resource" id="Resource_rnnab"]
+script = ExtResource("3_3dtye")
+_id = 102
+_name = "Banana"
+_description = "Long and yellow."
+_max_count = 999
+_image = ExtResource("2_65ou1")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qpu6o"]
+radius = 0.123541
+height = 1.07177
+
+[node name="Banana" instance=ExtResource("1_g6auu")]
+_item = SubResource("Resource_rnnab")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111462, 0.01)
+shape = SubResource("CapsuleShape3D_qpu6o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
+mesh = ExtResource("2_7tv6w")

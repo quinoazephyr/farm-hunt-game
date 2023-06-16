@@ -34,7 +34,7 @@ func _process(delta) -> void:
 func pick_up_closest_item() -> void:
 	if _is_close_items_processing_requested:
 		_inventory.items_added.connect(_on_picked_up_items_added_to_inventory.unbind(3))
-		_inventory.try_add_items(_closest_item._item, 1)
+		_inventory.try_add_items(_closest_item._item, 1) # sometimes null
 		_inventory.items_added.disconnect(_on_picked_up_items_added_to_inventory.unbind(3))
 
 func _find_closest_item() -> Item3D:

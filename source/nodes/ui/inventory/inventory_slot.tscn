@@ -1,85 +1,78 @@
-[gd_scene load_steps=2 format=3 uid="uid://comkfbdci1gu1"]
+[gd_scene load_steps=6 format=3 uid="uid://comkfbdci1gu1"]
 
 [ext_resource type="Script" path="res://source/scripts/core/ui/inventory_slot.gd" id="1_g5j4m"]
+[ext_resource type="Texture2D" uid="uid://buughuhdyyspx" path="res://assets/images/ui/inventory/inventory_slot_empty.png" id="2_uyywm"]
+[ext_resource type="Texture2D" uid="uid://d4dm3tn0f2rkj" path="res://assets/images/ui/inventory/inventory_slot_selected.png" id="3_il5bk"]
+[ext_resource type="Texture2D" uid="uid://ck0nqwhq7j8fn" path="res://assets/images/ui/inventory/inventory_slot_item.png" id="4_gv1yb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4fom"]
+texture = ExtResource("3_il5bk")
 
 [node name="InventorySlot" type="Button"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(120, 120)
+theme_override_styles/focus = SubResource("StyleBoxTexture_g4fom")
 flat = true
 script = ExtResource("1_g5j4m")
 
-[node name="Highlight" type="ColorRect" parent="."]
+[node name="ItemEmpty" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_uyywm")
+expand_mode = 1
+
+[node name="ItemFull" type="TextureRect" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.705882)
+texture = ExtResource("4_gv1yb")
+expand_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Highlight" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0.705882)
+texture = ExtResource("3_il5bk")
+expand_mode = 1
 
-[node name="Image" type="TextureRect" parent="."]
+[node name="ItemImage" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="CountLabel" type="Label" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
+offset_top = -30.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="NameLabel"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0.705882)
-
-[node name="Count" type="HBoxContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_right = -5.0
-grow_horizontal = 0
-theme_override_constants/separation = 1
-alignment = 2
-
-[node name="Label" type="Label" parent="Count"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.705882)
-text = "x"
-
-[node name="CountLabel" type="Label" parent="Count"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.705882)
+theme_override_colors/font_color = Color(0.94902, 0.941176, 0.921569, 1)
+theme_override_font_sizes/font_size = 30
 text = "0"
+horizontal_alignment = 2

@@ -6,6 +6,9 @@ signal was_selected
 var is_empty:
 	get:
 		return _item_id == TypeConstants.OUT_OF_BOUNDS
+var item_name:
+	get:
+		return _name
 var item_description:
 	get:
 		return _description
@@ -14,14 +17,15 @@ var item_count:
 		return _count
 
 var _item_id : int = TypeConstants.OUT_OF_BOUNDS
+var _name : String = ""
 var _description : String = ""
 var _count : int = 0
 
 @onready var _button_slot = $"."
-@onready var _name_label = $NameLabel
-@onready var _count_container = $Count
-@onready var _count_label = $Count/CountLabel
-@onready var _image_texture_rect = $Image
+@onready var _count_label = $CountLabel
+@onready var _item_texture_rect = $ItemImage
+@onready var _item_full_texture_rect = $ItemFull
+@onready var _item_empty_texture_rect = $ItemEmpty
 @onready var _highlight_node = $Highlight
 
 func _ready():
@@ -36,22 +40,27 @@ func has_exact_item(item : Item) -> bool:
 
 func set_item(item : Item) -> void:
 	_item_id = item.id
-	_name_label.text = item.name
-	_image_texture_rect.texture = item.image
+	_item_texture_rect.texture = item.image
+	_item_full_texture_rect.visible = true
+	_item_empty_texture_rect.visible = false
+	_name = item.name
 	_description = item.description
-	_name_label.visible = true
-	_count_container.visible = true
+	_count_label.visible = true
+	highlight(false)
 
 func reset() -> void:
 	_item_id = TypeConstants.OUT_OF_BOUNDS
+	_name = ""
 	_description = ""
 	_count = 0
-	_name_label.text = ""
 	_count_label.text = str(_count)
-	_image_texture_rect.texture = null
+	_item_texture_rect.texture = null
+	_item_full_texture_rect.visible = false
+	_item_empty_texture_rect.visible = true
 	
-	_name_label.visible = false
-	_count_container.visible = false
+	_count_label.visible = false
+	
+	highlight(false)
 
 func add_items(count : int) -> void:
 	_count += count

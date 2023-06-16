@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://njhe7o7dwos3"]
+
+[ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_hb7i4"]
+[ext_resource type="Texture2D" uid="uid://vy4vb8sxm1y1" path="res://assets/images/items/apple.png" id="2_6u44w"]
+[ext_resource type="ArrayMesh" uid="uid://dfnsafdq360dm" path="res://source/resources/models/items/apple_mesh.res" id="2_bvnw2"]
+[ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_fm8ah"]
+
+[sub_resource type="Resource" id="Resource_y8by1"]
+script = ExtResource("3_fm8ah")
+_id = 101
+_name = "Apple"
+_description = "Horses love it!"
+_max_count = 999
+_image = ExtResource("2_6u44w")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rkjh8"]
+radius = 0.2
+
+[node name="RedApple" instance=ExtResource("1_hb7i4")]
+_item = SubResource("Resource_y8by1")
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_rkjh8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
+transform = Transform3D(20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0)
+mesh = ExtResource("2_bvnw2")

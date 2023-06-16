@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://jijyjjojki33"]
+
+[ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_a3dq4"]
+[ext_resource type="Script" path="res://source/scripts/items/item.gd" id="2_62tl3"]
+[ext_resource type="Texture2D" uid="uid://coqutjr6b1pbm" path="res://assets/images/items/orange.png" id="2_xp6ds"]
+[ext_resource type="ArrayMesh" uid="uid://c5gfmhd6fnp7s" path="res://source/resources/models/items/orange_mesh.res" id="3_nxwyc"]
+
+[sub_resource type="Resource" id="Resource_8pirf"]
+script = ExtResource("2_62tl3")
+_id = 106
+_name = "Orange"
+_description = "Not stinky!"
+_max_count = 999
+_image = ExtResource("2_xp6ds")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ki33m"]
+radius = 0.2
+
+[node name="Orange" instance=ExtResource("1_a3dq4")]
+_item = SubResource("Resource_8pirf")
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_ki33m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
+transform = Transform3D(20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0)
+mesh = ExtResource("3_nxwyc")

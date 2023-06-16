@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://5a4inoa2y1wx"]
+
+[ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_y8lae"]
+[ext_resource type="ArrayMesh" uid="uid://cqjs2u5qa6vt7" path="res://source/resources/models/items/daikon_mesh.res" id="2_2p6ub"]
+[ext_resource type="Texture2D" uid="uid://dh5mfkc0ikmjp" path="res://assets/images/items/daikon.png" id="2_50nvj"]
+[ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_2uu0g"]
+
+[sub_resource type="Resource" id="Resource_gfmwg"]
+script = ExtResource("3_2uu0g")
+_id = 103
+_name = "Daikon"
+_description = "Something japanese."
+_max_count = 999
+_image = ExtResource("2_50nvj")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cgym2"]
+radius = 0.184416
+height = 1.71468
+
+[node name="Daikon" instance=ExtResource("1_y8lae")]
+_item = SubResource("Resource_gfmwg")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.737896, 0)
+shape = SubResource("CapsuleShape3D_cgym2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+mesh = ExtResource("2_2p6ub")
