@@ -29,6 +29,7 @@ var _current_focused_slot_index : int
 func _ready() -> void:
 	_tab_container.tab_changed.connect(_tab_bar.set_current_tab)
 	_tab_bar.tab_clicked.connect(_tab_container.set_current_tab)
+	_tab_bar.tab_clicked.connect(_focus_slot_in_current_tab.bind(0).unbind(1))
 	
 	_next_tab_button.pressed.connect(_open_next_tab)
 	_prev_tab_button.pressed.connect(_open_previous_tab)
@@ -97,50 +98,94 @@ func _init_tab_slots(tab_index : int) -> void:
 		_tabs_slots[tab_index].append(node)
 
 func _set_tab_slots_focus_neighbours(tab_index : int) -> void:
+	var prev_tab_index = tab_index - 1
+	var prev_slot_nodes : Array
+	var prev_slot_columns : int
+	var prev_slot_rows : int
+	var prev_tab_exists = prev_tab_index > -1
+	if prev_tab_exists:
+		prev_slot_nodes = _tabs_slots[prev_tab_index]
+		prev_slot_columns = _tabs_slots_containers[prev_tab_index].columns
+		prev_slot_rows = ceili(prev_slot_nodes.size() / float(prev_slot_columns))
+	
+	var next_tab_index = tab_index + 1
+	var next_slot_nodes : Array
+	var next_slot_columns : int
+	var next_slot_rows : int
+	var next_tab_exists = next_tab_index < _tabs_slots_containers.size()
+	if next_tab_exists:
+		next_slot_nodes = _tabs_slots[next_tab_index]
+		next_slot_columns = _tabs_slots_containers[next_tab_index].columns
+		next_slot_rows = ceili(next_slot_nodes.size() / float(next_slot_columns))
+	
 	var slot_nodes = _tabs_slots[tab_index]
 	var slot_columns = _tabs_slots_containers[tab_index].columns
+	var slot_rows = ceili(slot_nodes.size() / float(slot_columns))
 	for i in range(0, slot_nodes.size()):
 		var node = slot_nodes[i]
-		
 		var cur_column = i % slot_columns
 		var cur_row = i / slot_columns
 		var is_left_column = cur_column == 0
 		var is_right_column = cur_column == slot_columns - 1
 		
-		node.focus_neighbor_left = "" if is_left_column \
+		node.focus_neighbor_left = "" \
+				if is_left_column || i - 1 < 0 \
 				else slot_nodes[i - 1].get_path()
-		node.focus_neighbor_right = "" if is_right_column \
+		node.focus_neighbor_right = "" \
+				if is_right_column || i + 1 >= slot_nodes.size() \
 				else slot_nodes[i + 1].get_path()
-		node.focus_neighbor_top = "" if cur_row == 0 \
+		node.focus_neighbor_top = "" \
+				if cur_row == 0 \
 				else slot_nodes[i - slot_columns].get_path()
 		node.focus_neighbor_bottom = "" \
-				if cur_row == slot_nodes.size() / slot_columns - 1 \
-				else slot_nodes[i + slot_columns].get_path() 
+				if cur_row == slot_rows - 1 || i + slot_columns >= slot_nodes.size() \
+				else slot_nodes[i + slot_columns].get_path()
+		
+		if prev_tab_exists:
+			var prev_tab_corresponding_slot_index = i \
+					if i < prev_slot_nodes.size() \
+					else 0
+			node.focus_previous = \
+					prev_slot_nodes[prev_tab_corresponding_slot_index].get_path()
+		else:
+			node.focus_previous = node.get_path()
+		if next_tab_exists:
+			var next_tab_corresponding_slot_index = i \
+					if i < next_slot_nodes.size() \
+					else 0
+			node.focus_next = \
+					next_slot_nodes[next_tab_corresponding_slot_index].get_path()
+		else:
+			node.focus_next = node.get_path()
 	
-	var prev_tab_index = tab_index - 1
-	if prev_tab_index > -1:
-		var prev_slot_nodes = _tabs_slots[prev_tab_index]
-		var prev_slot_columns = _tabs_slots_containers[prev_tab_index].columns
-		var prev_slot_rows = prev_slot_nodes.size() / prev_slot_columns
+	if prev_tab_exists:
 		for i in range(0, slot_nodes.size(), slot_columns):
 			var cur_slot = slot_nodes[i]
-			var cur_row = i / slot_nodes.size()
+			var cur_row = i / slot_columns
 			var prev_slot_row = max(0, min(prev_slot_rows - 1, cur_row))
-			var prev_slot_index = (prev_slot_row + 1) * prev_slot_columns - 1
-			cur_slot.focus_previous = \
+			var prev_slot_index : int
+			if prev_slot_row == prev_slot_rows - 1:
+				prev_slot_index = prev_slot_nodes.size() - 1
+			else:
+				prev_slot_index = \
+						prev_slot_row * prev_slot_columns + \
+						prev_slot_columns - 1
+			cur_slot.focus_neighbor_left = \
 					prev_slot_nodes[prev_slot_index].get_path()
 	
-	var next_tab_index = tab_index + 1
-	if next_tab_index < _tabs_slots_containers.size():
-		var next_slot_nodes = _tabs_slots[next_tab_index]
-		var next_slot_columns = _tabs_slots_containers[next_tab_index].columns
-		var next_slot_rows = next_slot_nodes.size() / next_slot_columns
+	if next_tab_exists:
 		for i in range(slot_columns - 1, slot_nodes.size(), slot_columns):
 			var cur_slot = slot_nodes[i]
-			var cur_row = i / slot_nodes.size()
+			var cur_row = i / slot_columns
 			var next_slot_row = max(0, min(next_slot_rows - 1, cur_row))
-			cur_slot.focus_next = \
-					next_slot_nodes[next_slot_row].get_path()
+			var next_slot_index = next_slot_row * next_slot_columns
+			cur_slot.focus_neighbor_right = \
+					next_slot_nodes[next_slot_index].get_path()
+		if slot_columns * slot_rows > slot_nodes.size():
+			var next_slot_row = max(0, min(next_slot_rows - 1, slot_rows - 1))
+			var next_slot_index = next_slot_row * next_slot_columns
+			slot_nodes[slot_nodes.size() - 1].focus_neighbor_right = \
+					next_slot_nodes[next_slot_index].get_path()
 
 func _set_focus_to_quick_menu() -> void:
 	_set_slots_non_focusable()
@@ -157,8 +202,11 @@ func _set_focus_to_inventory() -> void:
 	self_focused.emit()
 
 func _focus_slot_in_tab(tab_index : int, slot_index : int) -> void:
-	var first_slot = _tabs_slots[tab_index][slot_index]
-	first_slot.grab_focus()
+	var slot = _tabs_slots[tab_index][slot_index]
+	slot.grab_focus()
+
+func _focus_slot_in_current_tab(slot_index : int) -> void:
+	_focus_slot_in_tab(_tab_container.current_tab, slot_index)
 
 func _fill_item_description(slot : InventorySlot) -> void:
 	_name_label.text = slot.item_name
@@ -184,7 +232,9 @@ func _open_next_tab() -> void:
 	_tab_container.current_tab = \
 			min(_tab_container.current_tab + 1, \
 			_tab_container.get_tab_count() - 1)
+	_focus_slot_in_current_tab(0)
 
 func _open_previous_tab() -> void:
 	_tab_container.current_tab = \
 			max(_tab_container.current_tab - 1, 0)
+	_focus_slot_in_current_tab(0)

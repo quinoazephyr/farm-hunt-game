@@ -471,11 +471,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../InventorySlot7")
 focus_neighbor_top = NodePath("../InventorySlot4")
 
-[node name="InventorySlot20" parent="PauseUI/InventoryUI/TabContainer/ResourcesSlotsContainer" instance=ExtResource("17_55esj")]
-layout_mode = 2
-focus_neighbor_left = NodePath("../InventorySlot7")
-focus_neighbor_top = NodePath("../InventorySlot4")
-
 [node name="EquipmentSlotsContainer" type="GridContainer" parent="PauseUI/InventoryUI/TabContainer"]
 visible = false
 layout_mode = 2
@@ -500,10 +495,6 @@ focus_neighbor_right = NodePath("../InventorySlot4")
 [node name="InventorySlot4" parent="PauseUI/InventoryUI/TabContainer/EquipmentSlotsContainer" instance=ExtResource("17_55esj")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../InventorySlot3")
-
-[node name="InventorySlot5" parent="PauseUI/InventoryUI/TabContainer/EquipmentSlotsContainer" instance=ExtResource("17_55esj")]
-layout_mode = 2
-focus_neighbor_top = NodePath("../InventorySlot")
 
 [node name="CharacterPreview" type="TextureRect" parent="PauseUI/InventoryUI"]
 layout_mode = 1
