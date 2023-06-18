@@ -11,7 +11,7 @@ signal closed
 
 func _ready():
 	var inventory = _player_character._inventory
-	inventory.items_added.connect(_inventory_ui.add_items)
+	inventory.items_added.connect(_inventory_ui.add_resources)
 	_inventory_ui.drop_items_requested.connect(inventory.remove_items)
 
 func open():

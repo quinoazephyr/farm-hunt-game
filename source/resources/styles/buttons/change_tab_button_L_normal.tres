@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://qf22xk52n8g0"]
+
+[ext_resource type="Texture2D" uid="uid://c6hbcobm53wc5" path="res://assets/images/ui/inventory/tabs_input_L.png" id="1_bfoa4"]
+
+[resource]
+content_margin_left = 5.0
+texture = ExtResource("1_bfoa4")
