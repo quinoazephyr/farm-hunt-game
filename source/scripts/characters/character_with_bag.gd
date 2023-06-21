@@ -2,6 +2,8 @@ class_name CharacterWithBag
 extends CharacterWithItemAwareness
 
 signal inventory_resized(inventory_index : int, new_size : int)
+signal inventory_items_arranged(new_slots_indices : Array[int], \
+		inventory_index : int)
 signal items_added_to_inventory(item : Item, count : int, \
 		inventory_index : int, slot_index : int)
 signal items_dropped_from_inventory(item : Item, count : int, \
@@ -19,6 +21,7 @@ func _ready() -> void:
 		var config = _inventories_configs[i]
 		var inventory = Inventory.new()
 		inventory.resized.connect(_emit_inventory_resized.bind(i))
+		inventory.items_arranged.connect(_emit_inventory_items_arranged.bind(i))
 		inventory.items_added.connect(_emit_items_added.bind(i))
 		inventory.items_removed.connect(_emit_items_dropped.bind(i))
 		inventory.init(config)
@@ -52,3 +55,7 @@ func _emit_items_dropped(items : Item, count : int, slot_index : int, \
 
 func _emit_inventory_resized(new_size : int, inventory_index : int) -> void:
 	inventory_resized.emit(inventory_index, new_size)
+
+func _emit_inventory_items_arranged(new_slots_indices : Array[int], \
+		inventory_index : int) -> void:
+	inventory_items_arranged.emit(inventory_index, new_slots_indices)

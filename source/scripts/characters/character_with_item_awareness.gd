@@ -39,7 +39,7 @@ func _add_item_to_items_close(item) -> void:
 
 func _remove_item_from_items_close(item) -> void:
 	var item_index = _items_close.find(item)
-	if item_index != -1:
+	if item_index != TypeConstants.OUT_OF_BOUNDS:
 		_items_close.remove_at(item_index)
 	_try_stop_processing_close_items()
 

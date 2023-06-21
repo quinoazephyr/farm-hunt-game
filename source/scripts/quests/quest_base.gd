@@ -10,7 +10,7 @@ enum State {
 	FINISHED, # finished
 }
 
-@export var _id : int = -1
+@export var _id : int = TypeConstants.OUT_OF_BOUNDS
 @export var _title : String
 @export_multiline var _description : String
 @export var _goals : Array[QuestGoalBase]

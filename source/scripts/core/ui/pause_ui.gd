@@ -11,6 +11,7 @@ signal closed
 
 func _ready():
 	_player_character.inventory_resized.connect(_inventory_ui.resize_tab)
+	_player_character.inventory_items_arranged.connect(_inventory_ui.arrange_items)
 	_player_character.items_added_to_inventory.connect(_inventory_ui.add_items)
 	_inventory_ui.drop_items_requested.\
 			connect(_player_character._remove_items_from_inventory)

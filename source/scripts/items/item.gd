@@ -20,7 +20,7 @@ var image:
 	get:
 		return _image
 
-@export var _id = -1
+@export var _id = TypeConstants.OUT_OF_BOUNDS
 @export var _name : String
 @export_multiline var _description : String
 @export var _max_count = 999

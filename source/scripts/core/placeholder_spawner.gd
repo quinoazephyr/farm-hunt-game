@@ -37,7 +37,7 @@ func despawn_all() -> void: # todo: replace by chunk despawn
 func despawn_node(node : Node3D) -> void:
 	if node.get_parent() == _placeholders_spawned_parent:
 		var index = _get_spawned_node_index(node)
-		if index == -1:
+		if index == TypeConstants.OUT_OF_BOUNDS:
 			return
 		_placeholders_spawned.remove_at(index)
 		_placeholders_spawned_parent.remove_child(node)
@@ -47,4 +47,4 @@ func _get_spawned_node_index(node : Node) -> int:
 	for i in range(0, _placeholders_spawned.size()):
 		if _placeholders_spawned[i] == node:
 			return i
-	return -1
+	return TypeConstants.OUT_OF_BOUNDS

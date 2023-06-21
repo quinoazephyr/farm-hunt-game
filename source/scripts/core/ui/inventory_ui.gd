@@ -36,6 +36,10 @@ func remove_items(tab_index : int, slot_index : int, count : int) -> void:
 func resize_tab(tab_index : int, new_size : int) -> void:
 	_tabs.resize_tab(tab_index, new_size)
 
+func arrange_items(tab_index : int, \
+		new_slots_indices : Array[int]) -> void:
+	_tabs.arrange_items(tab_index, new_slots_indices)
+
 func call_menu_on_current_slot():
 	var current_slot = _tabs.current_slot
 	if  current_slot.is_empty:

@@ -7,18 +7,22 @@ enum InventoryType {
 }
 
 @export var _type : InventoryType
-@export var _initial_size : int
-@export var _auto_resize_increment_value : int
+@export var _default_size : int = 1
+@export var _can_auto_join_items : bool
+@export var _auto_resize_increment_value : int # can auto resize if can join items
 
 var type:
 	get:
 		return _type
-var initial_size:
+var default_size:
 	get:
-		return _initial_size
+		return _default_size
+var can_auto_join_items:
+	get:
+		return _can_auto_join_items
 var is_auto_resizable:
 	get:
-		return _auto_resize_increment_value > 0
+		return can_auto_join_items && _auto_resize_increment_value > 0
 var auto_resize_increment_value:
 	get:
 		return _auto_resize_increment_value

@@ -80,8 +80,4 @@ func _update_hold_count_graphic():
 	_hold_count_label.text = str(_items_count_holding)
 
 func _drop_items():
-	_current_inventory_slot.remove_items(_items_count_holding)
-	var slot = _current_inventory_slot
 	drop_requested.emit(_items_count_holding)
-	if slot.item_count == 0:
-		slot.reset()

@@ -39,6 +39,10 @@ func add_items(items : Item, count : int, \
 	inventory_slot.add_items(count)
 
 func remove_items(count : int, tab_index : int, slot_index : int) -> void:
+	var slot = _tabs_slots[tab_index][slot_index]
+	slot.remove_items(count)
+	if slot.item_count == 0:
+		slot.reset()
 	drop_items_requested.emit(tab_index, slot_index, count)
 
 func resize_tab(tab_index : int, new_size : int) -> void:
@@ -50,17 +54,30 @@ func resize_tab(tab_index : int, new_size : int) -> void:
 	var slot_array = _tabs_slots[tab_index]
 	var old_size = slot_array.size()
 	
-	for i in range(old_size, new_size, 1):
-		var slot = _slot_packed_scene.instantiate()
-		container.add_child(slot)
-		slot.focus_entered.connect(_emit_slot_focus_entered.bind(slot))
-		slot.focus_entered.connect(_set_current_focused_slot.bind(tab_index, i))
-		slot.focus_exited.connect(_emit_slot_focus_exited.bind(slot))
-		slot_array.append(slot)
+	if old_size < new_size:
+		for i in range(old_size, new_size):
+			var slot = _slot_packed_scene.instantiate()
+			container.add_child(slot)
+			slot.focus_entered.connect(_emit_slot_focus_entered.bind(slot))
+			slot.focus_entered.connect(_set_current_focused_slot.bind(tab_index, i))
+			slot.focus_exited.connect(_emit_slot_focus_exited.bind(slot))
+			slot_array.append(slot)
+	elif new_size < old_size:
+		for i in range(old_size - 1, new_size - 1, -1):
+			var slot = slot_array[i]
+			container.remove_child(slot)
+		slot_array.resize(new_size)
 	
 	for i in range(max(0, tab_index - 1), \
 			min(tab_index + 1, _tab_container.get_tab_count())):
 		_set_tab_slots_focus_neighbours(i)
+
+func arrange_items(tab_index : int, \
+		new_slots_indices : Array[int]) -> void:
+	var slots = _tabs_slots[tab_index]
+	for i in range(0, new_slots_indices.size()):
+		var swap_to_index = new_slots_indices[i]
+		InventorySlot.swap(slots[i], slots[swap_to_index])
 
 func remove_items_from_current_slot(count : int) -> void:
 	remove_items(count, _tab_container.current_tab, _current_focused_slot_index)
@@ -90,7 +107,7 @@ func _set_tab_slots_focus_neighbours(tab_index : int) -> void:
 	var prev_tab_nodes : Array
 	var prev_tab_columns : int
 	var prev_tab_rows : int
-	var prev_tab_exists = prev_tab_index > -1
+	var prev_tab_exists = prev_tab_index > TypeConstants.OUT_OF_BOUNDS
 	if prev_tab_exists:
 		prev_tab_nodes = _tabs_slots[prev_tab_index]
 		prev_tab_columns = \
