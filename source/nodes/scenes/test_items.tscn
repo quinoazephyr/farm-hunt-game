@@ -1,16 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5wjp1mfa1lyp"]
+[gd_scene load_steps=4 format=3 uid="uid://b5wjp1mfa1lyp"]
 
 [ext_resource type="PackedScene" uid="uid://xopw8jd5wmyh" path="res://source/nodes/scenes/test_scene_base.tscn" id="1_occme"]
-[ext_resource type="PackedScene" uid="uid://davyj20pyaxy" path="res://source/nodes/items/banana.tscn" id="2_1okmr"]
-[ext_resource type="PackedScene" uid="uid://cyd4s2ovh8yyi" path="res://source/nodes/items/meat_slice.tscn" id="2_6diq3"]
-[ext_resource type="PackedScene" uid="uid://bjq5seguxxiey" path="res://source/nodes/items/meat_chunk.tscn" id="2_voch0"]
-[ext_resource type="PackedScene" uid="uid://5a4inoa2y1wx" path="res://source/nodes/items/daikon.tscn" id="3_6aiur"]
-[ext_resource type="PackedScene" uid="uid://g18t51xl8iap" path="res://source/nodes/test/watermelon.tscn" id="3_113tb"]
-[ext_resource type="PackedScene" uid="uid://njhe7o7dwos3" path="res://source/nodes/items/red_apple.tscn" id="4_n37u6"]
-[ext_resource type="PackedScene" uid="uid://jijyjjojki33" path="res://source/nodes/items/orange.tscn" id="8_oc6ll"]
-[ext_resource type="PackedScene" uid="uid://ba7naafku0en3" path="res://source/nodes/items/parsnip.tscn" id="9_1jyrf"]
-[ext_resource type="PackedScene" uid="uid://kr6rfcukbxbb" path="res://source/nodes/items/pear.tscn" id="10_0g8xq"]
-[ext_resource type="PackedScene" uid="uid://cwkte4owdos0" path="res://source/nodes/items/radish.tscn" id="11_vwfmv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eluac"]
 size = Vector3(2.22621, 1, 2)
@@ -57,8 +47,8 @@ transform = Transform3D(0.825458, 0.564463, 0, -0.564463, 0.825458, 0, 0, 0, 1, 
 [node name="Radish" parent="Spawners/PlaceholderSpawner/Placeholders" index="11" instance_placeholder="res://source/nodes/items/radish.tscn"]
 transform = Transform3D(0.627936, -0.778265, 0, 0.778265, 0.627936, 0, 0, 0, 1, -2.98609, 0.271913, -1.47046)
 
-[node name="ItemsSpawner" parent="Spawners" index="1"]
-_items_packed_scenes = Array[PackedScene]([ExtResource("3_113tb"), ExtResource("4_n37u6"), ExtResource("2_1okmr"), ExtResource("3_6aiur"), ExtResource("2_6diq3"), ExtResource("2_voch0"), ExtResource("8_oc6ll"), ExtResource("9_1jyrf"), ExtResource("10_0g8xq"), ExtResource("11_vwfmv")])
+[node name="Sword" parent="Spawners/PlaceholderSpawner/Placeholders" index="12" instance_placeholder="res://source/nodes/items/sword.tscn"]
+transform = Transform3D(-2.98023e-07, 1, 0, -1, -2.98023e-07, 0, 0, 0, 1, -1.92993, 3.58186, -3.68734)
 
 [node name="Stairs" type="StaticBody3D" parent="." index="12"]
 transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -0.727, 0.5, -6.187)

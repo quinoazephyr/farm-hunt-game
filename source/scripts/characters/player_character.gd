@@ -12,7 +12,7 @@ const _ANIMATION_NAME_FALL = "Fall"
 
 @export_node_path("CameraPlayer") var _camera_player_path
 
-var _quests : QuestsPlayer
+var _quests : PlayerQuests
 
 @onready var _camera_player = get_node(_camera_player_path)
 @onready var _camera_pivot = $CameraPivot
@@ -21,7 +21,7 @@ var _quests : QuestsPlayer
 func _ready() -> void:
 	super._ready()
 	
-	_quests = QuestsPlayer.new()
+	_quests = PlayerQuests.new()
 	_quests.quest_accepted.connect(_emit_quest_accepted)
 	_quests.quest_completed.connect(_emit_quest_completed)
 	

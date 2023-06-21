@@ -10,9 +10,10 @@ signal closed
 @onready var _inventory_ui = $InventoryUI
 
 func _ready():
-	var inventory = _player_character._inventory
-	inventory.items_added.connect(_inventory_ui.add_resources)
-	_inventory_ui.drop_items_requested.connect(inventory.remove_items)
+	_player_character.inventory_resized.connect(_inventory_ui.resize_tab)
+	_player_character.items_added_to_inventory.connect(_inventory_ui.add_items)
+	_inventory_ui.drop_items_requested.\
+			connect(_player_character._remove_items_from_inventory)
 
 func open():
 	_inventory_ui.open_inventory()

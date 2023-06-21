@@ -1,16 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://comkfbdci1gu1"]
+[gd_scene load_steps=7 format=3 uid="uid://comkfbdci1gu1"]
 
 [ext_resource type="Script" path="res://source/scripts/core/ui/inventory_slot.gd" id="1_g5j4m"]
 [ext_resource type="Texture2D" uid="uid://buughuhdyyspx" path="res://assets/images/ui/inventory/inventory_slot_empty.png" id="2_uyywm"]
 [ext_resource type="Texture2D" uid="uid://d4dm3tn0f2rkj" path="res://assets/images/ui/inventory/inventory_slot_selected.png" id="3_il5bk"]
 [ext_resource type="Texture2D" uid="uid://ck0nqwhq7j8fn" path="res://assets/images/ui/inventory/inventory_slot_item.png" id="4_gv1yb"]
+[ext_resource type="Texture2D" uid="uid://d3ai6lwd3jxjx" path="res://assets/images/ui/inventory/inventory_slot_selected_empty.png" id="4_vydv1"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4fom"]
-texture = ExtResource("3_il5bk")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrc0x"]
 
 [node name="InventorySlot" type="Button"]
 custom_minimum_size = Vector2(120, 120)
-theme_override_styles/focus = SubResource("StyleBoxTexture_g4fom")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lrc0x")
 flat = true
 script = ExtResource("1_g5j4m")
 
@@ -35,7 +35,7 @@ grow_vertical = 2
 texture = ExtResource("4_gv1yb")
 expand_mode = 1
 
-[node name="Highlight" type="TextureRect" parent="."]
+[node name="HighlightFull" type="TextureRect" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -59,6 +59,21 @@ offset_right = 40.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
+expand_mode = 1
+
+[node name="HighlightEmpty" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vydv1")
 expand_mode = 1
 
 [node name="CountLabel" type="Label" parent="."]

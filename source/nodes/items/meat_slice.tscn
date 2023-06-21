@@ -11,6 +11,7 @@ _id = 104
 _name = "Meat slice"
 _description = "Juicy!"
 _max_count = 999
+_type = 0
 _image = ExtResource("2_qyd76")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6pph"]

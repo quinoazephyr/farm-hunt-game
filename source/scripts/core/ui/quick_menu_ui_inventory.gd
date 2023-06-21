@@ -11,7 +11,7 @@ signal drop_requested(count : int)
 @onready var _cancel_button = $ControlWithOffset/ButtonsContainer/CancelButton
 @onready var _hold_count_rect = $ControlWithOffset/CountRect
 @onready var _hold_count_label = \
-		$ControlWithOffset/CountRect/CountHBox/CountLabel
+		$ControlWithOffset/CountRect/CountLabel
 
 var _current_inventory_slot : InventorySlot
 var _items_count_holding : int

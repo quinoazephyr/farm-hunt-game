@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://cd3c3c2a31dnl"]
+
+[ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_wdcq4"]
+[ext_resource type="ArrayMesh" uid="uid://bu2oyxclrp0h5" path="res://source/resources/models/items/sword_mesh.res" id="2_egvf4"]
+[ext_resource type="Texture2D" uid="uid://lnti8ncockb" path="res://assets/images/items/sword.png" id="2_mswt2"]
+[ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_gtwjp"]
+
+[sub_resource type="Resource" id="Resource_41pb1"]
+script = ExtResource("3_gtwjp")
+_id = 110
+_name = "Sword"
+_description = "First equipment"
+_max_count = 1
+_type = 1
+_image = ExtResource("2_mswt2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_26hr1"]
+size = Vector3(0.157968, 0.842497, 0.267493)
+
+[node name="Sword" instance=ExtResource("1_wdcq4")]
+_item = SubResource("Resource_41pb1")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.183243, 0)
+shape = SubResource("BoxShape3D_26hr1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.531684, -0.641063, 0)
+mesh = ExtResource("2_egvf4")

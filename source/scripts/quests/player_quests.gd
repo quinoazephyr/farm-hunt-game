@@ -1,4 +1,4 @@
-class_name QuestsPlayer
+class_name PlayerQuests
 
 signal quest_accepted(quest : QuestBase)
 signal quest_completed(quest : QuestBase)

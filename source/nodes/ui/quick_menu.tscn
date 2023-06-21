@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b82kd2vni3b1k"]
+[gd_scene load_steps=3 format=3 uid="uid://b82kd2vni3b1k"]
 
 [ext_resource type="Script" path="res://source/scripts/core/ui/quick_menu_ui_base.gd" id="1_h1quc"]
+[ext_resource type="Texture2D" uid="uid://bhoburt0dmnn5" path="res://assets/images/ui/inventory/quick_menu_bg.png" id="2_jo530"]
 
 [node name="QuickMenu" type="Control"]
 layout_mode = 3
@@ -8,37 +9,21 @@ anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_h1quc")
 
-[node name="ControlWithOffset" type="ColorRect" parent="."]
+[node name="ControlWithOffset" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 100.0
-offset_top = -20.0
-offset_right = 250.0
-offset_bottom = 110.0
-mouse_filter = 1
-color = Color(0.196078, 0.196078, 0.196078, 0.705882)
-
-[node name="Highlight" type="ColorRect" parent="ControlWithOffset"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 170.0
+offset_top = -30.0
+offset_right = 470.0
+offset_bottom = 250.0
+texture = ExtResource("2_jo530")
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="ControlWithOffset"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10

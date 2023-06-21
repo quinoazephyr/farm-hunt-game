@@ -1,81 +1,54 @@
 class_name CharacterWithBag
-extends CharacterBase
+extends CharacterWithItemAwareness
 
-signal found_closest_item(item : Item)
-signal no_items_close_detected
+signal inventory_resized(inventory_index : int, new_size : int)
+signal items_added_to_inventory(item : Item, count : int, \
+		inventory_index : int, slot_index : int)
+signal items_dropped_from_inventory(item : Item, count : int, \
+		inventory_index : int, slot_index : int)
 signal picked_up_item(item : Item)
-signal items_added(item : Item, count : int)
-signal items_dropped(item : Item, count : int)
 
-@export var _inventory_size : int
+@export var _inventories_configs : Array[InventoryConfig]
 
-var _items_close : Array[Item3D]
-var _closest_item : Item3D
-var _inventory : Inventory
-var _is_close_items_processing_requested : bool = false
-
-@onready var _item_detection_area : Area3D = $ItemDetectionArea3D
+var _inventories : Dictionary # [InventoryType, Inventory]
 
 func _ready() -> void:
 	super._ready()
 	
-	_inventory = Inventory.new()
-	_inventory.init(_inventory_size)
-	_inventory.items_added.connect(_emit_items_added.unbind(1))
-	_inventory.items_removed.connect(_emit_items_dropped.unbind(1))
-	
-	_item_detection_area.body_entered.connect(_add_item_to_items_close)
-	_item_detection_area.body_exited.connect(_remove_item_from_items_close)
-
-func _process(delta) -> void:
-	if _is_close_items_processing_requested:
-		_process_close_items()
+	for i in range(0, _inventories_configs.size()):
+		var config = _inventories_configs[i]
+		var inventory = Inventory.new()
+		inventory.resized.connect(_emit_inventory_resized.bind(i))
+		inventory.items_added.connect(_emit_items_added.bind(i))
+		inventory.items_removed.connect(_emit_items_dropped.bind(i))
+		inventory.init(config)
+		_inventories[int(config.type)] = inventory
 
 func pick_up_closest_item() -> void:
 	if _is_close_items_processing_requested:
-		_inventory.items_added.connect(_on_picked_up_items_added_to_inventory.unbind(3))
-		_inventory.try_add_items(_closest_item._item, 1) # sometimes null
-		_inventory.items_added.disconnect(_on_picked_up_items_added_to_inventory.unbind(3))
+		var item = _closest_item._item # sometimes null
+		var inventory = _inventories[item.type]
+		inventory.items_added\
+				.connect(_on_picked_up_items_added_to_inventory.unbind(3))
+		inventory.try_add_items(item, 1)
+		inventory.items_added\
+				.disconnect(_on_picked_up_items_added_to_inventory.unbind(3))
 
-func _find_closest_item() -> Item3D:
-	var min_distance = TypeConstants.MAX_INT
-	var closest_item : Item3D = null
-	for item in _items_close:
-		var distance = (self.global_position - item.global_position).length()
-		if distance < min_distance:
-			min_distance = distance
-			closest_item = item
-	return closest_item
+func _remove_items_from_inventory(count : int, inventory_index : int, \
+		slot_index : int) -> void:
+	_inventories[inventory_index].remove_items(slot_index, count)
 
-func _add_item_to_items_close(item) -> void:
-	_items_close.append(item)
-	_set_processing_close_items(true)
-
-func _remove_item_from_items_close(item) -> void:
-	var item_index = _items_close.find(item)
-	if item_index != -1:
-		_items_close.remove_at(item_index)
-	_try_stop_processing_close_items()
-
-func _try_stop_processing_close_items() -> void:
-	if _items_close.size() == 0:
-		no_items_close_detected.emit()
-		_set_processing_close_items(false)
-
-func _set_processing_close_items(enable) -> void:
-	_is_close_items_processing_requested = enable
-
-func _process_close_items() -> void:
-	_closest_item = _find_closest_item()
-	assert(_closest_item != null)
-	found_closest_item.emit(_closest_item)
-
-func _on_picked_up_items_added_to_inventory():
+func _on_picked_up_items_added_to_inventory() -> void:
 	picked_up_item.emit(_closest_item)
-	_closest_item = null
+	_reset_closest_item()
 
-func _emit_items_added(items : Item, count : int):
-	items_added.emit(items, count)
+func _emit_items_added(items : Item, count : int, slot_index : int, \
+		inventory_index : int) -> void:
+	items_added_to_inventory.emit(items, count, inventory_index, slot_index)
 
-func _emit_items_dropped(items : Item, count : int):
-	items_dropped.emit(items, count)
+func _emit_items_dropped(items : Item, count : int, slot_index : int, \
+		inventory_index : int) -> void:
+	items_dropped_from_inventory.emit(items, count, inventory_index, slot_index)
+
+func _emit_inventory_resized(new_size : int, inventory_index : int) -> void:
+	inventory_resized.emit(inventory_index, new_size)

@@ -5,9 +5,11 @@ signal items_added(item : Item, count : int, slot_index : int)
 signal items_removed(item : Item, count : int, slot_index : int)
 
 var _items_details : Array[Inventory.ItemDetails]
+var _inventory_config : InventoryConfig
 
-func init(size : int) -> void:
-	resize(size)
+func init(inventory_config : InventoryConfig) -> void:
+	_inventory_config = inventory_config
+	resize(inventory_config.initial_size)
 
 func try_add_items(item : Item, count : int) -> void:
 	var slot_index = _get_item_slot_index(item.id)
@@ -50,11 +52,18 @@ func _get_item_slot_index(item_id : int) -> int:
 	for i in range(0, _items_details.size()):
 		if _items_details[i].item != null &&\
 				_items_details[i].item.id == item_id:
+			if i == _items_details.size() - 1:
+				_try_auto_resize
 			return i
 	for i in range(0, _items_details.size()):
 		if _items_details[i].item == null:
+			if i == _items_details.size() - 1:
+				_try_auto_resize()
 			return i
 	return TypeConstants.OUT_OF_BOUNDS
+
+func _try_auto_resize() -> void:
+	resize(_items_details.size() + _inventory_config.auto_resize_increment_value)
 
 class ItemDetails:
 	var item : Item = null

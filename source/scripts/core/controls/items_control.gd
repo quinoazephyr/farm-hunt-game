@@ -17,7 +17,8 @@ func _ready() -> void:
 		character.picked_up_item.connect(_item_spawner.despawn)
 		character.picked_up_item.connect(_placeholder_spawner.despawn_node)
 		
-		character.items_dropped.connect(_drop_items_near_character.bind(character))
+		character.items_dropped_from_inventory.\
+				connect(_drop_items_near_character.bind(character))
 		
 		_chars_with_bags.append(character)
 	
@@ -27,6 +28,7 @@ func _ready() -> void:
 	#DEBUG END
 
 func _drop_items_near_character(item : Item, count : int, \
+		inventory_index : int, slot_index : int, \
 		character : CharacterWithBag) -> void:
 	var character_forward = -character.global_transform.basis.z
 	var distance = 1.0

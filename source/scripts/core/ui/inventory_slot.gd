@@ -26,7 +26,8 @@ var _count : int = 0
 @onready var _item_texture_rect = $ItemImage
 @onready var _item_full_texture_rect = $ItemFull
 @onready var _item_empty_texture_rect = $ItemEmpty
-@onready var _highlight_node = $Highlight
+@onready var _highlight_empty_node = $HighlightEmpty
+@onready var _highlight_full_node = $HighlightFull
 
 func _ready():
 	_button_slot.pressed.connect(_emit_selected)
@@ -71,7 +72,8 @@ func remove_items(count : int) -> void:
 	_count_label.text = str(_count)
 
 func highlight(enable : bool) -> void:
-	_highlight_node.visible = enable
+	_highlight_empty_node.visible = enable
+	_highlight_full_node.visible = !is_empty && enable
 
 func _emit_selected() -> void:
 	was_selected.emit()

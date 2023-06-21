@@ -11,6 +11,7 @@ _id = 101
 _name = "Apple"
 _description = "Horses love it!"
 _max_count = 999
+_type = 0
 _image = ExtResource("2_6u44w")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rkjh8"]
