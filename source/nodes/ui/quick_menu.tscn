@@ -11,10 +11,10 @@ script = ExtResource("1_h1quc")
 
 [node name="ControlWithOffset" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 170.0
+offset_left = 130.0
 offset_top = -30.0
-offset_right = 470.0
-offset_bottom = 250.0
+offset_right = 405.0
+offset_bottom = 180.0
 texture = ExtResource("2_jo530")
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="ControlWithOffset"]
@@ -26,4 +26,4 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 0

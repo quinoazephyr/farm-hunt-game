@@ -1,6 +1,3 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://c0ceougla08xr"]
-
-[ext_resource type="Texture2D" uid="uid://ccbanpsssjexo" path="res://assets/images/ui/inventory/quick_menu_disabled_button.png" id="1_r563q"]
+[gd_resource type="StyleBoxEmpty" format=3 uid="uid://cq7wq2sjq514l"]
 
 [resource]
-texture = ExtResource("1_r563q")

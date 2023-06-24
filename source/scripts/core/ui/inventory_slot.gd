@@ -107,7 +107,7 @@ func remove_items(count : int) -> void:
 	_count_label.text = str(_count)
 
 func highlight(enable : bool) -> void:
-	_highlight_empty_node.visible = enable
+	_highlight_empty_node.visible = is_empty && enable
 	_highlight_full_node.visible = !is_empty && enable
 
 func _emit_selected() -> void:

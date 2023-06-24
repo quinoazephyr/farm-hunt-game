@@ -8,9 +8,9 @@
 [sub_resource type="Resource" id="Resource_bmqme"]
 script = ExtResource("3_6vrgo")
 _type = 0
-_default_size = 5
+_default_size = 18
 _can_auto_join_items = true
-_auto_resize_increment_value = 5
+_auto_resize_increment_value = 6
 
 [sub_resource type="Resource" id="Resource_16s2o"]
 script = ExtResource("3_6vrgo")

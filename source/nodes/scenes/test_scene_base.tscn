@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://xopw8jd5wmyh"]
+[gd_scene load_steps=79 format=3 uid="uid://xopw8jd5wmyh"]
 
 [ext_resource type="Environment" uid="uid://1vi1iwjunjii" path="res://source/resources/world_environments/soft_bloom_environment.tres" id="1_5snjs"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/timescale_control.gd" id="1_oi6un"]
@@ -30,7 +30,6 @@
 [ext_resource type="PackedScene" uid="uid://c2j8p0ouei0bv" path="res://source/nodes/ui/quests/quest.tscn" id="18_qmr78"]
 [ext_resource type="Script" path="res://source/scripts/quests/quests_ui.gd" id="18_uq56c"]
 [ext_resource type="PackedScene" uid="uid://b82kd2vni3b1k" path="res://source/nodes/ui/quick_menu.tscn" id="19_jno4m"]
-[ext_resource type="Texture2D" uid="uid://d1eqvudut08av" path="res://assets/images/ui/inventory/tabs_background.png" id="19_lpnyf"]
 [ext_resource type="Script" path="res://source/scripts/core/ui/pause_ui.gd" id="19_v5ubj"]
 [ext_resource type="Script" path="res://source/scripts/core/ui/quick_menu_ui_inventory.gd" id="20_cqd5j"]
 [ext_resource type="Texture2D" uid="uid://dib43qo3hwu5o" path="res://assets/images/controls/pc/down-arrow.png" id="21_56o6i"]
@@ -39,27 +38,58 @@
 [ext_resource type="Texture2D" uid="uid://bbnrf4ati72ty" path="res://assets/images/controls/pc/left-arrow.png" id="22_xglxu"]
 [ext_resource type="StyleBox" uid="uid://7b8ftmewp2pd" path="res://source/resources/styles/buttons/change_tab_button_L_pressed.tres" id="23_844m3"]
 [ext_resource type="Texture2D" uid="uid://c65l21x17vlpv" path="res://assets/images/controls/pc/enter.png" id="23_n0kci"]
-[ext_resource type="StyleBox" uid="uid://bg71i0wpqmkso" path="res://source/resources/styles/tabs/tab_selected.tres" id="24_f0p5k"]
 [ext_resource type="StyleBox" uid="uid://ftx7x70vj1un" path="res://source/resources/styles/buttons/change_tab_button_R_normal.tres" id="24_g738u"]
 [ext_resource type="Texture2D" uid="uid://vmmvtyj6sb1h" path="res://assets/images/controls/pc/escape.png" id="24_h1pgu"]
 [ext_resource type="Texture2D" uid="uid://o72d82hj6af3" path="res://assets/images/ui/inventory/description_rect.png" id="25_3blg7"]
-[ext_resource type="StyleBox" uid="uid://ds120uelmwh6c" path="res://source/resources/styles/tabs/tab_unselected.tres" id="25_e8e4t"]
 [ext_resource type="StyleBox" uid="uid://bb5s2yob452ga" path="res://source/resources/styles/buttons/change_tab_button_R_pressed.tres" id="25_ngq34"]
 [ext_resource type="Texture2D" uid="uid://d3jqrfg6828m2" path="res://assets/images/ui/inventory/character_preview_placeholder.png" id="26_5gkvt"]
+[ext_resource type="FontFile" uid="uid://b7jhigkp6qa06" path="res://assets/fonts/roboto/Roboto-Italic.ttf" id="30_gkuxa"]
+[ext_resource type="Texture2D" uid="uid://c7oaj63muyf16" path="res://assets/images/ui/inventory/potion_icon.png" id="32_tnnvk"]
+[ext_resource type="Texture2D" uid="uid://dmdnjknk2clgq" path="res://assets/images/ui/inventory/sword_icon.png" id="33_2yqpk"]
+[ext_resource type="Texture2D" uid="uid://bfchxage7j6dl" path="res://assets/images/ui/inventory/bag_icon.png" id="33_c27hm"]
+[ext_resource type="Texture2D" uid="uid://b3lpevsdc86kf" path="res://assets/images/ui/inventory/bow_icon.png" id="34_41miy"]
+[ext_resource type="Texture2D" uid="uid://iqo657so7xmp" path="res://assets/images/ui/inventory/bag_icon_inactive.png" id="35_15pyt"]
+[ext_resource type="Texture2D" uid="uid://c81utj6nymjck" path="res://assets/images/ui/inventory/shield_icon.png" id="35_qnneb"]
+[ext_resource type="Texture2D" uid="uid://b35y43h6oxj1e" path="res://assets/images/ui/inventory/potion_icon_inactive.png" id="36_7emu8"]
+[ext_resource type="Texture2D" uid="uid://byb3kp7dk2tj5" path="res://assets/images/ui/inventory/armor_icon.png" id="36_wptyy"]
 [ext_resource type="StyleBox" uid="uid://cghcl0b3r0fkf" path="res://source/resources/styles/buttons/quick_menu_button_hover.tres" id="37_244u1"]
-[ext_resource type="StyleBox" uid="uid://c0ceougla08xr" path="res://source/resources/styles/buttons/quick_menu_button_disabled.tres" id="38_4qqat"]
+[ext_resource type="FontFile" uid="uid://x04bywyu4ly5" path="res://assets/fonts/roboto/Roboto-BoldItalic.ttf" id="37_b6f5w"]
+[ext_resource type="Texture2D" uid="uid://ck3o3cjmoykxr" path="res://assets/images/ui/inventory/sword_icon_inactive.png" id="37_bm0oh"]
+[ext_resource type="Texture2D" uid="uid://721wogylml12" path="res://assets/images/ui/inventory/star_icon.png" id="37_nixs4"]
+[ext_resource type="StyleBox" uid="uid://cq7wq2sjq514l" path="res://source/resources/styles/buttons/quick_menu_button_disabled.tres" id="38_4qqat"]
+[ext_resource type="FontFile" uid="uid://bjqb3klyxxk38" path="res://assets/fonts/roboto/Roboto-Regular.ttf" id="38_6xpcf"]
 [ext_resource type="StyleBox" uid="uid://dsklhbybi6d6i" path="res://source/resources/styles/buttons/quick_menu_button_focus.tres" id="38_b26s2"]
-[ext_resource type="Texture2D" uid="uid://da5wlcei5fsmr" path="res://assets/images/ui/inventory/quick_menu_drop_count_bg.png" id="40_g5vtb"]
+[ext_resource type="Texture2D" uid="uid://jrnm27hn7yj8" path="res://assets/images/ui/inventory/bow_icon_inactive.png" id="38_q2p86"]
+[ext_resource type="Texture2D" uid="uid://dlha4mbckjdv0" path="res://assets/images/ui/inventory/shield_icon_inactive.png" id="39_0xc7h"]
+[ext_resource type="Texture2D" uid="uid://bktqbr31spox1" path="res://assets/images/ui/inventory/armor_icon_inactive.png" id="40_ix3bc"]
+[ext_resource type="Texture2D" uid="uid://3o8hk0r6cac2" path="res://assets/images/ui/inventory/star_icon_inactive.png" id="41_vjrb2"]
+[ext_resource type="FontFile" uid="uid://by67psae3oruu" path="res://assets/fonts/roboto/Roboto-MediumItalic.ttf" id="49_uqcvq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmq23"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_6a0fi"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k5jbh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvu3d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nh22"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ge7h8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6tky"]
+[sub_resource type="LabelSettings" id="LabelSettings_3owhd"]
+font = ExtResource("30_gkuxa")
+font_size = 34
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4173j"]
+[sub_resource type="LabelSettings" id="LabelSettings_2hpqm"]
+font = ExtResource("37_b6f5w")
+font_size = 46
+
+[sub_resource type="LabelSettings" id="LabelSettings_vanse"]
+font = ExtResource("38_6xpcf")
+font_size = 34
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6tky"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3t5t8"]
 
@@ -216,91 +246,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0.196078, 0.196078, 0.196078, 0.705882)
+color = Color(0.0941176, 0.101961, 0.0941176, 0.501961)
 script = ExtResource("16_y837w")
 
-[node name="Tabs" type="VBoxContainer" parent="PauseUI/InventoryUI"]
+[node name="ColorRect" type="ColorRect" parent="PauseUI/InventoryUI"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.941176, 0.94902, 0.921569, 0.4)
+
+[node name="Tabs" type="Control" parent="PauseUI/InventoryUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("21_x5uvt")
+_slot_packed_scene = ExtResource("17_55esj")
+_tabs_icons_active = Array[Texture2D]([ExtResource("33_c27hm"), ExtResource("32_tnnvk"), ExtResource("33_2yqpk"), ExtResource("34_41miy"), ExtResource("35_qnneb"), ExtResource("36_wptyy"), ExtResource("37_nixs4")])
+_tabs_icons_inactive = Array[Texture2D]([ExtResource("35_15pyt"), ExtResource("36_7emu8"), ExtResource("37_bm0oh"), ExtResource("38_q2p86"), ExtResource("39_0xc7h"), ExtResource("40_ix3bc"), ExtResource("41_vjrb2")])
+
+[node name="TabsRect" type="HBoxContainer" parent="PauseUI/InventoryUI/Tabs"]
+custom_minimum_size = Vector2(860, 60)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -870.0
-offset_top = -385.0
-offset_right = -70.0
-offset_bottom = 410.0
+offset_left = -890.0
+offset_top = -350.0
+offset_right = -30.0
+offset_bottom = -290.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 75
-script = ExtResource("21_x5uvt")
-_slot_packed_scene = ExtResource("17_55esj")
-
-[node name="TabsRect" type="TextureRect" parent="PauseUI/InventoryUI/Tabs"]
-layout_mode = 2
-texture = ExtResource("19_lpnyf")
-
-[node name="TabsContainer" type="HBoxContainer" parent="PauseUI/InventoryUI/Tabs/TabsRect"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 90.0
-offset_top = 15.0
-offset_right = -90.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 40
 alignment = 1
 
-[node name="TabResources" type="VBoxContainer" parent="PauseUI/InventoryUI/Tabs/TabsRect/TabsContainer"]
-custom_minimum_size = Vector2(200, 75)
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 2
-
-[node name="Label" type="Label" parent="PauseUI/InventoryUI/Tabs/TabsRect/TabsContainer/TabResources"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "Resources"
-horizontal_alignment = 1
-
-[node name="Selection" type="ColorRect" parent="PauseUI/InventoryUI/Tabs/TabsRect/TabsContainer/TabResources"]
-custom_minimum_size = Vector2(200, 4)
-layout_mode = 2
-size_flags_vertical = 8
-color = Color(0.94902, 0.941176, 0.921569, 1)
-
-[node name="TabEquipment" type="VBoxContainer" parent="PauseUI/InventoryUI/Tabs/TabsRect/TabsContainer"]
-custom_minimum_size = Vector2(200, 75)
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 2
-
-[node name="Label" type="Label" parent="PauseUI/InventoryUI/Tabs/TabsRect/TabsContainer/TabEquipment"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "Equipment"
-horizontal_alignment = 1
-
-[node name="Selection" type="ColorRect" parent="PauseUI/InventoryUI/Tabs/TabsRect/TabsContainer/TabEquipment"]
-custom_minimum_size = Vector2(200, 4)
-layout_mode = 2
-size_flags_vertical = 8
-color = Color(0.94902, 0.941176, 0.921569, 0)
-
 [node name="InputL" type="Button" parent="PauseUI/InventoryUI/Tabs/TabsRect"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 15.0
-offset_top = -30.0
-offset_right = 75.0
-offset_bottom = 30.0
-grow_vertical = 2
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0.207843, 0.219608, 0.223529, 1)
 theme_override_colors/font_pressed_color = Color(0.207843, 0.219608, 0.223529, 1)
@@ -312,23 +302,45 @@ theme_override_styles/normal = ExtResource("22_22dkt")
 theme_override_styles/hover = ExtResource("22_22dkt")
 theme_override_styles/pressed = ExtResource("23_844m3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lmq23")
-text = "Shift
-Tab"
 icon = SubResource("ImageTexture_6a0fi")
 
+[node name="TabBar" type="TabBar" parent="PauseUI/InventoryUI/Tabs/TabsRect"]
+layout_mode = 2
+theme_override_colors/font_unselected_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 40
+theme_override_fonts/font = ExtResource("30_gkuxa")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/tab_selected = SubResource("StyleBoxEmpty_k5jbh")
+theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_hvu3d")
+theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_2nh22")
+tab_alignment = 1
+clip_tabs = false
+max_tab_width = 60
+scrolling_enabled = false
+tab_count = 7
+tab_0/title = "Resources"
+tab_0/icon = ExtResource("33_c27hm")
+tab_1/title = "Consumables"
+tab_1/icon = ExtResource("32_tnnvk")
+tab_2/title = " Weapons"
+tab_2/icon = ExtResource("33_2yqpk")
+tab_2/disabled = true
+tab_3/title = "Archery"
+tab_3/icon = ExtResource("34_41miy")
+tab_3/disabled = true
+tab_4/title = " Shields"
+tab_4/icon = ExtResource("35_qnneb")
+tab_4/disabled = true
+tab_5/title = " Armor"
+tab_5/icon = ExtResource("36_wptyy")
+tab_5/disabled = true
+tab_6/title = ""
+tab_6/icon = ExtResource("37_nixs4")
+tab_6/disabled = true
+
 [node name="InputR" type="Button" parent="PauseUI/InventoryUI/Tabs/TabsRect"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -30.0
-offset_right = -15.0
-offset_bottom = 30.0
-grow_horizontal = 0
-grow_vertical = 2
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0.207843, 0.219608, 0.223529, 1)
 theme_override_colors/font_pressed_color = Color(0.207843, 0.219608, 0.223529, 1)
@@ -340,53 +352,115 @@ theme_override_styles/normal = ExtResource("24_g738u")
 theme_override_styles/hover = ExtResource("24_g738u")
 theme_override_styles/pressed = ExtResource("25_ngq34")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lmq23")
-text = "Tab"
 icon = SubResource("ImageTexture_6a0fi")
-
-[node name="TabBar" type="TabBar" parent="PauseUI/InventoryUI/Tabs/TabsRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -310.0
-offset_top = -45.0
-offset_right = 310.0
-offset_bottom = 45.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 15
-theme_override_font_sizes/font_size = 35
-theme_override_styles/tab_selected = ExtResource("24_f0p5k")
-theme_override_styles/tab_unselected = ExtResource("25_e8e4t")
-tab_alignment = 1
-clip_tabs = false
-scrolling_enabled = false
-tab_count = 2
-tab_0/title = "Resources"
-tab_1/title = "Equipment"
 
 [node name="TabContainer" type="TabContainer" parent="PauseUI/InventoryUI/Tabs"]
 layout_mode = 2
+offset_left = 70.0
+offset_top = 330.0
+offset_right = 930.0
+offset_bottom = 670.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ge7h8")
 tab_alignment = 1
 clip_tabs = false
 tabs_visible = false
 all_tabs_in_front = true
 
-[node name="ResourcesSlotsContainer" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer"]
+[node name="Resources" type="ScrollContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer"]
+custom_minimum_size = Vector2(860, 340)
 layout_mode = 2
-theme_override_constants/h_separation = 50
-theme_override_constants/v_separation = 50
-columns = 5
+follow_focus = true
+horizontal_scroll_mode = 0
 
-[node name="EquipmentSlotsContainer" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer"]
-visible = false
+[node name="Slots" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer/Resources"]
 layout_mode = 2
-theme_override_constants/h_separation = 50
-theme_override_constants/v_separation = 50
-columns = 5
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 6
+
+[node name="Equipment" type="ScrollContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(860, 340)
+layout_mode = 2
+
+[node name="Slots" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer/Equipment"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 6
+
+[node name="TabLabel" type="Control" parent="PauseUI/InventoryUI/Tabs"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 146.5
+offset_top = 190.0
+offset_right = 146.5
+offset_bottom = 190.0
+
+[node name="Label" type="Label" parent="PauseUI/InventoryUI/Tabs/TabLabel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.0
+offset_top = 75.0
+offset_right = 155.0
+offset_bottom = 119.0
+grow_horizontal = 2
+text = "Resources"
+label_settings = SubResource("LabelSettings_3owhd")
+horizontal_alignment = 1
+
+[node name="DescriptionRect" type="TextureRect" parent="PauseUI/InventoryUI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = 150.0
+offset_right = 890.0
+offset_bottom = 420.0
+grow_vertical = 2
+texture = ExtResource("25_3blg7")
+
+[node name="Name" type="Label" parent="PauseUI/InventoryUI/DescriptionRect"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 132.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 40
+text = "Title"
+label_settings = SubResource("LabelSettings_2hpqm")
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="PauseUI/InventoryUI/DescriptionRect"]
+custom_minimum_size = Vector2(730, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -365.0
+offset_top = -33.0
+offset_right = 365.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+label_settings = SubResource("LabelSettings_vanse")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Header" type="ColorRect" parent="PauseUI/InventoryUI"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+color = Color(0.0941176, 0.101961, 0.0941176, 0.2)
 
 [node name="CharacterPreview" type="TextureRect" parent="PauseUI/InventoryUI"]
 layout_mode = 1
@@ -395,68 +469,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 190.0
+offset_left = 130.0
 offset_top = -340.0
-offset_right = 830.0
-offset_bottom = 300.0
+offset_right = 960.0
+offset_bottom = 490.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("26_5gkvt")
 expand_mode = 1
 
-[node name="DescriptionRect" type="TextureRect" parent="PauseUI/InventoryUI"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -890.0
-offset_top = 120.0
-offset_bottom = 410.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("25_3blg7")
-
-[node name="Name" type="Label" parent="PauseUI/InventoryUI/DescriptionRect"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = -30.0
-offset_right = 124.0
-offset_bottom = 28.0
-theme_override_font_sizes/font_size = 40
-text = "Title"
-
-[node name="Description" type="Label" parent="PauseUI/InventoryUI/DescriptionRect"]
-custom_minimum_size = Vector2(730, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = -15.0
-offset_right = 260.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat scelerisque varius morbi enim nunc faucibus a. Cras ornare arcu dui vivamus arcu felis bibendum. Euismod lacinia at quis risus sed vulputate."
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Header" type="ColorRect" parent="PauseUI/InventoryUI"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 100.0
-grow_horizontal = 2
-color = Color(0.207843, 0.219608, 0.223529, 0.8)
-
 [node name="Footer" type="ColorRect" parent="PauseUI/InventoryUI"]
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -465,10 +488,10 @@ anchor_bottom = 1.0
 offset_top = -60.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.207843, 0.219608, 0.223529, 0.6)
+color = Color(0.0941176, 0.101961, 0.0941176, 0.101961)
 
 [node name="HelperControls" type="HBoxContainer" parent="PauseUI/InventoryUI"]
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -586,65 +609,46 @@ offset_right = 350.0
 
 [node name="ButtonsContainer" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset" index="0"]
 offset_left = -122.5
-offset_top = -125.0
+offset_top = -90.0
 offset_right = 122.5
-offset_bottom = 125.0
+offset_bottom = 90.0
 
-[node name="HoldMoreButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="0"]
+[node name="EatButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="0"]
 layout_mode = 2
 size_flags_vertical = 3
-focus_neighbor_bottom = NodePath("../HoldLessButton")
 theme_override_colors/font_color = Color(0.94902, 0.941176, 0.921569, 1)
 theme_override_colors/font_pressed_color = Color(0.207843, 0.219608, 0.223529, 1)
 theme_override_colors/font_focus_color = Color(0.207843, 0.219608, 0.223529, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.207843, 0.219608, 0.223529, 1)
-theme_override_colors/font_disabled_color = Color(0.729412, 0.709804, 0.662745, 1)
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_disabled_color = Color(0.486275, 0.486275, 0.486275, 1)
+theme_override_fonts/font = ExtResource("49_uqcvq")
+theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = SubResource("StyleBoxEmpty_q6tky")
 theme_override_styles/hover = ExtResource("37_244u1")
 theme_override_styles/disabled = ExtResource("38_4qqat")
 theme_override_styles/focus = ExtResource("38_b26s2")
-text = "Hold more"
-
-[node name="HoldLessButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="1"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_neighbor_top = NodePath("../HoldMoreButton")
-focus_neighbor_bottom = NodePath("../DropButton")
-theme_override_colors/font_color = Color(0.94902, 0.941176, 0.921569, 1)
-theme_override_colors/font_pressed_color = Color(0.207843, 0.219608, 0.223529, 1)
-theme_override_colors/font_hover_color = Color(0.94902, 0.941176, 0.921569, 1)
-theme_override_colors/font_focus_color = Color(0.207843, 0.219608, 0.223529, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.207843, 0.219608, 0.223529, 1)
-theme_override_colors/font_disabled_color = Color(0.729412, 0.709804, 0.662745, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxEmpty_4173j")
-theme_override_styles/hover = ExtResource("37_244u1")
-theme_override_styles/disabled = ExtResource("38_4qqat")
-theme_override_styles/focus = ExtResource("38_b26s2")
 disabled = true
-text = "Hold less"
+text = "Eat"
 
-[node name="DropButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="2"]
+[node name="DropButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="1"]
 layout_mode = 2
 size_flags_vertical = 3
-focus_neighbor_top = NodePath("../HoldLessButton")
 focus_neighbor_bottom = NodePath("../CancelButton")
 theme_override_colors/font_color = Color(0.94902, 0.941176, 0.921569, 1)
 theme_override_colors/font_pressed_color = Color(0.207843, 0.219608, 0.223529, 1)
 theme_override_colors/font_hover_color = Color(0.94902, 0.941176, 0.921569, 1)
 theme_override_colors/font_focus_color = Color(0.207843, 0.219608, 0.223529, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.207843, 0.219608, 0.223529, 1)
-theme_override_colors/font_disabled_color = Color(0.729412, 0.709804, 0.662745, 1)
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_disabled_color = Color(0.486275, 0.486275, 0.486275, 1)
+theme_override_fonts/font = ExtResource("49_uqcvq")
+theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3t5t8")
 theme_override_styles/hover = ExtResource("37_244u1")
 theme_override_styles/disabled = ExtResource("38_4qqat")
 theme_override_styles/focus = ExtResource("38_b26s2")
-disabled = true
 text = "Drop"
 
-[node name="CancelButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="3"]
+[node name="CancelButton" type="Button" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/ButtonsContainer" index="2"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../DropButton")
@@ -653,44 +657,14 @@ theme_override_colors/font_pressed_color = Color(0.207843, 0.219608, 0.223529, 1
 theme_override_colors/font_hover_color = Color(0.94902, 0.941176, 0.921569, 1)
 theme_override_colors/font_focus_color = Color(0.207843, 0.219608, 0.223529, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.207843, 0.219608, 0.223529, 1)
-theme_override_colors/font_disabled_color = Color(0.729412, 0.709804, 0.662745, 1)
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_disabled_color = Color(0.486275, 0.486275, 0.486275, 1)
+theme_override_fonts/font = ExtResource("49_uqcvq")
+theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o5lfp")
 theme_override_styles/hover = ExtResource("37_244u1")
 theme_override_styles/disabled = ExtResource("38_4qqat")
 theme_override_styles/focus = ExtResource("38_b26s2")
 text = "Cancel"
-
-[node name="CountRect" type="TextureRect" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset" index="1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 101.5
-offset_top = -18.0
-offset_right = 142.5
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("40_g5vtb")
-
-[node name="CountLabel" type="Label" parent="PauseUI/InventoryUI/QuickMenu/ControlWithOffset/CountRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -13.0
-offset_right = 5.0
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.207843, 0.219608, 0.223529, 1)
-text = "0"
 
 [node name="WorldInputControls" type="Node" parent="."]
 process_mode = 1

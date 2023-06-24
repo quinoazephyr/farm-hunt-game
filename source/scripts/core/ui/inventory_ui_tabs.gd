@@ -8,6 +8,8 @@ signal drop_items_requested(count : int, tab_index : int, slot_index : int)
 const _DEFAULT_TAB_INDEX = 0
 
 @export var _slot_packed_scene : PackedScene
+@export var _tabs_icons_active : Array[Texture2D]
+@export var _tabs_icons_inactive : Array[Texture2D]
 
 var current_slot:
 	get:
@@ -22,11 +24,14 @@ var _current_focused_slot_index : int
 @onready var _prev_tab_button = $TabsRect/InputL
 @onready var _tab_bar = $TabsRect/TabBar # DO NOT get .current_tab here
 @onready var _tab_container = $TabContainer # GET .current_tab HERE
+@onready var _tab_label_container = $TabLabel
+@onready var _tab_label = $TabLabel/Label
 
 func _ready() -> void:
 	_tab_container.tab_changed.connect(_tab_bar.set_current_tab)
 	_tab_bar.tab_clicked.connect(_tab_container.set_current_tab)
 	_tab_bar.tab_clicked.connect(_focus_slot_in_current_tab.bind(0).unbind(1))
+	_tab_bar.tab_selected.connect(_update_tabs_modulate_colors)
 	
 	_next_tab_button.pressed.connect(_open_next_tab)
 	_prev_tab_button.pressed.connect(_open_previous_tab)
@@ -47,7 +52,9 @@ func remove_items(count : int, tab_index : int, slot_index : int) -> void:
 
 func resize_tab(tab_index : int, new_size : int) -> void:
 	if tab_index >= _tabs_slots_containers.size():
-		_tabs_slots_containers.append(_tab_container.get_child(tab_index))
+		var scroll_container = _tab_container.get_child(tab_index)
+		var slots_container = scroll_container.get_child(0)
+		_tabs_slots_containers.append(slots_container)
 		_tabs_slots[tab_index] = []
 	
 	var container = _tabs_slots_containers[tab_index]
@@ -202,6 +209,7 @@ func _set_tab_slots_focus_neighbours(tab_index : int) -> void:
 func _focus_slot_in_tab(tab_index : int, slot_index : int) -> void:
 	var slot = _tabs_slots[tab_index][slot_index]
 	slot.grab_focus()
+	_update_tabs_modulate_colors(_tab_bar.current_tab)
 
 func _focus_slot_in_current_tab(slot_index : int) -> void:
 	_focus_slot_in_tab(_tab_container.current_tab, slot_index)
@@ -226,6 +234,24 @@ func _open_previous_tab() -> void:
 func _set_current_focused_slot(tab_index : int, slot_index : int) -> void:
 	_current_focused_slot_index = slot_index
 	_tab_container.current_tab = tab_index
+
+func _update_tabs_modulate_colors(selected_tab_index : int) -> void:
+	for i in range(0, _tab_bar.tab_count):
+		var icons_array = _tabs_icons_active \
+				if i == selected_tab_index \
+				else _tabs_icons_inactive
+		_tab_bar.set_tab_icon(i, icons_array[i])
+		if i == selected_tab_index:
+			var tab_rect = _tab_bar.get_tab_rect(i)
+			# STUB
+			var offset = _tab_bar.global_position \
+					if _tab_bar.global_position.x > 100.0 \
+					else Vector2(100.0, 0.0) + _tab_bar.global_position
+			# ####
+			_tab_label_container.position = \
+					offset + tab_rect.position
+			_tab_label.text = _tab_bar.get_tab_title(i)
+		
 
 func _emit_slot_focus_entered(slot : InventorySlot) -> void:
 	slot_focus_entered.emit(slot)
