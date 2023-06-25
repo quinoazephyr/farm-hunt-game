@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://xopw8jd5wmyh"]
+[gd_scene load_steps=84 format=3 uid="uid://xopw8jd5wmyh"]
 
 [ext_resource type="Environment" uid="uid://1vi1iwjunjii" path="res://source/resources/world_environments/soft_bloom_environment.tres" id="1_5snjs"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/timescale_control.gd" id="1_oi6un"]
@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://o72d82hj6af3" path="res://assets/images/ui/inventory/description_rect.png" id="25_3blg7"]
 [ext_resource type="StyleBox" uid="uid://bb5s2yob452ga" path="res://source/resources/styles/buttons/change_tab_button_R_pressed.tres" id="25_ngq34"]
 [ext_resource type="Texture2D" uid="uid://d3jqrfg6828m2" path="res://assets/images/ui/inventory/character_preview_placeholder.png" id="26_5gkvt"]
+[ext_resource type="Shader" path="res://source/resources/shaders/contrasted_blur.gdshader" id="26_73dfd"]
 [ext_resource type="FontFile" uid="uid://b7jhigkp6qa06" path="res://assets/fonts/roboto/Roboto-Italic.ttf" id="30_gkuxa"]
 [ext_resource type="Texture2D" uid="uid://c7oaj63muyf16" path="res://assets/images/ui/inventory/potion_icon.png" id="32_tnnvk"]
 [ext_resource type="Texture2D" uid="uid://dmdnjknk2clgq" path="res://assets/images/ui/inventory/sword_icon.png" id="33_2yqpk"]
@@ -63,7 +64,16 @@
 [ext_resource type="Texture2D" uid="uid://dlha4mbckjdv0" path="res://assets/images/ui/inventory/shield_icon_inactive.png" id="39_0xc7h"]
 [ext_resource type="Texture2D" uid="uid://bktqbr31spox1" path="res://assets/images/ui/inventory/armor_icon_inactive.png" id="40_ix3bc"]
 [ext_resource type="Texture2D" uid="uid://3o8hk0r6cac2" path="res://assets/images/ui/inventory/star_icon_inactive.png" id="41_vjrb2"]
+[ext_resource type="Theme" uid="uid://s0h6wd0phrga" path="res://source/resources/themes/scroll_container.tres" id="47_18vfj"]
+[ext_resource type="Shader" path="res://source/resources/shaders/mask_ui.gdshader" id="48_4piwd"]
 [ext_resource type="FontFile" uid="uid://by67psae3oruu" path="res://assets/fonts/roboto/Roboto-MediumItalic.ttf" id="49_uqcvq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1srsq"]
+shader = ExtResource("26_73dfd")
+shader_parameter/blur_amount = 3.0
+shader_parameter/brightness = 0.15
+shader_parameter/contrast = 1.4
+shader_parameter/saturation = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmq23"]
 
@@ -75,7 +85,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nh22"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ge7h8"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gtw8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pw4je"]
+shader = ExtResource("48_4piwd")
 
 [sub_resource type="LabelSettings" id="LabelSettings_3owhd"]
 font = ExtResource("30_gkuxa")
@@ -250,6 +263,7 @@ color = Color(0.0941176, 0.101961, 0.0941176, 0.501961)
 script = ExtResource("16_y837w")
 
 [node name="ColorRect" type="ColorRect" parent="PauseUI/InventoryUI"]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -258,6 +272,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.941176, 0.94902, 0.921569, 0.4)
+
+[node name="ContrastedBlur" type="ColorRect" parent="PauseUI/InventoryUI"]
+material = SubResource("ShaderMaterial_1srsq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Tabs" type="Control" parent="PauseUI/InventoryUI"]
 layout_mode = 1
@@ -360,7 +383,7 @@ offset_left = 70.0
 offset_top = 330.0
 offset_right = 930.0
 offset_bottom = 670.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ge7h8")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8gtw8")
 tab_alignment = 1
 clip_tabs = false
 tabs_visible = false
@@ -369,10 +392,12 @@ all_tabs_in_front = true
 [node name="Resources" type="ScrollContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer"]
 custom_minimum_size = Vector2(860, 340)
 layout_mode = 2
+theme = ExtResource("47_18vfj")
 follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="Slots" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer/Resources"]
+material = SubResource("ShaderMaterial_pw4je")
 layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
@@ -382,8 +407,12 @@ columns = 6
 visible = false
 custom_minimum_size = Vector2(860, 340)
 layout_mode = 2
+theme = ExtResource("47_18vfj")
+follow_focus = true
+horizontal_scroll_mode = 0
 
 [node name="Slots" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer/Equipment"]
+material = SubResource("ShaderMaterial_pw4je")
 layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20

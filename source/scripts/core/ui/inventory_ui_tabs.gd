@@ -251,7 +251,6 @@ func _update_tabs_modulate_colors(selected_tab_index : int) -> void:
 			_tab_label_container.position = \
 					offset + tab_rect.position
 			_tab_label.text = _tab_bar.get_tab_title(i)
-		
 
 func _emit_slot_focus_entered(slot : InventorySlot) -> void:
 	slot_focus_entered.emit(slot)

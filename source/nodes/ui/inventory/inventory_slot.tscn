@@ -23,6 +23,7 @@ flat = true
 script = ExtResource("1_g5j4m")
 
 [node name="ItemEmpty" type="TextureRect" parent="."]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +35,7 @@ expand_mode = 1
 
 [node name="ItemFull" type="TextureRect" parent="."]
 visible = false
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +57,7 @@ texture = ExtResource("3_il5bk")
 expand_mode = 1
 
 [node name="ItemImage" type="TextureRect" parent="."]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
