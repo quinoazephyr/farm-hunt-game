@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c27rxdc1x1gyk"]
+[gd_scene load_steps=10 format=3 uid="uid://c27rxdc1x1gyk"]
 
 [ext_resource type="Script" path="res://source/scripts/characters/player_character.gd" id="1_6mp0p"]
 [ext_resource type="PackedScene" uid="uid://tl1dboxolrrv" path="res://source/nodes/characters/character_with_bag.tscn" id="1_u1v7y"]
-[ext_resource type="PackedScene" uid="uid://cv2k1kpilxhv5" path="res://assets/models/fox/fox.glb" id="3_4w8lh"]
 [ext_resource type="Script" path="res://source/scripts/items/inventory_config.gd" id="3_6vrgo"]
+[ext_resource type="PackedScene" uid="uid://d01dkjdduepid" path="res://source/resources/models/fox.tscn" id="4_kfnrk"]
+[ext_resource type="Material" uid="uid://dha3x4p8o5r2b" path="res://source/resources/materials/characters/fox/fox_body.tres" id="5_bfcie"]
+[ext_resource type="Material" uid="uid://b40roqixf8ncr" path="res://source/resources/materials/characters/fox/fox_sword.tres" id="6_wju20"]
 
 [sub_resource type="Resource" id="Resource_bmqme"]
 script = ExtResource("3_6vrgo")
@@ -23,6 +25,7 @@ _auto_resize_increment_value = 0
 height = 1.4
 
 [node name="PlayerCharacter" instance=ExtResource("1_u1v7y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_6mp0p")
 _camera_player_path = null
 _inventories_configs = Array[ExtResource("3_6vrgo")]([SubResource("Resource_bmqme"), SubResource("Resource_0dsc6")])
@@ -31,8 +34,31 @@ _inventories_configs = Array[ExtResource("3_6vrgo")]([SubResource("Resource_bmqm
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
 shape = SubResource("CapsuleShape3D_5yk6d")
 
-[node name="fox" parent="Mesh" index="0" instance=ExtResource("3_4w8lh")]
+[node name="fox" parent="Mesh" index="0" instance=ExtResource("4_kfnrk")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+
+[node name="Hand" parent="Mesh/fox/IdleDemo/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("5_bfcie")
+
+[node name="Hand001" parent="Mesh/fox/IdleDemo/Skeleton3D" index="1"]
+surface_material_override/0 = ExtResource("5_bfcie")
+
+[node name="Hood" parent="Mesh/fox/IdleDemo/Skeleton3D" index="2"]
+surface_material_override/0 = ExtResource("5_bfcie")
+
+[node name="Legs" parent="Mesh/fox/IdleDemo/Skeleton3D" index="3"]
+surface_material_override/0 = ExtResource("5_bfcie")
+
+[node name="Legs001" parent="Mesh/fox/IdleDemo/Skeleton3D" index="4"]
+surface_material_override/0 = ExtResource("5_bfcie")
+
+[node name="Sword" parent="Mesh/fox/IdleDemo/Skeleton3D" index="5"]
+surface_material_override/0 = ExtResource("6_wju20")
+
+[node name="Tail" parent="Mesh/fox/IdleDemo/Skeleton3D" index="6"]
+surface_material_override/0 = ExtResource("5_bfcie")
 
 [node name="CameraPivot" type="Node3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.487, 0)
+
+[editable path="Mesh/fox"]

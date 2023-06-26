@@ -11,6 +11,7 @@ _id = 106
 _name = "Orange"
 _description = "Not stinky!"
 _max_count = 999
+_type = 0
 _image = ExtResource("2_xp6ds")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ki33m"]

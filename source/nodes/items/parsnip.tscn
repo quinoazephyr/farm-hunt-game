@@ -11,6 +11,7 @@ _id = 107
 _name = "Parsnip"
 _description = "Nothing screams \"FARMING SIMULATOR\" more than this."
 _max_count = 999
+_type = 0
 _image = ExtResource("2_7o04y")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_li8s6"]

@@ -13,6 +13,8 @@ extends Node
 
 func _ready() -> void:
 	_action_input_control.cancel_requested.connect(_timescale_control.pause)
+	_timescale_control.paused.connect(_world_ui.hide)
+	_timescale_control.unpaused.connect(_world_ui.show)
 	
 	_movement_input_control.movement_changed\
 			.connect(_player_character._process_movement)
