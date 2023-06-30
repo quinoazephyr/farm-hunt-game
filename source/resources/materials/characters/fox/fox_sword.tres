@@ -17,4 +17,4 @@ rim_enabled = true
 rim_tint = 0.0
 backlight_enabled = true
 backlight = Color(0.74902, 0.513726, 0.219608, 1)
-refraction_enabled = true
+disable_receive_shadows = true

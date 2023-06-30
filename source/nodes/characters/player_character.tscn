@@ -25,7 +25,6 @@ _auto_resize_increment_value = 0
 height = 1.4
 
 [node name="PlayerCharacter" instance=ExtResource("1_u1v7y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_6mp0p")
 _camera_player_path = null
 _inventories_configs = Array[ExtResource("3_6vrgo")]([SubResource("Resource_bmqme"), SubResource("Resource_0dsc6")])

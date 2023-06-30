@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://source/scripts/quests/quests_ui.gd" id="18_uq56c"]
 [ext_resource type="PackedScene" uid="uid://b82kd2vni3b1k" path="res://source/nodes/ui/quick_menu.tscn" id="19_jno4m"]
 [ext_resource type="Script" path="res://source/scripts/core/ui/pause_ui.gd" id="19_v5ubj"]
+[ext_resource type="FontFile" uid="uid://ufo4jjt3o4go" path="res://assets/fonts/roboto/Roboto-Medium.ttf" id="20_34sra"]
 [ext_resource type="Script" path="res://source/scripts/core/ui/quick_menu_ui_inventory.gd" id="20_cqd5j"]
 [ext_resource type="Texture2D" uid="uid://dib43qo3hwu5o" path="res://assets/images/controls/pc/down-arrow.png" id="21_56o6i"]
 [ext_resource type="Script" path="res://source/scripts/core/ui/inventory_ui_tabs.gd" id="21_x5uvt"]
@@ -67,6 +68,7 @@
 [ext_resource type="Theme" uid="uid://s0h6wd0phrga" path="res://source/resources/themes/scroll_container.tres" id="47_18vfj"]
 [ext_resource type="Shader" path="res://source/resources/shaders/mask_ui.gdshader" id="48_4piwd"]
 [ext_resource type="FontFile" uid="uid://by67psae3oruu" path="res://assets/fonts/roboto/Roboto-MediumItalic.ttf" id="49_uqcvq"]
+[ext_resource type="PackedScene" uid="uid://do7vu66m36vsf" path="res://source/resources/models/terrain_test.tscn" id="69_5id0v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1srsq"]
 shader = ExtResource("26_73dfd")
@@ -107,12 +109,6 @@ font_size = 34
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3t5t8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5lfp"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_68xw7"]
-size = Vector3(50, 0.2, 50)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_36eb0"]
-size = Vector2(50, 50)
 
 [node name="TestSceneBase" type="Node3D"]
 
@@ -171,6 +167,9 @@ anchors_preset = -1
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.941176, 0.94902, 0.921569, 1)
+theme_override_fonts/font = ExtResource("20_34sra")
+theme_override_font_sizes/font_size = 34
 text = "Label"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -181,8 +180,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -5.0
-offset_right = 5.0
+offset_left = -10.0
+offset_top = -5.0
+offset_right = 10.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.196078, 0.196078, 0.196078, 0.705882)
@@ -201,7 +202,7 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="ButtonGraphic" type="TextureRect" parent="WorldUI/PickUpActionGraphic"]
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -210,7 +211,8 @@ expand_mode = 1
 
 [node name="DescriptionLabel" type="Label" parent="WorldUI/PickUpActionGraphic"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("30_gkuxa")
+theme_override_font_sizes/font_size = 34
 text = "Pick up"
 
 [node name="OpenInventory" type="HBoxContainer" parent="WorldUI"]
@@ -222,7 +224,7 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="ButtonGraphic" type="TextureRect" parent="WorldUI/OpenInventory"]
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -231,7 +233,8 @@ expand_mode = 1
 
 [node name="DescriptionLabel" type="Label" parent="WorldUI/OpenInventory"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("30_gkuxa")
+theme_override_font_sizes/font_size = 34
 text = "Inventory"
 
 [node name="QuestsScrollBox" type="ScrollContainer" parent="WorldUI"]
@@ -722,14 +725,7 @@ script = ExtResource("3_7k0u2")
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 1, 0)
 _camera_player_path = NodePath("../CameraParent")
 
-[node name="Floor" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-shape = SubResource("BoxShape3D_68xw7")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("PlaneMesh_36eb0")
+[node name="terrain_test" parent="." instance=ExtResource("69_5id0v")]
 
 [node name="DebugUI" type="CanvasLayer" parent="."]
 

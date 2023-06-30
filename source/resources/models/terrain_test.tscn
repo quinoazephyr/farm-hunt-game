@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://do7vu66m36vsf"]
+
+[ext_resource type="PackedScene" uid="uid://dej3avfigltpj" path="res://assets/models/terrain/terrain_test.glb" id="1_weat1"]
+[ext_resource type="Material" uid="uid://cx4lvii4imvaw" path="res://source/resources/materials/water_toon_2.tres" id="2_e6aif"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tifwf"]
+albedo_color = Color(0.541176, 0.717647, 0.352941, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xpjyi"]
+material = ExtResource("2_e6aif")
+
+[node name="terrain_test" instance=ExtResource("1_weat1")]
+
+[node name="Landscape" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tifwf")
+
+[node name="Landscape_plane" parent="." index="1"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+mesh = SubResource("PlaneMesh_xpjyi")
