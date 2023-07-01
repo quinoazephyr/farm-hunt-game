@@ -1,13 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://do7vu66m36vsf"]
+[gd_scene load_steps=13 format=3 uid="uid://do7vu66m36vsf"]
 
 [ext_resource type="PackedScene" uid="uid://dej3avfigltpj" path="res://assets/models/terrain/terrain_test.glb" id="1_weat1"]
-[ext_resource type="Material" uid="uid://cx4lvii4imvaw" path="res://source/resources/materials/water_toon_2.tres" id="2_e6aif"]
+[ext_resource type="Material" uid="uid://cx4lvii4imvaw" path="res://source/resources/materials/water_toon_2.tres" id="2_lj5if"]
+[ext_resource type="Shader" path="res://source/resources/shaders/water_3.gdshader" id="2_qkdqc"]
+[ext_resource type="Texture2D" uid="uid://drtxq03kd81l1" path="res://assets/images/material_textures/water_3/Foam.png" id="3_ia4h7"]
+[ext_resource type="CompressedTexture2DArray" uid="uid://c57gljp0sube6" path="res://assets/images/material_textures/water_3/Caustic.png" id="3_svy1r"]
+[ext_resource type="Texture2D" uid="uid://bronkamxobrjh" path="res://assets/images/material_textures/water_3/Water_N_A.png" id="4_3u1d4"]
+[ext_resource type="Texture2D" uid="uid://6bs7aqa78ree" path="res://assets/images/material_textures/water_3/Water_N_B.png" id="5_27csr"]
+[ext_resource type="Texture2D" uid="uid://dwajs4pxijjus" path="res://assets/images/material_textures/water_3/Water_UV.png" id="6_ehl2h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tifwf"]
-albedo_color = Color(0.541176, 0.717647, 0.352941, 1)
+albedo_color = Color(0.870588, 0.756863, 0.384314, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xpjyi"]
-material = ExtResource("2_e6aif")
+material = ExtResource("2_lj5if")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6y58"]
+render_priority = 0
+shader = ExtResource("2_qkdqc")
+shader_parameter/wave_speed = 0.1
+shader_parameter/wave_a = Vector4(0.01, 0.01, 0.035, 0.3)
+shader_parameter/wave_b = Vector4(0.01, 0.006, 0.03, 0.155)
+shader_parameter/wave_c = Vector4(0.01, 0.13, 0.025, 0.09)
+shader_parameter/sampler_scale = Vector2(0.25, 0.25)
+shader_parameter/sampler_direction = Vector2(0.05, 0.04)
+shader_parameter/uv_sampler_scale = Vector2(0.25, 0.25)
+shader_parameter/uv_sampler_strength = 0.04
+shader_parameter/foam_level = 0.5
+shader_parameter/refraction = 0.01
+shader_parameter/color_deep = Color(0.345098, 0.596078, 0.74902, 1)
+shader_parameter/color_shallow = Color(0.5185, 0.75055, 0.85, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/projector = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
+shader_parameter/uv_sampler = ExtResource("6_ehl2h")
+shader_parameter/normal_map_a_sampler = ExtResource("4_3u1d4")
+shader_parameter/normal_map_b_sampler = ExtResource("5_27csr")
+shader_parameter/foam_sampler = ExtResource("3_ia4h7")
+shader_parameter/caustic_sampler = ExtResource("3_svy1r")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a3ipb"]
+material = SubResource("ShaderMaterial_p6y58")
+subdivide_width = 4
+subdivide_depth = 4
 
 [node name="terrain_test" instance=ExtResource("1_weat1")]
 
@@ -20,3 +55,8 @@ visible = false
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
 mesh = SubResource("PlaneMesh_xpjyi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+visible = false
+mesh = SubResource("PlaneMesh_a3ipb")
