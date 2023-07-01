@@ -1,6 +1,8 @@
 class_name CharacterBase
 extends RigidBody3D
 
+@export var _angular_speed : float = 10.0
+
 var _movement_velocity : Vector3
 var _point_looking_at : Vector3 = Vector3.FORWARD
 var _is_jump_requested : bool = false
@@ -15,9 +17,15 @@ func _integrate_forces(state) -> void:
 	state.linear_velocity = _movement_velocity
 	state.linear_velocity.y = old_velocity_y
 	
+	var angular_y = 0.0
 	if _movement_velocity.length_squared() > 0:
 		_point_looking_at = global_position + state.linear_velocity
-	look_at(_point_looking_at)
+		var new_transform = transform.looking_at(_point_looking_at)
+		var new_quaternion = new_transform.basis.get_rotation_quaternion()
+		var delta = new_quaternion * quaternion.inverse()
+		var delta_angle = delta.get_euler().y
+		angular_y = delta_angle * _angular_speed
+	state.angular_velocity.y = angular_y
 	
 	if _is_jump_requested: # todo: add ground check
 		var result = _intersect_leg_ray()

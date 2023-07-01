@@ -16,9 +16,10 @@ func _ready() -> void:
 	_timescale_control.paused.connect(_world_ui.hide)
 	_timescale_control.unpaused.connect(_world_ui.show)
 	
-	_movement_input_control.movement_changed\
-			.connect(_player_character._process_movement)
 	_action_input_control.action_x_requested\
 			.connect(_player_character._process_jump)
 	_action_input_control.accept_requested\
 			.connect(_player_character.pick_up_closest_item)
+
+func _process(delta : float) -> void:
+	_player_character._process_movement(_movement_input_control.get_input_axis())
