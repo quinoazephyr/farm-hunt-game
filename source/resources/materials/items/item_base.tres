@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bo1vnrbiqb13f"]
+
+[resource]
+diffuse_mode = 3
+metallic_specular = 0.0
+roughness = 0.0
+rim_enabled = true
+rim_tint = 0.0
+backlight_enabled = true
+backlight = Color(0.74902, 0.513726, 0.219608, 1)
+disable_receive_shadows = true

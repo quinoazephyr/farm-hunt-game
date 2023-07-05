@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_ns8cr"]
 [ext_resource type="Texture2D" uid="uid://bktwm0k4y2svh" path="res://assets/images/items/meat_chunk.png" id="2_h7qdu"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_tuu0l"]
+[ext_resource type="Shape3D" uid="uid://cjcbmsbd4m5c5" path="res://source/resources/models/items/meat_chunk_collision_shape.res" id="4_8axqy"]
 [ext_resource type="ArrayMesh" uid="uid://c56wqxej2131u" path="res://source/resources/models/items/meat_chunk_mesh.res" id="4_jq6ar"]
 
 [sub_resource type="Resource" id="Resource_jrep7"]
@@ -14,16 +15,15 @@ _max_count = 999
 _type = 0
 _image = ExtResource("2_h7qdu")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_woqmn"]
-radius = 0.513137
-height = 1.56763
-
 [node name="MeatChunk" instance=ExtResource("1_ns8cr")]
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.92, 0)
 _item = SubResource("Resource_jrep7")
 
 [node name="CollisionShape3D" parent="." index="0"]
-shape = SubResource("CapsuleShape3D_woqmn")
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = ExtResource("4_8axqy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.668794, -0.0692735)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh = ExtResource("4_jq6ar")

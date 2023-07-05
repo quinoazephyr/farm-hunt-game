@@ -49,6 +49,7 @@ _subresources={
 "import/skip_import": true
 },
 "PATH:RootNode/Sphere001": {
+"generate/physics": true,
 "physics/body_type": 1,
 "physics/shape_type": 1
 }

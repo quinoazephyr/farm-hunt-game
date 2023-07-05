@@ -7,6 +7,6 @@ script = ExtResource("1_3r6ac")
 _invert_x = true
 
 [node name="CameraPlayer" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.906307, 0.422618, 0, -0.422618, 0.906307, 0, 5, 8)
+transform = Transform3D(1, 0, 0, 0, 0.906307, 0.422618, 0, -0.422618, 0.906307, 0, 4, 8)
 fov = 40.0
 size = 10.0

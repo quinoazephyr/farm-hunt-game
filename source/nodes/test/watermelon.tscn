@@ -1,27 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://g18t51xl8iap"]
+[gd_scene load_steps=7 format=3 uid="uid://g18t51xl8iap"]
 
 [ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_ybceu"]
 [ext_resource type="Resource" uid="uid://c4ko46u1y3vlg" path="res://source/resources/test/watermelon_item.tres" id="2_5pprl"]
 [ext_resource type="Texture2D" uid="uid://bmiirxcwq8pvi" path="res://assets/images/material_textures/items/watermelon_skin.png" id="2_afy2k"]
-[ext_resource type="Texture2D" uid="uid://cd7jpker0qxpq" path="res://assets/models/fox/fox_Normal.png" id="4_kfbaa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dc3ym"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_auc64"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rpkxj"]
 diffuse_mode = 3
 albedo_texture = ExtResource("2_afy2k")
 metallic_specular = 0.0
 roughness = 0.0
-normal_enabled = true
-normal_texture = ExtResource("4_kfbaa")
 rim_enabled = true
 rim_tint = 0.0
 backlight_enabled = true
 backlight = Color(0.74902, 0.513726, 0.219608, 1)
-refraction_enabled = true
+disable_receive_shadows = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_pxhk2"]
-material = SubResource("StandardMaterial3D_auc64")
+material = SubResource("StandardMaterial3D_rpkxj")
 
 [node name="Watermelon" instance=ExtResource("1_ybceu")]
 _item = ExtResource("2_5pprl")

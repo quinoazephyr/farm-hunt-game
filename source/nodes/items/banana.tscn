@@ -4,6 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dgxmokjroew3b" path="res://source/resources/models/items/banana_mesh.res" id="2_7tv6w"]
 [ext_resource type="Texture2D" uid="uid://dv1g4rtsmvnc3" path="res://assets/images/items/banana.png" id="2_65ou1"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_3dtye"]
+[ext_resource type="Shape3D" uid="uid://tnrht2jw66hd" path="res://source/resources/models/items/banana_collision_shape.res" id="4_5wgw6"]
 
 [sub_resource type="Resource" id="Resource_rnnab"]
 script = ExtResource("3_3dtye")
@@ -14,16 +15,15 @@ _max_count = 999
 _type = 0
 _image = ExtResource("2_65ou1")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qpu6o"]
-radius = 0.123541
-height = 1.07177
-
 [node name="Banana" instance=ExtResource("1_g6auu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.1, 0)
 _item = SubResource("Resource_rnnab")
 
 [node name="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111462, 0.01)
-shape = SubResource("CapsuleShape3D_qpu6o")
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
+shape = ExtResource("4_5wgw6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
 transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)

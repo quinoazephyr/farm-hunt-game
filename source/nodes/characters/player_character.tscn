@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c27rxdc1x1gyk"]
+[gd_scene load_steps=9 format=3 uid="uid://c27rxdc1x1gyk"]
 
 [ext_resource type="Script" path="res://source/scripts/characters/player_character.gd" id="1_6mp0p"]
 [ext_resource type="PackedScene" uid="uid://tl1dboxolrrv" path="res://source/nodes/characters/character_with_bag.tscn" id="1_u1v7y"]
 [ext_resource type="Script" path="res://source/scripts/items/inventory_config.gd" id="3_6vrgo"]
 [ext_resource type="PackedScene" uid="uid://d01dkjdduepid" path="res://source/resources/models/fox.tscn" id="4_kfnrk"]
 [ext_resource type="Material" uid="uid://dha3x4p8o5r2b" path="res://source/resources/materials/characters/fox/fox_body.tres" id="5_bfcie"]
-[ext_resource type="Material" uid="uid://b40roqixf8ncr" path="res://source/resources/materials/characters/fox/fox_sword.tres" id="6_wju20"]
 
 [sub_resource type="Resource" id="Resource_bmqme"]
 script = ExtResource("3_6vrgo")
@@ -30,11 +29,11 @@ _camera_player_path = null
 _inventories_configs = Array[ExtResource("3_6vrgo")]([SubResource("Resource_bmqme"), SubResource("Resource_0dsc6")])
 
 [node name="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.293879, 0)
 shape = SubResource("CapsuleShape3D_5yk6d")
 
 [node name="fox" parent="Mesh" index="0" instance=ExtResource("4_kfnrk")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, -1, 0)
 
 [node name="Hand" parent="Mesh/fox/IdleDemo/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("5_bfcie")
@@ -52,7 +51,7 @@ surface_material_override/0 = ExtResource("5_bfcie")
 surface_material_override/0 = ExtResource("5_bfcie")
 
 [node name="Sword" parent="Mesh/fox/IdleDemo/Skeleton3D" index="5"]
-surface_material_override/0 = ExtResource("6_wju20")
+visible = false
 
 [node name="Tail" parent="Mesh/fox/IdleDemo/Skeleton3D" index="6"]
 surface_material_override/0 = ExtResource("5_bfcie")

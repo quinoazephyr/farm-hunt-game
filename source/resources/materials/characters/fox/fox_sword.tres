@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cqhll6qx6h8sr" path="res://assets/models/fox/fox_sword_diffuse.png" id="1_oq1mg"]
 [ext_resource type="Texture2D" uid="uid://c1ni4b5reqeum" path="res://assets/models/fox/fox_sword_metal.png" id="2_t5c0j"]
-[ext_resource type="Texture2D" uid="uid://cd7jpker0qxpq" path="res://assets/models/fox/fox_Normal.png" id="3_bqt5t"]
+[ext_resource type="Texture2D" uid="uid://nm5via1crstq" path="res://assets/models/fox/Textures/sword_normal.png" id="3_ytusv"]
 
 [resource]
 diffuse_mode = 3
@@ -12,7 +12,7 @@ metallic_specular = 0.0
 metallic_texture = ExtResource("2_t5c0j")
 roughness = 0.0
 normal_enabled = true
-normal_texture = ExtResource("3_bqt5t")
+normal_texture = ExtResource("3_ytusv")
 rim_enabled = true
 rim_tint = 0.0
 backlight_enabled = true

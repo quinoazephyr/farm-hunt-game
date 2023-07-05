@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://8qo7842r23sg"]
+
+[ext_resource type="Shader" path="res://source/resources/shaders/grass_1.gdshader" id="1_v6kpi"]
+[ext_resource type="Texture2D" uid="uid://7jl7t3vldeyt" path="res://assets/images/material_textures/grass_1/g_a.png" id="2_4cnmp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v6kpi")
+shader_parameter/y_offset = 0.5
+shader_parameter/base_color = Color(0.0666667, 0.380392, 0.0705882, 1)
+shader_parameter/end_color = Color(0.14902, 1, 0, 1)
+shader_parameter/specular = 0.1
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/rim = 0.01
+shader_parameter/transmission = 0.5
+shader_parameter/uv_scale = Vector2(0.5, 1)
+shader_parameter/uv_offset = Vector2(0.25, 0)
+shader_parameter/wind_noise_scale = 0.2
+shader_parameter/wind_direction = Vector2(0, 0.2)
+shader_parameter/wind_speed = 1.0
+shader_parameter/wind_strength = 1.0
+shader_parameter/color_variatiion = 0.5
+shader_parameter/height = 1.0
+shader_parameter/height_variation = 0.3
+shader_parameter/flatness = 0.2
+shader_parameter/fade_out_distance = 30.0
+shader_parameter/fade_out_transition = 20.0
+shader_parameter/y_billboard = false
+shader_parameter/displace_intensity = 1.0
+shader_parameter/proximity_distance = 1.0
+shader_parameter/displace = true
+shader_parameter/alpha_scissors = 0.9
+shader_parameter/use_normal_map_alpha = false
+shader_parameter/texture_albedo = ExtResource("2_4cnmp")

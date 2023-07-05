@@ -14,15 +14,15 @@ _max_count = 999
 _type = 0
 _image = ExtResource("2_qyd76")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_f6pph"]
-size = Vector3(1.06457, 1.294, 0.146837)
+[sub_resource type="BoxShape3D" id="BoxShape3D_78a4x"]
+size = Vector3(1, 1.27728, 0.159646)
 
 [node name="MeatSlice" instance=ExtResource("1_g8k1t")]
 _item = SubResource("Resource_cilfw")
 
 [node name="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107068, 0)
-shape = SubResource("BoxShape3D_f6pph")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_78a4x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
 transform = Transform3D(45, 0, 0, 0, -50, 7.54979e-07, 0, -7.54979e-06, -5, 0, 0, 0)

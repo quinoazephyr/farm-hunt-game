@@ -30,7 +30,7 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Landscape": {
+"PATH:Terrain": {
 "generate/physics": true,
 "physics/shape_type": 2
 }

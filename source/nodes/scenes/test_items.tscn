@@ -5,43 +5,46 @@
 [node name="TestItems" instance=ExtResource("1_occme")]
 
 [node name="Banana" parent="Spawners/PlaceholderSpawner/Placeholders" index="0" instance_placeholder="res://source/nodes/items/banana.tscn"]
-transform = Transform3D(0.416947, 0.908931, 3.97306e-08, 0, -4.37114e-08, 1, 0.908931, -0.416947, -1.82253e-08, 14.9562, 1.86822, -6.27526)
+transform = Transform3D(0.825685, 0.564132, 2.4659e-08, 0, -4.37114e-08, 1, 0.564132, -0.825685, -3.60918e-08, 5.80856, 1.09422, 14.8316)
 
 [node name="Daikon" parent="Spawners/PlaceholderSpawner/Placeholders" index="1" instance_placeholder="res://source/nodes/items/daikon.tscn"]
-transform = Transform3D(-1.82253e-08, -0.416947, -0.908931, 1, -4.37114e-08, 0, -3.97306e-08, -0.908931, 0.416947, 17.5127, 1.71919, -8.51076)
+transform = Transform3D(-3.60918e-08, -0.825685, -0.564132, 1, -4.37114e-08, 0, -2.4659e-08, -0.564132, 0.825685, 6.84764, 0.945188, 11.5984)
 
 [node name="RedApple" parent="Spawners/PlaceholderSpawner/Placeholders" index="2" instance_placeholder="res://source/nodes/items/red_apple.tscn"]
-transform = Transform3D(0.416947, 0, -0.908931, 0, 1, 0, 0.908931, 0, 0.416947, 13.141, 1.67188, -11.8967)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, 1.35629, 0.897878, 10.9492)
 
 [node name="Watermelon" parent="Spawners/PlaceholderSpawner/Placeholders" index="3" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
-transform = Transform3D(0.416947, 0, -0.908931, 0, 1, 0, 0.908931, 0, 0.416947, 8.46626, 1.8591, -12.888)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -3.16086, 1.0851, 12.5085)
 
 [node name="Watermelon2" parent="Spawners/PlaceholderSpawner/Placeholders" index="4" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
-transform = Transform3D(0.416947, 0, -0.908931, 0, 1, 0, 0.908931, 0, 0.416947, 8.27165, 1.8591, -12.652)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -3.20604, 1.0851, 12.811)
 
 [node name="Watermelon3" parent="Spawners/PlaceholderSpawner/Placeholders" index="5" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
-transform = Transform3D(0.416947, 0, -0.908931, 0, 1, 0, 0.908931, 0, 0.416947, 8.69121, 1.8591, -12.5178)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -2.77732, 1.0851, 12.7098)
 
 [node name="MeatSlice" parent="Spawners/PlaceholderSpawner/Placeholders" index="6" instance_placeholder="res://source/nodes/items/meat_slice.tscn"]
-transform = Transform3D(0.416947, 0.908931, 3.97306e-08, 0, -4.37114e-08, 1, 0.908931, -0.416947, -1.82253e-08, 11.6274, 1.53473, -9.10328)
+transform = Transform3D(0.825685, 0.564132, 2.4659e-08, 0, -4.37114e-08, 1, 0.564132, -0.825685, -3.60918e-08, 1.49849, 0.760728, 14.1232)
 
 [node name="MeatChunk" parent="Spawners/PlaceholderSpawner/Placeholders" index="7" instance_placeholder="res://source/nodes/items/meat_chunk.tscn"]
-transform = Transform3D(-0.888897, -0.422138, 0.177936, -3.25925e-08, -0.388416, -0.921484, 0.458107, -0.819105, 0.345262, 13.3703, 1.83473, -7.70236)
+transform = Transform3D(-0.525753, -0.783849, 0.330401, -7.31914e-08, -0.388416, -0.921484, 0.850637, -0.484474, 0.204211, 3.71406, 1.06073, 14.4257)
 
 [node name="Orange" parent="Spawners/PlaceholderSpawner/Placeholders" index="8" instance_placeholder="res://source/nodes/items/orange.tscn"]
-transform = Transform3D(0.416947, 0, -0.908931, 0, 1, 0, 0.908931, 0, 0.416947, 12.4613, 1.53473, -7.28542)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, 3.14986, 0.760728, 15.2515)
 
 [node name="Parsnip" parent="Spawners/PlaceholderSpawner/Placeholders" index="9" instance_placeholder="res://source/nodes/items/parsnip.tscn"]
-transform = Transform3D(0.416947, 0.787157, -0.454465, 0, 0.5, 0.866025, 0.908931, -0.361087, 0.208474, 9.88462, 2.33473, -10.5042)
+transform = Transform3D(0.825685, 0.488552, -0.282065, 0, 0.5, 0.866025, 0.564132, -0.715064, 0.412843, -0.716976, 1.56073, 13.8206)
 
 [node name="Pear" parent="Spawners/PlaceholderSpawner/Placeholders" index="10" instance_placeholder="res://source/nodes/items/pear.tscn"]
-transform = Transform3D(0.344172, 0.235351, -0.908931, -0.564463, 0.825458, 0, 0.750284, 0.513058, 0.416947, 13.3774, 1.55373, -5.74365)
+transform = Transform3D(0.681568, 0.466069, -0.564132, -0.564463, 0.825458, 1.56544e-08, 0.465667, 0.318432, 0.825685, 4.72942, 0.779728, 16.1007)
 
 [node name="Radish" parent="Spawners/PlaceholderSpawner/Placeholders" index="11" instance_placeholder="res://source/nodes/items/radish.tscn"]
-transform = Transform3D(0.261816, -0.324495, -0.908931, 0.778265, 0.627936, 0, 0.57075, -0.707389, 0.416947, 10.318, 1.60664, -10.6877)
+transform = Transform3D(0.518477, -0.642601, -0.564132, 0.778265, 0.627936, 2.4852e-08, 0.354238, -0.439044, 0.825685, -0.440113, 0.832638, 13.44)
 
 [node name="Sword" parent="Spawners/PlaceholderSpawner/Placeholders" index="12" instance_placeholder="res://source/nodes/items/sword.tscn"]
-transform = Transform3D(-1.2426e-07, 0.416947, -0.908931, -1, -2.98023e-07, 0, -2.70882e-07, 0.908931, 0.416947, 12.7734, 4.91659, -10.6521)
+transform = Transform3D(-2.46073e-07, 0.825685, -0.564132, -1, -2.98023e-07, 1.27966e-14, -1.68124e-07, 0.564132, 0.825685, 1.68257, 4.14259, 12.2053)
+
+[node name="PlayerCharacter" parent="." index="9"]
+transform = Transform3D(0.652098, 0, -0.758134, 0, 1, 0, 0.758134, 0, 0.652098, -8.51013, 1, 14.1255)
 
 [editable path="CameraParent"]
 [editable path="PauseUI/InventoryUI/QuickMenu"]
