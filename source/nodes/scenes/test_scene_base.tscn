@@ -722,7 +722,7 @@ _pause_ui_path = NodePath("../PauseUI")
 script = ExtResource("3_7k0u2")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_hn0y1")]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -3.06832, 1, -14.1209)
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0.666145, 0.336572, -0.246401)
 _camera_player_path = NodePath("../CameraParent")
 _angular_speed = 20.0
 
@@ -732,6 +732,12 @@ _angular_speed = 20.0
 _character_node_path = NodePath("../../PlayerCharacter")
 
 [node name="GrassMesh2" parent="terrain_test" index="3"]
+_character_node_path = NodePath("../../PlayerCharacter")
+
+[node name="GrassMesh3" parent="terrain_test" index="4"]
+_character_node_path = NodePath("../../PlayerCharacter")
+
+[node name="Water" parent="terrain_test" index="5"]
 _character_node_path = NodePath("../../PlayerCharacter")
 
 [node name="DebugUI" type="CanvasLayer" parent="."]
