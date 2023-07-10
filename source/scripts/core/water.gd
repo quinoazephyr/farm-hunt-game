@@ -1,24 +1,13 @@
 class_name Water
 extends GeometryInstance3D
 
-@export_node_path("RigidBody3D") var _character_node_path # to do multiple targets
+@export var _skip_frames_count = 2
 
-var _positions : Array[Vector3] = []
+var _frame_counter = 0
 
-@onready var _character = get_node(_character_node_path)
-
-func _ready():
-	for i in range(0, 20):
-		_positions.push_back(_character.global_transform.origin)
+@onready var simulation_viewport = $"../Simulation"
 
 func _process(delta):
-	_positions.pop_front()
-	_positions.push_back(_character.global_transform.origin)
-	
-	material_override.set_shader_parameter(
-			"character_positions", \
-			_positions)
-	material_override.set_shader_parameter(
-			"character_wave_height", \
-			clamp((_positions[_positions.size() - 1] - _positions[0]).length(),
-			0.0, 1.5))
+	_frame_counter += 1
+	if _frame_counter % _skip_frames_count == 0:
+		simulation_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE

@@ -8,5 +8,6 @@ _invert_x = true
 
 [node name="CameraPlayer" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.906307, 0.422618, 0, -0.422618, 0.906307, 0, 4, 8)
+cull_mask = 524287
 fov = 40.0
 size = 10.0

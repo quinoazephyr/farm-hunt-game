@@ -23,7 +23,7 @@ noise = SubResource("FastNoiseLite_nekwi")
 
 [sub_resource type="Gradient" id="Gradient_027sp"]
 offsets = PackedFloat32Array(0.00417537, 1)
-colors = PackedColorArray(0.047, 0.47, 0.047, 1, 0.442587, 0.56, 0.1456, 1)
+colors = PackedColorArray(0.25098, 0.470588, 0.0470588, 1, 0.368627, 0.647059, 0.145098, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wv4j5"]
 gradient = SubResource("Gradient_027sp")

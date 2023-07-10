@@ -46,9 +46,6 @@ transform = Transform3D(-2.46073e-07, 0.825685, -0.564132, -1, -2.98023e-07, 1.2
 [node name="PlayerCharacter" parent="." index="9"]
 transform = Transform3D(0.652098, 0, -0.758134, 0, 1, 0, 0.758134, 0, 0.652098, -8.51013, 1, 14.1255)
 
-[node name="Camera3D" parent="terrain_test/SubViewport" index="0"]
-size = 40.0
-
 [editable path="CameraParent"]
 [editable path="PauseUI/InventoryUI/QuickMenu"]
 [editable path="terrain_test"]
