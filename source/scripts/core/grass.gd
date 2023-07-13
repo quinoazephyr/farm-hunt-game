@@ -7,5 +7,4 @@ extends GeometryInstance3D
 
 func _process(delta):
 	material_override.set_shader_parameter(
-		"character_position", _character.global_transform.origin
-	)
+		"character_position", _character.global_transform.origin)

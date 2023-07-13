@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b3eh1gwnkb6s4" path="res://assets/images/material_textures/PerlinNoise.png" id="3_xj0wn"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_288jc")
 shader_parameter/beer_factor = 0.8
@@ -16,14 +17,14 @@ shader_parameter/surface_noise_tiling = Vector2(1, 4)
 shader_parameter/surface_noise_scroll = Vector3(0.03, 0.03, 0)
 shader_parameter/surface_noise_cutoff = 0.777
 shader_parameter/surface_distortion_amount = 0.27
-shader_parameter/_DepthGradientShallow = Color(0.32549, 0.807843, 0.972549, 0.196078)
-shader_parameter/_DepthGradientDeep = Color(0.0901961, 0.486275, 1, 0.737255)
 shader_parameter/_DepthMaxDistance = 1.0
 shader_parameter/_DepthFactor = 1.0
-shader_parameter/character_positions = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/character_wave_radius = 3.0
-shader_parameter/character_wave_height = 1.0
-shader_parameter/character_wave_speed = 2.0
-shader_parameter/character_wave_frequency = 100.0
+shader_parameter/_DepthGradientShallow = Color(0.32549, 0.807843, 0.972549, 0.196078)
+shader_parameter/_DepthGradientDeep = Color(0.0901961, 0.486275, 1, 0.737255)
+shader_parameter/caustics_speed = 0.2
+shader_parameter/caustics_size = 1.0
+shader_parameter/caustics_intensity = 3.0
+shader_parameter/wave_height = 0.01
+shader_parameter/refraction = 0.1
 shader_parameter/surfaceNoise = ExtResource("3_xj0wn")
 shader_parameter/distortNoise = ExtResource("2_k4mt1")
