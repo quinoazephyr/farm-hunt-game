@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://xopw8jd5wmyh"]
+[gd_scene load_steps=94 format=3 uid="uid://xopw8jd5wmyh"]
 
 [ext_resource type="Environment" uid="uid://1vi1iwjunjii" path="res://source/resources/world_environments/soft_bloom_environment.tres" id="1_5snjs"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/timescale_control.gd" id="1_oi6un"]
@@ -69,6 +69,7 @@
 [ext_resource type="Shader" path="res://source/resources/shaders/mask_ui.gdshader" id="48_4piwd"]
 [ext_resource type="FontFile" uid="uid://by67psae3oruu" path="res://assets/fonts/roboto/Roboto-MediumItalic.ttf" id="49_uqcvq"]
 [ext_resource type="PackedScene" uid="uid://do7vu66m36vsf" path="res://source/resources/models/terrain_test.tscn" id="69_5id0v"]
+[ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="73_ptk63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1srsq"]
 shader = ExtResource("26_73dfd")
@@ -110,6 +111,58 @@ font_size = 34
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5lfp"]
 
+[sub_resource type="Curve" id="Curve_yrokj"]
+_data = [Vector2(0, 0), 0.0, 2.88809, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_orll6"]
+width = 128
+texture_mode = 1
+curve = SubResource("Curve_yrokj")
+
+[sub_resource type="Gradient" id="Gradient_027sp"]
+offsets = PackedFloat32Array(0.00417537, 1)
+colors = PackedColorArray(0.23123, 0.38, 0.0494, 1, 0.3535, 0.7, 0.07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wv4j5"]
+gradient = SubResource("Gradient_027sp")
+width = 64
+
+[sub_resource type="Gradient" id="Gradient_jqp5v"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u6sfk"]
+gradient = SubResource("Gradient_jqp5v")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u8fkt"]
+noise_type = 0
+fractal_octaves = 3
+fractal_lacunarity = 0.44
+fractal_gain = 1.246
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_08c7x"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_u8fkt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rqb1"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("73_ptk63")
+shader_parameter/wind_speed = 0.2
+shader_parameter/wind_strength = 2.0
+shader_parameter/wind_texture_tile_size = 20.0
+shader_parameter/wind_vertical_strength = 0.3
+shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
+shader_parameter/character_position = Vector3(0, 0, 0)
+shader_parameter/character_radius = 3.0
+shader_parameter/character_push_strength = 0.0
+shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
+shader_parameter/color_texture = SubResource("GradientTexture1D_u6sfk")
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
+shader_parameter/character_distance_falloff_curve = SubResource("CurveTexture_orll6")
+
 [node name="TestSceneBase" type="Node3D"]
 
 [node name="TimescaleControl" type="Node" parent="."]
@@ -147,6 +200,7 @@ environment = ExtResource("1_5snjs")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, 0, 30, 0)
+shadow_enabled = true
 directional_shadow_mode = 1
 
 [node name="WorldUI" type="CanvasLayer" parent="."]
@@ -728,8 +782,11 @@ _angular_speed = 20.0
 
 [node name="terrain_test" parent="." instance=ExtResource("69_5id0v")]
 
-[node name="GrassMesh" parent="terrain_test" index="2"]
+[node name="Grass" parent="terrain_test" index="3"]
 _character_node_path = NodePath("../../PlayerCharacter")
+
+[node name="GrassMeshSingle" parent="terrain_test" index="5"]
+material_override = SubResource("ShaderMaterial_4rqb1")
 
 [node name="DebugUI" type="CanvasLayer" parent="."]
 

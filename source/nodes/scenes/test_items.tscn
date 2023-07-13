@@ -44,7 +44,7 @@ transform = Transform3D(0.518477, -0.642601, -0.564132, 0.778265, 0.627936, 2.48
 transform = Transform3D(-2.46073e-07, 0.825685, -0.564132, -1, -2.98023e-07, 1.27966e-14, -1.68124e-07, 0.564132, 0.825685, 1.68257, 4.14259, 12.2053)
 
 [node name="PlayerCharacter" parent="." index="9"]
-transform = Transform3D(0.652098, 0, -0.758134, 0, 1, 0, 0.758134, 0, 0.652098, -8.51013, 1, 14.1255)
+transform = Transform3D(0.652098, 0, -0.758134, 0, 1, 0, 0.758134, 0, 0.652098, -0.833829, 1.99648, -1.12261)
 
 [editable path="CameraParent"]
 [editable path="PauseUI/InventoryUI/QuickMenu"]
