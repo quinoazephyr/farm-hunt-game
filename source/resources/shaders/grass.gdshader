@@ -14,6 +14,8 @@ uniform sampler2D color_texture : hint_default_black;
 // we need a tiling noise here!
 uniform sampler2D wind_noise : hint_default_black;
 
+uniform sampler2D height_map : hint_default_white;
+
 uniform vec3 character_position;
 uniform float character_radius = 3.0;
 uniform sampler2D character_distance_falloff_curve : hint_default_black;
@@ -22,6 +24,9 @@ uniform float character_push_strength = 1.0;
 varying vec3 world_vert;
 
 void vertex() {
+	float height = 1.0;//texture(height_map, COLOR.rb).r;
+	VERTEX.y *= height;
+	
 	world_vert = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 
 	vec2 normalized_wind_direction = normalize(wind_horizontal_direction);
@@ -30,7 +35,7 @@ void vertex() {
 	// we displace only the top part of the mesh
 	// note that this means that the mesh needs to have UV in a way that the bottom of UV space
 	// is at the top of the mesh
-	float displacement_affect = (1.0 - UV.y);
+	float displacement_affect = 1.0 - UV.y;
 	float wind_noise_intensity = (textureLod(wind_noise, world_uv , 0.0).r - 0.5);
 
 	// We convert the direction of the wind into vertex space from world space
@@ -49,7 +54,7 @@ void vertex() {
 		wind_vertical_strength,
 		wind_strength
 	);
-	VERTEX += bump_wind * displacement_affect;
+	VERTEX += bump_wind * displacement_affect * height;
 	
 	// At the moment the blades are pushed away in a perfectly circular manner.
 	// We could distort the distance to the character based on a noise, to break a bit the
@@ -71,7 +76,7 @@ void vertex() {
 	float falloff_curve = texture(character_distance_falloff_curve, vec2(falloff)).x;
 	// direction to character is inverted because we want to point away from it
 	VERTEX += normalize(-dir_to_character) * falloff_curve * 
-		character_push_strength * displacement_affect;
+		character_push_strength * displacement_affect * height;
 	NORMAL = vec3(0.0,1.0,0.0);
 }
 

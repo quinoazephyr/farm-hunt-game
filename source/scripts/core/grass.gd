@@ -1,5 +1,5 @@
 class_name Grass
-extends GeometryInstance3D
+extends MultiMeshInstance3D
 
 @export_node_path("RigidBody3D") var _character_node_path # to do multiple targets
 

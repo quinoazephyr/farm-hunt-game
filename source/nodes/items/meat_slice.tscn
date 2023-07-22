@@ -19,6 +19,7 @@ _image = ExtResource("2_qyd76")
 size = Vector3(1, 1.27728, 0.159646)
 
 [node name="MeatSlice" instance=ExtResource("1_g8k1t")]
+collision_layer = 524545
 _item = SubResource("Resource_cilfw")
 
 [node name="CollisionShape3D" parent="." index="0"]

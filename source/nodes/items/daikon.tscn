@@ -17,6 +17,7 @@ _type = 0
 _image = ExtResource("2_50nvj")
 
 [node name="Daikon" instance=ExtResource("1_y8lae")]
+collision_layer = 524545
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.68, 0)
 _item = SubResource("Resource_gfmwg")
