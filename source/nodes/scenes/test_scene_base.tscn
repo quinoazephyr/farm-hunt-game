@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://xopw8jd5wmyh"]
+[gd_scene load_steps=116 format=3 uid="uid://xopw8jd5wmyh"]
 
 [ext_resource type="Environment" uid="uid://1vi1iwjunjii" path="res://source/resources/world_environments/soft_bloom_environment.tres" id="1_5snjs"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/timescale_control.gd" id="1_oi6un"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://0jdkvta3mhj2" path="res://source/nodes/cameras/camera_parent.tscn" id="2_mirwc"]
 [ext_resource type="Script" path="res://source/scripts/core/input_controls/action_input_control.gd" id="3_7k0u2"]
 [ext_resource type="PackedScene" uid="uid://c27rxdc1x1gyk" path="res://source/nodes/characters/player_character.tscn" id="3_hn0y1"]
-[ext_resource type="Texture2D" uid="uid://455ct5vrafwj" path="res://assets/images/controls/pc/letter-e.png" id="3_rkosi"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/items_control.gd" id="4_3h8rf"]
 [ext_resource type="Script" path="res://source/scripts/core/items_spawner.gd" id="5_mjlji"]
 [ext_resource type="Script" path="res://source/scripts/core/input_controls/menu_input_controls.gd" id="5_pt1r3"]
@@ -33,46 +32,47 @@
 [ext_resource type="Script" path="res://source/scripts/core/ui/pause_ui.gd" id="19_v5ubj"]
 [ext_resource type="FontFile" uid="uid://ufo4jjt3o4go" path="res://assets/fonts/roboto/Roboto-Medium.ttf" id="20_34sra"]
 [ext_resource type="Script" path="res://source/scripts/core/ui/quick_menu_ui_inventory.gd" id="20_cqd5j"]
-[ext_resource type="Texture2D" uid="uid://dib43qo3hwu5o" path="res://assets/images/controls/pc/down-arrow.png" id="21_56o6i"]
+[ext_resource type="Texture2D" uid="uid://455ct5vrafwj" path="res://assets/textures/ui/controls/pc/letter-e.png" id="21_6difj"]
 [ext_resource type="Script" path="res://source/scripts/core/ui/inventory_ui_tabs.gd" id="21_x5uvt"]
 [ext_resource type="StyleBox" uid="uid://qf22xk52n8g0" path="res://source/resources/styles/buttons/change_tab_button_L_normal.tres" id="22_22dkt"]
-[ext_resource type="Texture2D" uid="uid://bbnrf4ati72ty" path="res://assets/images/controls/pc/left-arrow.png" id="22_xglxu"]
 [ext_resource type="StyleBox" uid="uid://7b8ftmewp2pd" path="res://source/resources/styles/buttons/change_tab_button_L_pressed.tres" id="23_844m3"]
-[ext_resource type="Texture2D" uid="uid://c65l21x17vlpv" path="res://assets/images/controls/pc/enter.png" id="23_n0kci"]
+[ext_resource type="Texture2D" uid="uid://vmmvtyj6sb1h" path="res://assets/textures/ui/controls/pc/escape.png" id="23_hgi70"]
 [ext_resource type="StyleBox" uid="uid://ftx7x70vj1un" path="res://source/resources/styles/buttons/change_tab_button_R_normal.tres" id="24_g738u"]
-[ext_resource type="Texture2D" uid="uid://vmmvtyj6sb1h" path="res://assets/images/controls/pc/escape.png" id="24_h1pgu"]
-[ext_resource type="Texture2D" uid="uid://o72d82hj6af3" path="res://assets/images/ui/inventory/description_rect.png" id="25_3blg7"]
 [ext_resource type="StyleBox" uid="uid://bb5s2yob452ga" path="res://source/resources/styles/buttons/change_tab_button_R_pressed.tres" id="25_ngq34"]
-[ext_resource type="Texture2D" uid="uid://d3jqrfg6828m2" path="res://assets/images/ui/inventory/character_preview_placeholder.png" id="26_5gkvt"]
 [ext_resource type="Shader" path="res://source/resources/shaders/contrasted_blur.gdshader" id="26_73dfd"]
 [ext_resource type="FontFile" uid="uid://b7jhigkp6qa06" path="res://assets/fonts/roboto/Roboto-Italic.ttf" id="30_gkuxa"]
-[ext_resource type="Texture2D" uid="uid://c7oaj63muyf16" path="res://assets/images/ui/inventory/potion_icon.png" id="32_tnnvk"]
-[ext_resource type="Texture2D" uid="uid://dmdnjknk2clgq" path="res://assets/images/ui/inventory/sword_icon.png" id="33_2yqpk"]
-[ext_resource type="Texture2D" uid="uid://bfchxage7j6dl" path="res://assets/images/ui/inventory/bag_icon.png" id="33_c27hm"]
-[ext_resource type="Texture2D" uid="uid://b3lpevsdc86kf" path="res://assets/images/ui/inventory/bow_icon.png" id="34_41miy"]
-[ext_resource type="Texture2D" uid="uid://iqo657so7xmp" path="res://assets/images/ui/inventory/bag_icon_inactive.png" id="35_15pyt"]
-[ext_resource type="Texture2D" uid="uid://c81utj6nymjck" path="res://assets/images/ui/inventory/shield_icon.png" id="35_qnneb"]
-[ext_resource type="Texture2D" uid="uid://b35y43h6oxj1e" path="res://assets/images/ui/inventory/potion_icon_inactive.png" id="36_7emu8"]
-[ext_resource type="Texture2D" uid="uid://byb3kp7dk2tj5" path="res://assets/images/ui/inventory/armor_icon.png" id="36_wptyy"]
+[ext_resource type="Texture2D" uid="uid://bfchxage7j6dl" path="res://assets/textures/ui/inventory/bag_icon.png" id="31_v6kcg"]
+[ext_resource type="Texture2D" uid="uid://c7oaj63muyf16" path="res://assets/textures/ui/inventory/potion_icon.png" id="32_ccgfc"]
+[ext_resource type="Texture2D" uid="uid://dmdnjknk2clgq" path="res://assets/textures/ui/inventory/sword_icon.png" id="33_28hnl"]
+[ext_resource type="Texture2D" uid="uid://b3lpevsdc86kf" path="res://assets/textures/ui/inventory/bow_icon.png" id="34_kt1oh"]
+[ext_resource type="Texture2D" uid="uid://c81utj6nymjck" path="res://assets/textures/ui/inventory/shield_icon.png" id="35_a3v75"]
+[ext_resource type="Texture2D" uid="uid://byb3kp7dk2tj5" path="res://assets/textures/ui/inventory/armor_icon.png" id="36_t0a8v"]
 [ext_resource type="StyleBox" uid="uid://cghcl0b3r0fkf" path="res://source/resources/styles/buttons/quick_menu_button_hover.tres" id="37_244u1"]
 [ext_resource type="FontFile" uid="uid://x04bywyu4ly5" path="res://assets/fonts/roboto/Roboto-BoldItalic.ttf" id="37_b6f5w"]
-[ext_resource type="Texture2D" uid="uid://ck3o3cjmoykxr" path="res://assets/images/ui/inventory/sword_icon_inactive.png" id="37_bm0oh"]
-[ext_resource type="Texture2D" uid="uid://721wogylml12" path="res://assets/images/ui/inventory/star_icon.png" id="37_nixs4"]
+[ext_resource type="Texture2D" uid="uid://721wogylml12" path="res://assets/textures/ui/inventory/star_icon.png" id="37_najlm"]
 [ext_resource type="StyleBox" uid="uid://cq7wq2sjq514l" path="res://source/resources/styles/buttons/quick_menu_button_disabled.tres" id="38_4qqat"]
 [ext_resource type="FontFile" uid="uid://bjqb3klyxxk38" path="res://assets/fonts/roboto/Roboto-Regular.ttf" id="38_6xpcf"]
 [ext_resource type="StyleBox" uid="uid://dsklhbybi6d6i" path="res://source/resources/styles/buttons/quick_menu_button_focus.tres" id="38_b26s2"]
-[ext_resource type="Texture2D" uid="uid://jrnm27hn7yj8" path="res://assets/images/ui/inventory/bow_icon_inactive.png" id="38_q2p86"]
-[ext_resource type="Texture2D" uid="uid://dlha4mbckjdv0" path="res://assets/images/ui/inventory/shield_icon_inactive.png" id="39_0xc7h"]
-[ext_resource type="Texture2D" uid="uid://bktqbr31spox1" path="res://assets/images/ui/inventory/armor_icon_inactive.png" id="40_ix3bc"]
-[ext_resource type="Texture2D" uid="uid://3o8hk0r6cac2" path="res://assets/images/ui/inventory/star_icon_inactive.png" id="41_vjrb2"]
+[ext_resource type="Texture2D" uid="uid://iqo657so7xmp" path="res://assets/textures/ui/inventory/bag_icon_inactive.png" id="38_fpqsb"]
+[ext_resource type="Texture2D" uid="uid://b35y43h6oxj1e" path="res://assets/textures/ui/inventory/potion_icon_inactive.png" id="39_fcbnw"]
+[ext_resource type="Texture2D" uid="uid://ck3o3cjmoykxr" path="res://assets/textures/ui/inventory/sword_icon_inactive.png" id="40_hibs5"]
+[ext_resource type="Texture2D" uid="uid://jrnm27hn7yj8" path="res://assets/textures/ui/inventory/bow_icon_inactive.png" id="41_xnp6r"]
+[ext_resource type="Texture2D" uid="uid://dlha4mbckjdv0" path="res://assets/textures/ui/inventory/shield_icon_inactive.png" id="42_840am"]
+[ext_resource type="Texture2D" uid="uid://bktqbr31spox1" path="res://assets/textures/ui/inventory/armor_icon_inactive.png" id="43_a8k1a"]
+[ext_resource type="Texture2D" uid="uid://3o8hk0r6cac2" path="res://assets/textures/ui/inventory/star_icon_inactive.png" id="44_c0bp3"]
 [ext_resource type="Theme" uid="uid://s0h6wd0phrga" path="res://source/resources/themes/scroll_container.tres" id="47_18vfj"]
 [ext_resource type="Shader" path="res://source/resources/shaders/mask_ui.gdshader" id="48_4piwd"]
 [ext_resource type="FontFile" uid="uid://by67psae3oruu" path="res://assets/fonts/roboto/Roboto-MediumItalic.ttf" id="49_uqcvq"]
+[ext_resource type="Texture2D" uid="uid://o72d82hj6af3" path="res://assets/textures/ui/inventory/description_rect.png" id="51_ymgxd"]
+[ext_resource type="Texture2D" uid="uid://d3jqrfg6828m2" path="res://assets/textures/ui/inventory/character_preview_placeholder.png" id="54_liiij"]
+[ext_resource type="Texture2D" uid="uid://dib43qo3hwu5o" path="res://assets/textures/ui/controls/pc/down-arrow.png" id="55_4iopt"]
+[ext_resource type="Texture2D" uid="uid://bbnrf4ati72ty" path="res://assets/textures/ui/controls/pc/left-arrow.png" id="56_drlpx"]
+[ext_resource type="Texture2D" uid="uid://c65l21x17vlpv" path="res://assets/textures/ui/controls/pc/enter.png" id="57_0rljx"]
 [ext_resource type="PackedScene" uid="uid://do7vu66m36vsf" path="res://source/resources/models/terrain_test.tscn" id="69_5id0v"]
+[ext_resource type="Shader" path="res://source/resources/shaders/water.gdshader" id="70_duxwn"]
 [ext_resource type="Shader" path="res://source/resources/shaders/water_simulation.gdshader" id="70_fglqr"]
-[ext_resource type="Shader" path="res://source/resources/shaders/water_2.gdshader" id="71_u6c2p"]
-[ext_resource type="Texture2D" uid="uid://cvyp708x1bgf2" path="res://assets/images/material_textures/WaterDistortion.png" id="72_b1v40"]
-[ext_resource type="Texture2D" uid="uid://b3eh1gwnkb6s4" path="res://assets/images/material_textures/PerlinNoise.png" id="73_03i83"]
+[ext_resource type="Texture2D" uid="uid://cvyp708x1bgf2" path="res://assets/textures/materials/water/water_distortion.png" id="71_h1tuw"]
+[ext_resource type="Texture2D" uid="uid://b3eh1gwnkb6s4" path="res://assets/textures/materials/water/perlin_noise.png" id="72_svyy7"]
 [ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="73_ptk63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1srsq"]
@@ -115,16 +115,16 @@ font_size = 34
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5lfp"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iosk6"]
-viewport_path = NodePath("Collision")
+[sub_resource type="ViewportTexture" id="ViewportTexture_jko2j"]
+viewport_path = NodePath("WaterSim/Collision")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_78c5m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5s2j2"]
 resource_local_to_scene = true
 shader = ExtResource("70_fglqr")
 shader_parameter/phase = 0.18
 shader_parameter/attenuation = 0.995
 shader_parameter/deltaUV = 1.5
-shader_parameter/col_tex = SubResource("ViewportTexture_iosk6")
+shader_parameter/col_tex = SubResource("ViewportTexture_jko2j")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bnx2v"]
 fractal_octaves = 3
@@ -144,13 +144,10 @@ seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_6xboo")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_5xjkj"]
-viewport_path = NodePath("Simulation")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x2epg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trv3a"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("71_u6c2p")
+shader = ExtResource("70_duxwn")
 shader_parameter/beer_factor = 1.2
 shader_parameter/foam_distance = 0.01
 shader_parameter/foam_max_distance = 0.4
@@ -164,16 +161,69 @@ shader_parameter/_DepthMaxDistance = 1.0
 shader_parameter/_DepthFactor = 1.0
 shader_parameter/_DepthGradientShallow = Color(0.380392, 0.811765, 1, 0.470588)
 shader_parameter/_DepthGradientDeep = Color(0.0941176, 0.666667, 0.929412, 0.784314)
-shader_parameter/caustics_speed = 0.35
-shader_parameter/caustics_size = 1.3
-shader_parameter/caustics_intensity = 4.0
 shader_parameter/wave_height = 0.03
 shader_parameter/refraction = 0.5
-shader_parameter/surfaceNoise = ExtResource("73_03i83")
-shader_parameter/distortNoise = ExtResource("72_b1v40")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_5xjkj")
+shader_parameter/surfaceNoise = ExtResource("72_svyy7")
+shader_parameter/distortNoise = ExtResource("71_h1tuw")
 shader_parameter/noise_1 = SubResource("NoiseTexture2D_7btt1")
 shader_parameter/noise_2 = SubResource("NoiseTexture2D_bv7me")
+
+[sub_resource type="Curve" id="Curve_yrokj"]
+_data = [Vector2(0, 0), 0.0, 3.05174, 0, 0, Vector2(0.503484, 0.503782), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_orll6"]
+width = 64
+texture_mode = 1
+curve = SubResource("Curve_yrokj")
+
+[sub_resource type="Gradient" id="Gradient_027sp"]
+colors = PackedColorArray(0.222333, 0.46, 0, 1, 0.3625, 0.75, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wv4j5"]
+gradient = SubResource("Gradient_027sp")
+width = 64
+
+[sub_resource type="Gradient" id="Gradient_nagip"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m3yhi"]
+gradient = SubResource("Gradient_nagip")
+
+[sub_resource type="Gradient" id="Gradient_70jy1"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kki5q"]
+gradient = SubResource("Gradient_70jy1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u8fkt"]
+noise_type = 0
+fractal_octaves = 3
+fractal_lacunarity = 0.44
+fractal_gain = 1.246
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_08c7x"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_u8fkt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4lxkr"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("73_ptk63")
+shader_parameter/wind_speed = 0.2
+shader_parameter/wind_strength = 0.2
+shader_parameter/wind_texture_tile_size = 20.0
+shader_parameter/wind_vertical_strength = 0.0
+shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
+shader_parameter/character_position = Vector3(-4.945, 0, -10.245)
+shader_parameter/character_radius = 0.5
+shader_parameter/character_push_strength = 0.2
+shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
+shader_parameter/color_texture = SubResource("GradientTexture1D_m3yhi")
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
+shader_parameter/height_map = SubResource("GradientTexture2D_kki5q")
+shader_parameter/character_distance_falloff_curve = SubResource("CurveTexture_orll6")
 
 [sub_resource type="Curve" id="Curve_gy3o3"]
 _data = [Vector2(0, 0), 0.0, 2.88809, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -324,7 +374,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_rkosi")
+texture = ExtResource("21_6difj")
 expand_mode = 1
 
 [node name="DescriptionLabel" type="Label" parent="WorldUI/PickUpActionGraphic"]
@@ -346,7 +396,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("24_h1pgu")
+texture = ExtResource("23_hgi70")
 expand_mode = 1
 
 [node name="DescriptionLabel" type="Label" parent="WorldUI/OpenInventory"]
@@ -412,8 +462,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("21_x5uvt")
 _slot_packed_scene = ExtResource("17_55esj")
-_tabs_icons_active = Array[Texture2D]([ExtResource("33_c27hm"), ExtResource("32_tnnvk"), ExtResource("33_2yqpk"), ExtResource("34_41miy"), ExtResource("35_qnneb"), ExtResource("36_wptyy"), ExtResource("37_nixs4")])
-_tabs_icons_inactive = Array[Texture2D]([ExtResource("35_15pyt"), ExtResource("36_7emu8"), ExtResource("37_bm0oh"), ExtResource("38_q2p86"), ExtResource("39_0xc7h"), ExtResource("40_ix3bc"), ExtResource("41_vjrb2")])
+_tabs_icons_active = Array[Texture2D]([ExtResource("31_v6kcg"), ExtResource("32_ccgfc"), ExtResource("33_28hnl"), ExtResource("34_kt1oh"), ExtResource("35_a3v75"), ExtResource("36_t0a8v"), ExtResource("37_najlm")])
+_tabs_icons_inactive = Array[Texture2D]([ExtResource("38_fpqsb"), ExtResource("39_fcbnw"), ExtResource("40_hibs5"), ExtResource("41_xnp6r"), ExtResource("42_840am"), ExtResource("43_a8k1a"), ExtResource("44_c0bp3")])
 
 [node name="TabsRect" type="HBoxContainer" parent="PauseUI/InventoryUI/Tabs"]
 custom_minimum_size = Vector2(860, 60)
@@ -463,23 +513,23 @@ max_tab_width = 60
 scrolling_enabled = false
 tab_count = 7
 tab_0/title = "Resources"
-tab_0/icon = ExtResource("33_c27hm")
+tab_0/icon = ExtResource("31_v6kcg")
 tab_1/title = "Consumables"
-tab_1/icon = ExtResource("32_tnnvk")
+tab_1/icon = ExtResource("32_ccgfc")
 tab_2/title = " Weapons"
-tab_2/icon = ExtResource("33_2yqpk")
+tab_2/icon = ExtResource("33_28hnl")
 tab_2/disabled = true
 tab_3/title = "Archery"
-tab_3/icon = ExtResource("34_41miy")
+tab_3/icon = ExtResource("34_kt1oh")
 tab_3/disabled = true
 tab_4/title = " Shields"
-tab_4/icon = ExtResource("35_qnneb")
+tab_4/icon = ExtResource("35_a3v75")
 tab_4/disabled = true
 tab_5/title = " Armor"
-tab_5/icon = ExtResource("36_wptyy")
+tab_5/icon = ExtResource("36_t0a8v")
 tab_5/disabled = true
 tab_6/title = ""
-tab_6/icon = ExtResource("37_nixs4")
+tab_6/icon = ExtResource("37_najlm")
 tab_6/disabled = true
 
 [node name="InputR" type="Button" parent="PauseUI/InventoryUI/Tabs/TabsRect"]
@@ -571,7 +621,7 @@ offset_top = 150.0
 offset_right = 890.0
 offset_bottom = 420.0
 grow_vertical = 2
-texture = ExtResource("25_3blg7")
+texture = ExtResource("51_ymgxd")
 
 [node name="Name" type="Label" parent="PauseUI/InventoryUI/DescriptionRect"]
 layout_mode = 0
@@ -625,7 +675,7 @@ offset_right = 960.0
 offset_bottom = 490.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("26_5gkvt")
+texture = ExtResource("54_liiij")
 expand_mode = 1
 
 [node name="Footer" type="ColorRect" parent="PauseUI/InventoryUI"]
@@ -666,7 +716,7 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("21_56o6i")
+texture = ExtResource("55_4iopt")
 expand_mode = 1
 stretch_mode = 5
 flip_v = true
@@ -677,19 +727,19 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("22_xglxu")
+texture = ExtResource("56_drlpx")
 expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("21_56o6i")
+texture = ExtResource("55_4iopt")
 expand_mode = 1
 
 [node name="TextureRect3" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/MoveSelection/ButtonLabels/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("22_xglxu")
+texture = ExtResource("56_drlpx")
 expand_mode = 1
 flip_h = true
 
@@ -710,7 +760,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/Select/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("3_rkosi")
+texture = ExtResource("21_6difj")
 expand_mode = 1
 stretch_mode = 5
 
@@ -722,7 +772,7 @@ text = "/"
 [node name="TextureRect2" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/Select/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("23_n0kci")
+texture = ExtResource("57_0rljx")
 expand_mode = 1
 stretch_mode = 5
 
@@ -741,7 +791,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="PauseUI/InventoryUI/HelperControls/Back/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("24_h1pgu")
+texture = ExtResource("23_hgi70")
 expand_mode = 1
 stretch_mode = 5
 
@@ -841,13 +891,14 @@ script = ExtResource("3_7k0u2")
 
 [node name="terrain_test" parent="." instance=ExtResource("69_5id0v")]
 
-[node name="ColorRect" parent="terrain_test/Simulation" index="0"]
-material = SubResource("ShaderMaterial_78c5m")
+[node name="ColorRect" parent="terrain_test/WaterSim/Simulation" index="0"]
+material = SubResource("ShaderMaterial_5s2j2")
 
 [node name="Water" parent="terrain_test" index="4"]
-material_override = SubResource("ShaderMaterial_x2epg")
+material_override = SubResource("ShaderMaterial_trv3a")
 
 [node name="Grass" parent="terrain_test" index="5"]
+material_override = SubResource("ShaderMaterial_4lxkr")
 _character_node_path = NodePath("../../PlayerCharacter")
 
 [node name="GrassMeshSingle" parent="terrain_test" index="7"]

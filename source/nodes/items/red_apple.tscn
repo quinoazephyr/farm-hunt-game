@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://vy4vb8sxm1y1" path="res://assets/images/items/apple.png" id="2_6u44w"]
 [ext_resource type="ArrayMesh" uid="uid://dfnsafdq360dm" path="res://source/resources/models/items/apple_mesh.res" id="2_bvnw2"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_fm8ah"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/water_collision_material.tres" id="5_wn8r8"]
+[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water_collision_material.tres" id="5_wn8r8"]
 
 [sub_resource type="Resource" id="Resource_y8by1"]
 script = ExtResource("3_fm8ah")

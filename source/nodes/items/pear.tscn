@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c46q324df1d5e" path="res://assets/images/items/pear.png" id="2_hh7gx"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_um65l"]
 [ext_resource type="Shape3D" uid="uid://cr11dgietve3k" path="res://source/resources/models/items/pear_collision_shape.res" id="4_5sst0"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/water_collision_material.tres" id="6_w4xgq"]
+[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water_collision_material.tres" id="6_w4xgq"]
 
 [sub_resource type="Resource" id="Resource_mpxmi"]
 script = ExtResource("3_um65l")

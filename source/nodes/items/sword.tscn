@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bu2oyxclrp0h5" path="res://source/resources/models/items/sword_mesh.res" id="2_egvf4"]
 [ext_resource type="Texture2D" uid="uid://lnti8ncockb" path="res://assets/images/items/sword.png" id="2_mswt2"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_gtwjp"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/water_collision_material.tres" id="5_1fn8h"]
+[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water_collision_material.tres" id="5_1fn8h"]
 
 [sub_resource type="Resource" id="Resource_41pb1"]
 script = ExtResource("3_gtwjp")

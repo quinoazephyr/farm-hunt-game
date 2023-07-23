@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b82kd2vni3b1k"]
 
 [ext_resource type="Script" path="res://source/scripts/core/ui/quick_menu_ui_base.gd" id="1_h1quc"]
-[ext_resource type="Texture2D" uid="uid://bhoburt0dmnn5" path="res://assets/images/ui/inventory/quick_menu_bg.png" id="2_jo530"]
+[ext_resource type="Texture2D" uid="uid://bhoburt0dmnn5" path="res://assets/textures/ui/inventory/quick_menu_bg.png" id="2_jo530"]
 
 [node name="QuickMenu" type="Control"]
 layout_mode = 3

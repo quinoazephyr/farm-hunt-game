@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c6twi8kqm534t" path="res://assets/images/items/parsnip.png" id="2_7o04y"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_7x72o"]
 [ext_resource type="Shape3D" uid="uid://cikii4tp1bfyf" path="res://source/resources/models/items/parsnip_collision_shape.res" id="4_n0nwx"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/water_collision_material.tres" id="6_gguj0"]
+[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water_collision_material.tres" id="6_gguj0"]
 
 [sub_resource type="Resource" id="Resource_xqvls"]
 script = ExtResource("3_7x72o")

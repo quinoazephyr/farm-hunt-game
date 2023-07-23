@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="2_62tl3"]
 [ext_resource type="Texture2D" uid="uid://coqutjr6b1pbm" path="res://assets/images/items/orange.png" id="2_xp6ds"]
 [ext_resource type="ArrayMesh" uid="uid://c5gfmhd6fnp7s" path="res://source/resources/models/items/orange_mesh.res" id="3_nxwyc"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/water_collision_material.tres" id="5_1ea06"]
+[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water_collision_material.tres" id="5_1ea06"]
 
 [sub_resource type="Resource" id="Resource_8pirf"]
 script = ExtResource("2_62tl3")

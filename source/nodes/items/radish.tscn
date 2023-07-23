@@ -5,7 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bu6ttj7s0v2u8" path="res://source/resources/models/items/radish_mesh.res" id="2_54fgr"]
 [ext_resource type="Texture2D" uid="uid://cxal7g3jfgitx" path="res://assets/images/items/radish.png" id="2_ii7yd"]
 [ext_resource type="Shape3D" uid="uid://xvxtdunhuyca" path="res://source/resources/models/items/radish_collision_shape.res" id="4_wnkbf"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/water_collision_material.tres" id="6_6k883"]
+[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water_collision_material.tres" id="6_6k883"]
 
 [sub_resource type="Resource" id="Resource_wbmg7"]
 script = ExtResource("2_1tlbs")
