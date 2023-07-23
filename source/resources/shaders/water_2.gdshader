@@ -1,6 +1,6 @@
 shader_type spatial;
 #include "helpers.gdshaderinc"
-#include "simplex_noise.gdshaderinc"
+//#include "simplex_noise.gdshaderinc"
 
 const int CHARACTER_POSITIONS_SIZE = 20;
 const float SMOOTHSTEP_AA = 0.01;
@@ -26,9 +26,9 @@ uniform float _DepthFactor = 1.0;
 uniform vec4 _DepthGradientShallow : source_color;
 uniform vec4 _DepthGradientDeep : source_color;
 
-uniform float caustics_speed = 0.2;
-uniform float caustics_size = 1.0;
-uniform float caustics_intensity = 3.0;
+//uniform float caustics_speed = 0.2;
+//uniform float caustics_size = 1.0;
+//uniform float caustics_intensity = 3.0;
 
 uniform sampler2D simulation_texture;
 
@@ -125,19 +125,19 @@ void fragment(){
 	vec4 colorDis = alpha_blend(surfaceNoiseColor, waterColorDis);
 	
 	// Caustics
-	vec3 caustics_uv = world_vert + simulation_sample.rgb;
-	caustics_uv.y = TIME * caustics_speed;
-    caustics_uv *= caustics_size;
-	vec4 n = snoise(caustics_uv);        
-	caustics_uv -= 0.07 * n.xyz;
-	n = snoise(caustics_uv);
-	caustics_uv -= 0.07 * n.xyz;
-	n = snoise(caustics_uv);
-	float intensity = exp(n.w * caustics_intensity - caustics_intensity);
+//	vec3 caustics_uv = world_vert + simulation_sample.rgb;
+//	caustics_uv.y = TIME * caustics_speed;
+//    caustics_uv *= caustics_size;
+//	vec4 n = snoise(caustics_uv);        
+//	caustics_uv -= 0.07 * n.xyz;
+//	n = snoise(caustics_uv);
+//	caustics_uv -= 0.07 * n.xyz;
+//	n = snoise(caustics_uv);
+//	float intensity = exp(n.w * caustics_intensity - caustics_intensity);
 //	intensity = smoothstep(0.0, 0.9, intensity) * smoothstep(0.0, 0.1, intensity);
 //	intensity = step(0.03, intensity);
-	float caustics = (1.0 - smoothstep(0.9, 1.0, waterDepth)) * intensity;
-	caustics *= step(surfaceNoiseColor.a, 0.1);
+//	float caustics = (1.0 - smoothstep(0.9, 1.0, waterDepth)) * intensity;
+//	caustics *= step(surfaceNoiseColor.a, 0.1);
 	
 	// underwater
 	float underwater = step(0.01, waterDepthDis);
@@ -147,10 +147,10 @@ void fragment(){
 	color = mix(screen, color, color.a);
 	colorDis = mix(screen_underwater, colorDis, colorDis.a);
 	
-	vec3 final_color = mix(color.rgb, colorDis.rgb, underwater) + caustics;
+	vec3 final_color = mix(color.rgb, colorDis.rgb, underwater);// + caustics;
 	
 	ALBEDO = final_color;
 //	ALBEDO = mix(final_color, vec3(1.0), step(0.5, simulation_sample.r));
 
-	EMISSION = vec3(caustics);
+	//EMISSION = vec3(caustics);
 }

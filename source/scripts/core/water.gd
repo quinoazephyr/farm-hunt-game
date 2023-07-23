@@ -5,9 +5,9 @@ extends GeometryInstance3D
 
 var _frame_counter = 0
 
-@onready var _simulation_viewport = $"../Simulation"
-@onready var _collision_material = $"../Simulation/ColorRect".material
-@onready var _collision_viewport = $"../Collision"
+@onready var _simulation_viewport = $"../WaterSim/Simulation"
+@onready var _collision_material = $"../WaterSim/Simulation/ColorRect".material
+@onready var _collision_viewport = $"../WaterSim/Collision"
 
 func _ready():
 	material_override.set_shader_parameter(

@@ -57,6 +57,16 @@ func _populate_surface(multimesh_node : MultiMeshInstance3D,
 				0, triangle_area_map.size() - 1, areapos)
 		var face = faces[index]
 		var pos = _get_random_point_inside(face)
+		
+		# Grass area extends over (-span, span) - ie. width/length is 2*span
+		var pos_relative = Vector3.ZERO
+		pos_relative.x = (pos.x + span.x) / span.x / 2.0
+		pos_relative.z = (pos.z + span.z) / span.z / 2.0
+		var height = height_map_image.get_pixel(pos_relative.x * height_map_image.get_width(), 
+				pos_relative.z * height_map_image.get_height())
+		if height.r < 0.1:
+			continue
+		
 		var normal = Plane(face[0], face[1], face[2]).normal
 		var op_axis = (face[0] - face[1]).normalized()
 		
@@ -71,12 +81,6 @@ func _populate_surface(multimesh_node : MultiMeshInstance3D,
 				post_xform.rotated(xform.basis.y, -randf_range(-1.0, 1.0) * PI)
 		xform.basis = post_xform * xform.basis
 		
-		# Grass area extends over (-span, span) - ie. width/length is 2*span
-		var pos_relative = Vector3.ZERO
-		pos_relative.x = (pos.x + span.x) / span.x / 2.0
-		pos_relative.z = (pos.z + span.z) / span.z / 2.0
-		var height = height_map_image.get_pixel(pos_relative.x * height_map_image.get_width(), 
-				pos_relative.z * height_map_image.get_height())
 		xform.basis = xform.basis.scaled(Vector3.ONE * instance_scale * height.r)
 		
 		multimesh_new.set_instance_transform(i, xform)
