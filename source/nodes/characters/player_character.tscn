@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://c27rxdc1x1gyk"]
+[gd_scene load_steps=13 format=3 uid="uid://c27rxdc1x1gyk"]
 
 [ext_resource type="Script" path="res://source/scripts/characters/player_character.gd" id="1_6mp0p"]
 [ext_resource type="PackedScene" uid="uid://tl1dboxolrrv" path="res://source/nodes/characters/character_with_bag.tscn" id="1_u1v7y"]
 [ext_resource type="Script" path="res://source/scripts/items/inventory_config.gd" id="3_6vrgo"]
 [ext_resource type="PackedScene" uid="uid://d01dkjdduepid" path="res://source/resources/models/fox.tscn" id="4_kfnrk"]
-[ext_resource type="Material" uid="uid://dha3x4p8o5r2b" path="res://source/resources/materials/characters/fox/fox_body.tres" id="5_bfcie"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/water_collision_material.tres" id="6_bj2yy"]
+[ext_resource type="Material" uid="uid://dha3x4p8o5r2b" path="res://source/resources/materials/characters/fox/fox_body_material.tres" id="5_bfcie"]
+[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water/water_collision_material.tres" id="6_bj2yy"]
+[ext_resource type="Material" uid="uid://dd0qnici65k8t" path="res://source/resources/materials/environment/grass/grass_collision_material.tres" id="7_w6ilw"]
 
 [sub_resource type="Resource" id="Resource_bmqme"]
 script = ExtResource("3_6vrgo")
@@ -26,6 +27,12 @@ height = 1.4
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q4wvq"]
 height = 1.4
+
+[sub_resource type="SphereMesh" id="SphereMesh_ja0d8"]
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 4
 
 [node name="PlayerCharacter" instance=ExtResource("1_u1v7y")]
 collision_layer = 524289
@@ -66,6 +73,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.294, 0)
 layers = 524288
 material_override = ExtResource("6_bj2yy")
 mesh = SubResource("CapsuleMesh_q4wvq")
+
+[node name="GrassCollision" type="MeshInstance3D" parent="Mesh" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0922205, 0)
+layers = 262144
+material_override = ExtResource("7_w6ilw")
+mesh = SubResource("SphereMesh_ja0d8")
 
 [node name="CameraPivot" type="Node3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.487, 0)

@@ -24,7 +24,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/multimesh_populate_plugin/plugin.cfg")
+enabled=PackedStringArray("res://addons/heightmap_generate_plugin/plugin.cfg", "res://addons/multimesh_populate_plugin/plugin.cfg")
 
 [input]
 

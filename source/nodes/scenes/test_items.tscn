@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b5wjp1mfa1lyp"]
+[gd_scene load_steps=22 format=3 uid="uid://b5wjp1mfa1lyp"]
 
 [ext_resource type="PackedScene" uid="uid://xopw8jd5wmyh" path="res://source/nodes/scenes/test_scene_base.tscn" id="1_occme"]
 [ext_resource type="Shader" path="res://source/resources/shaders/water_simulation.gdshader" id="2_3h86n"]
@@ -64,72 +64,6 @@ shader_parameter/simulation_texture = SubResource("ViewportTexture_4hpqe")
 shader_parameter/noise_1 = SubResource("NoiseTexture2D_7btt1")
 shader_parameter/noise_2 = SubResource("NoiseTexture2D_bv7me")
 
-[sub_resource type="Curve" id="Curve_yrokj"]
-_data = [Vector2(0, 0), 0.0, 3.05174, 0, 0, Vector2(0.503484, 0.503782), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_orll6"]
-width = 64
-texture_mode = 1
-curve = SubResource("Curve_yrokj")
-
-[sub_resource type="Gradient" id="Gradient_027sp"]
-colors = PackedColorArray(0.222333, 0.46, 0, 1, 0.3625, 0.75, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_wv4j5"]
-gradient = SubResource("Gradient_027sp")
-width = 64
-
-[sub_resource type="Gradient" id="Gradient_nagip"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_m3yhi"]
-gradient = SubResource("Gradient_nagip")
-
-[sub_resource type="Gradient" id="Gradient_70jy1"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kki5q"]
-gradient = SubResource("Gradient_70jy1")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_u8fkt"]
-noise_type = 0
-fractal_octaves = 3
-fractal_lacunarity = 0.44
-fractal_gain = 1.246
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_08c7x"]
-seamless = true
-seamless_blend_skirt = 1.0
-noise = SubResource("FastNoiseLite_u8fkt")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_30d0o"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("6_88nvd")
-shader_parameter/wind_speed = 0.2
-shader_parameter/wind_strength = 0.2
-shader_parameter/wind_texture_tile_size = 20.0
-shader_parameter/wind_vertical_strength = 0.0
-shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
-shader_parameter/character_position = Vector3(-4.945, 0, -10.245)
-shader_parameter/character_radius = 0.5
-shader_parameter/character_push_strength = 0.2
-shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
-shader_parameter/color_texture = SubResource("GradientTexture1D_m3yhi")
-shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
-shader_parameter/height_map = SubResource("GradientTexture2D_kki5q")
-shader_parameter/character_distance_falloff_curve = SubResource("CurveTexture_orll6")
-
-[sub_resource type="Curve" id="Curve_gy3o3"]
-_data = [Vector2(0, 0), 0.0, 2.88809, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_bi7o0"]
-width = 128
-texture_mode = 1
-curve = SubResource("Curve_gy3o3")
-
 [sub_resource type="Gradient" id="Gradient_d7dkj"]
 offsets = PackedFloat32Array(0.00417537, 1)
 colors = PackedColorArray(0.23123, 0.38, 0.0494, 1, 0.3535, 0.7, 0.07, 1)
@@ -165,13 +99,10 @@ shader_parameter/wind_strength = 2.0
 shader_parameter/wind_texture_tile_size = 20.0
 shader_parameter/wind_vertical_strength = 0.3
 shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
-shader_parameter/character_position = Vector3(0, 0, 0)
-shader_parameter/character_radius = 3.0
-shader_parameter/character_push_strength = 0.0
+shader_parameter/camera_position = null
 shader_parameter/color_ramp = SubResource("GradientTexture1D_kif2l")
 shader_parameter/color_texture = SubResource("GradientTexture1D_w78dw")
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_ta0ki")
-shader_parameter/character_distance_falloff_curve = SubResource("CurveTexture_bi7o0")
 
 [node name="TestItems" instance=ExtResource("1_occme")]
 
@@ -220,9 +151,6 @@ material = SubResource("ShaderMaterial_ugusu")
 [node name="Water" parent="terrain_test" index="4"]
 material_override = SubResource("ShaderMaterial_exy64")
 
-[node name="Grass" parent="terrain_test" index="5"]
-material_override = SubResource("ShaderMaterial_30d0o")
-
 [node name="GrassMeshSingle" parent="terrain_test" index="7"]
 material_override = SubResource("ShaderMaterial_gqwwl")
 
@@ -232,3 +160,4 @@ transform = Transform3D(0.652098, 0, -0.758134, 0, 1, 0, 0.758134, 0, 0.652098, 
 [editable path="CameraParent"]
 [editable path="PauseUI/InventoryUI/QuickMenu"]
 [editable path="terrain_test"]
+[editable path="terrain_test/GrassSim/HeightmapViewportEDITOR"]

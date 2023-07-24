@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkoggdcpupsrt"]
+
+[ext_resource type="Script" path="res://source/scripts/core/tools/generate_heightmap_tool.gd" id="1_wtb3u"]
+[ext_resource type="Shader" path="res://source/resources/shaders/heightmap.gdshader" id="2_1ygfy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkf7e"]
+render_priority = 0
+shader = ExtResource("2_1ygfy")
+shader_parameter/bottom_vert_pos_y = 0.0
+shader_parameter/top_vert_pos_y = 1.0
+
+[node name="HeightmapViewportEDITOR" type="SubViewport"]
+render_target_update_mode = 4
+
+[node name="GenerateHeightmapTool" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+script = ExtResource("1_wtb3u")
+
+[node name="Terrain" type="MeshInstance3D" parent="GenerateHeightmapTool"]
+material_override = SubResource("ShaderMaterial_jkf7e")
+skeleton = NodePath("../..")
+
+[node name="HeightRenderer" type="Camera3D" parent="GenerateHeightmapTool"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+projection = 1
+size = 2.0

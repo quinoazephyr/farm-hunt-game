@@ -14,19 +14,17 @@ uniform sampler2D color_texture : hint_default_black;
 // we need a tiling noise here!
 uniform sampler2D wind_noise : hint_default_black;
 
-uniform sampler2D height_map : hint_default_white;
-
-uniform vec3 character_position;
-uniform float character_radius = 3.0;
-uniform sampler2D character_distance_falloff_curve : hint_default_black;
-uniform float character_push_strength = 1.0;
+uniform vec3 camera_position;
+uniform sampler2D sway_curve;
+uniform sampler2D normal_map : hint_normal;
+uniform sampler2D interact_map;
 
 varying vec3 world_vert;
+varying vec2 world_uv_interact;
+
+varying float test;
 
 void vertex() {
-	float height = 1.0;//texture(height_map, COLOR.rb).r;
-	VERTEX.y *= height;
-	
 	world_vert = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 
 	vec2 normalized_wind_direction = normalize(wind_horizontal_direction);
@@ -54,29 +52,27 @@ void vertex() {
 		wind_vertical_strength,
 		wind_strength
 	);
-	VERTEX += bump_wind * displacement_affect * height;
+//	VERTEX += bump_wind * displacement_affect;
 	
-	// At the moment the blades are pushed away in a perfectly circular manner.
-	// We could distort the distance to the character based on a noise, to break a bit the
-	// circular shape. We could distort the falloff by sampling in a noise based on the xz coordinates.
-	// The task is left to the reader
+	float cam_size = 40.0;
+	world_uv_interact = world_vert.xz;
+	world_uv_interact /= cam_size;
+	world_uv_interact += vec2(0.5);
+	vec2 normal_tex = texture(normal_map, world_uv_interact - camera_position.xz / cam_size).rg;
+	vec3 interact_tex = texture(interact_map, world_uv_interact - camera_position.xz/ cam_size).rgb;
 	
-	vec3 dir_to_character = character_position - MODEL_MATRIX[3].xyz;
-	// uncomment the following line to have a horizontal only character push
-	dir_to_character.y = 0.0;
-	float distance_to_character = length(dir_to_character);
-	float falloff = 1.0 - smoothstep(0.0, 1.0, distance_to_character/character_radius);
-	// Because we operate in vertex space, we need to convert the direction to the character
-	// in vertex space. Otherwise, it wouldn't work for rotated blades of grass.
-	// comment the next line to observe how the blades are not all facing away from the character.
-	dir_to_character = (inverse(MODEL_MATRIX) * vec4(dir_to_character, 0.0)).xyz;
-	dir_to_character = normalize(dir_to_character);
-
-	// sample the curve based on how far we are from the character, in normalized coordinates
-	float falloff_curve = texture(character_distance_falloff_curve, vec2(falloff)).x;
-	// direction to character is inverted because we want to point away from it
-	VERTEX += normalize(-dir_to_character) * falloff_curve * 
-		character_push_strength * displacement_affect * height;
+//	float diff = max(0.0, interact_tex.g - interact_tex.r) * 10.0;
+//	diff = min(diff, step(interact_tex.g, 0.99));
+//	test = diff;
+	
+	float curve = texture(sway_curve, vec2(interact_tex.b)).r - .5;
+	normal_tex = normal_tex * 2.0 - 1.0;
+	
+	
+	
+	
+	VERTEX.xz += normal_tex * vec2(UV.x, 1.0 - UV.y);// * 4.0 * curve;
+	
 	NORMAL = vec3(0.0,1.0,0.0);
 }
 
@@ -85,4 +81,5 @@ void fragment() {
 	vec3 color_mod = texture(color_ramp, vec2(1.0 - UV.y, 0)).rgb ;
 	ALBEDO = color_tex * color_mod;
 	NORMAL *= FRONT_FACING ? 1.0 : -1.0;
+//	ALBEDO = vec3(test);
 }
