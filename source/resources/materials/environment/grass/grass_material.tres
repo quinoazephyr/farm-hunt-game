@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://d2tly11k332cs"]
+[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://d2tly11k332cs"]
 
 [ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="1_5tqhf"]
 
@@ -25,11 +25,6 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_m3yhi"]
 gradient = SubResource("Gradient_nagip")
 
-[sub_resource type="Gradient" id="Gradient_70jy1"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kki5q"]
-gradient = SubResource("Gradient_70jy1")
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_u8fkt"]
 noise_type = 0
 fractal_octaves = 3
@@ -50,11 +45,9 @@ shader_parameter/wind_strength = 0.2
 shader_parameter/wind_texture_tile_size = 20.0
 shader_parameter/wind_vertical_strength = 0.0
 shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
-shader_parameter/character_position = Vector3(-4.945, 0, -10.245)
 shader_parameter/character_radius = 0.5
 shader_parameter/character_push_strength = 0.2
 shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
 shader_parameter/color_texture = SubResource("GradientTexture1D_m3yhi")
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
-shader_parameter/height_map = SubResource("GradientTexture2D_kki5q")
 shader_parameter/character_distance_falloff_curve = SubResource("CurveTexture_orll6")

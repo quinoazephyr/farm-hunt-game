@@ -14,21 +14,19 @@ uniform sampler2D color_texture : hint_default_black;
 // we need a tiling noise here!
 uniform sampler2D wind_noise : hint_default_black;
 
-uniform sampler2D height_map : hint_default_white;
-
-uniform vec3 character_position;
-uniform float character_radius = 3.0;
-uniform sampler2D character_distance_falloff_curve : hint_default_black;
-uniform float character_push_strength = 1.0;
+uniform sampler2D simulation_texture : hint_default_black;
 
 varying vec3 world_vert;
 
-void vertex() {
-	float height = 1.0;//texture(height_map, COLOR.rb).r;
-	VERTEX.y *= height;
-	
-	world_vert = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+vec3 rotate_about_axis(vec3 point, vec3 axis, float angle) {
+	return point * cos(angle) + 
+		cross(axis, point) * sin(angle) + 
+		axis * dot(axis, point) * (1.0 - cos(angle));
+}
 
+void vertex() {
+	world_vert = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	
 	vec2 normalized_wind_direction = normalize(wind_horizontal_direction);
 	vec2 world_uv = world_vert.xz / wind_texture_tile_size + 
 			normalized_wind_direction * TIME * wind_speed;
@@ -42,7 +40,7 @@ void vertex() {
 	// if we used it directly in vertex space, rotated blades of grass wouldn't behave properly
 	vec2 vert_space_horizontal_dir = (inverse(MODEL_MATRIX) * vec4(wind_horizontal_direction, 0.0,0.0)).xy;
 	vert_space_horizontal_dir = normalize(vert_space_horizontal_dir);
-	
+
 	vec3 bump_wind = vec3(
 		wind_noise_intensity * vert_space_horizontal_dir.x,
 		1.0 - wind_noise_intensity,
@@ -54,29 +52,21 @@ void vertex() {
 		wind_vertical_strength,
 		wind_strength
 	);
-	VERTEX += bump_wind * displacement_affect * height;
-	
-	// At the moment the blades are pushed away in a perfectly circular manner.
-	// We could distort the distance to the character based on a noise, to break a bit the
-	// circular shape. We could distort the falloff by sampling in a noise based on the xz coordinates.
-	// The task is left to the reader
-	
-	vec3 dir_to_character = character_position - MODEL_MATRIX[3].xyz;
-	// uncomment the following line to have a horizontal only character push
-	dir_to_character.y = 0.0;
-	float distance_to_character = length(dir_to_character);
-	float falloff = 1.0 - smoothstep(0.0, 1.0, distance_to_character/character_radius);
-	// Because we operate in vertex space, we need to convert the direction to the character
-	// in vertex space. Otherwise, it wouldn't work for rotated blades of grass.
-	// comment the next line to observe how the blades are not all facing away from the character.
-	dir_to_character = (inverse(MODEL_MATRIX) * vec4(dir_to_character, 0.0)).xyz;
-	dir_to_character = normalize(dir_to_character);
 
-	// sample the curve based on how far we are from the character, in normalized coordinates
-	float falloff_curve = texture(character_distance_falloff_curve, vec2(falloff)).x;
-	// direction to character is inverted because we want to point away from it
-	VERTEX += normalize(-dir_to_character) * falloff_curve * 
-		character_push_strength * displacement_affect * height;
+	// simulation
+	float cam_size = 40.0;
+	vec2 world_uv_interact = world_vert.xz;
+	world_uv_interact /= cam_size;
+	world_uv_interact += vec2(0.5);
+	vec2 simulation = texture(simulation_texture, world_uv_interact).rg;
+//	simulation = simulation * 2.0 - 1.0;
+//	vec3 v = cross(vec3(simulation, 0.0), vec3(0.0, 0.0, -1.0));
+	VERTEX = rotate_about_axis(VERTEX, normalize(vec3(simulation.x, 0.0, simulation.y)), 
+		clamp(length(simulation), 0.0, 0.9) * PI / 2.0);
+	
+	
+	VERTEX += mix(bump_wind * displacement_affect, vec3(0.0), length(simulation));
+	
 	NORMAL = vec3(0.0,1.0,0.0);
 }
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://jijyjjojki33"]
+[gd_scene load_steps=8 format=3 uid="uid://l26kots7txug"]
 
 [ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_a3dq4"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="2_62tl3"]
-[ext_resource type="Texture2D" uid="uid://coqutjr6b1pbm" path="res://assets/images/items/orange.png" id="2_xp6ds"]
+[ext_resource type="Texture2D" uid="uid://coqutjr6b1pbm" path="res://assets/textures/ui/items/orange.png" id="2_xp6ds"]
 [ext_resource type="ArrayMesh" uid="uid://c5gfmhd6fnp7s" path="res://source/resources/models/items/orange_mesh.res" id="3_nxwyc"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water_collision_material.tres" id="5_1ea06"]
 
 [sub_resource type="Resource" id="Resource_8pirf"]
 script = ExtResource("2_62tl3")
@@ -18,6 +17,12 @@ _image = ExtResource("2_xp6ds")
 [sub_resource type="SphereShape3D" id="SphereShape3D_ki33m"]
 radius = 0.2
 
+[sub_resource type="SphereMesh" id="SphereMesh_gn4jt"]
+radius = 0.3
+height = 0.6
+radial_segments = 8
+rings = 4
+
 [node name="Orange" instance=ExtResource("1_a3dq4")]
 _item = SubResource("Resource_8pirf")
 
@@ -28,8 +33,9 @@ shape = SubResource("SphereShape3D_ki33m")
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0)
 mesh = ExtResource("3_nxwyc")
 
-[node name="WaterCollision" type="MeshInstance3D" parent="Mesh" index="1"]
+[node name="Grass" parent="Collisions" index="0"]
+mesh = SubResource("SphereMesh_gn4jt")
+
+[node name="Water" parent="Collisions" index="1"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0)
-layers = 524288
-material_override = ExtResource("5_1ea06")
 mesh = ExtResource("3_nxwyc")

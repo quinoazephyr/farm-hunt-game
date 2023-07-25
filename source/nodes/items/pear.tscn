@@ -2,10 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_jwrqu"]
 [ext_resource type="ArrayMesh" uid="uid://b0c6snaou01fy" path="res://source/resources/models/items/pear_mesh.res" id="2_841bk"]
-[ext_resource type="Texture2D" uid="uid://c46q324df1d5e" path="res://assets/images/items/pear.png" id="2_hh7gx"]
+[ext_resource type="Texture2D" uid="uid://c46q324df1d5e" path="res://assets/textures/ui/items/pear.png" id="2_hh7gx"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_um65l"]
 [ext_resource type="Shape3D" uid="uid://cr11dgietve3k" path="res://source/resources/models/items/pear_collision_shape.res" id="4_5sst0"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water_collision_material.tres" id="6_w4xgq"]
 
 [sub_resource type="Resource" id="Resource_mpxmi"]
 script = ExtResource("3_um65l")
@@ -15,6 +14,12 @@ _description = "Simple green pear."
 _max_count = 999
 _type = 0
 _image = ExtResource("2_hh7gx")
+
+[sub_resource type="SphereMesh" id="SphereMesh_gavkw"]
+radius = 0.4
+height = 0.8
+radial_segments = 8
+rings = 4
 
 [node name="Pear" instance=ExtResource("1_jwrqu")]
 _item = SubResource("Resource_mpxmi")
@@ -27,8 +32,10 @@ shape = ExtResource("4_5sst0")
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0)
 mesh = ExtResource("2_841bk")
 
-[node name="WaterCollision" type="MeshInstance3D" parent="Mesh" index="1"]
+[node name="Grass" parent="Collisions" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0760079, 0)
+mesh = SubResource("SphereMesh_gavkw")
+
+[node name="Water" parent="Collisions" index="1"]
 transform = Transform3D(20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0)
-layers = 524288
-material_override = ExtResource("6_w4xgq")
 mesh = ExtResource("2_841bk")

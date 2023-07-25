@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode unshaded;
 #include "helpers.gdshaderinc"
 
 const int CHARACTER_POSITIONS_SIZE = 20;

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://blffd60rwe60c"]
+[gd_scene load_steps=3 format=3 uid="uid://blffd60rwe60c"]
 
 [ext_resource type="Script" path="res://source/scripts/items/item_3_d.gd" id="1_uy7hb"]
+[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water/water_collision_material.tres" id="2_5bfrd"]
 
 [node name="Item3D" type="RigidBody3D"]
 collision_layer = 524545
@@ -9,3 +10,13 @@ script = ExtResource("1_uy7hb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 
 [node name="Mesh" type="Node3D" parent="."]
+
+[node name="Collisions" type="Node3D" parent="."]
+
+[node name="Grass" type="MeshInstance3D" parent="Collisions"]
+layers = 262144
+material_override = ExtResource("2_5bfrd")
+
+[node name="Water" type="MeshInstance3D" parent="Collisions"]
+layers = 524288
+material_override = ExtResource("2_5bfrd")

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bhe3ge2u430xs"]
+
+[ext_resource type="Shader" path="res://source/resources/shaders/height_map.gdshader" id="1_fiaay"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fiaay")
+shader_parameter/invert_y = 1.0
+shader_parameter/intensity = 1.0
+shader_parameter/bottom_vert_pos_y = -0.135
+shader_parameter/top_vert_pos_y = 0.14

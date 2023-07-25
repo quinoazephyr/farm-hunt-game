@@ -1,10 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cyd4s2ovh8yyi"]
 
 [ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_g8k1t"]
-[ext_resource type="Texture2D" uid="uid://bhy78i64d7mw5" path="res://assets/images/items/meat_slice.png" id="2_qyd76"]
+[ext_resource type="Texture2D" uid="uid://bhy78i64d7mw5" path="res://assets/textures/ui/items/meat_slice.png" id="2_qyd76"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="3_42g70"]
 [ext_resource type="ArrayMesh" uid="uid://bsou0hut058jx" path="res://source/resources/models/items/meat_slice_mesh.res" id="4_fq6o0"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/water_collision_material.tres" id="5_eenc5"]
 
 [sub_resource type="Resource" id="Resource_cilfw"]
 script = ExtResource("3_42g70")
@@ -18,8 +17,13 @@ _image = ExtResource("2_qyd76")
 [sub_resource type="BoxShape3D" id="BoxShape3D_78a4x"]
 size = Vector3(1, 1.27728, 0.159646)
 
+[sub_resource type="SphereMesh" id="SphereMesh_l031w"]
+radius = 0.7
+height = 1.4
+radial_segments = 8
+rings = 4
+
 [node name="MeatSlice" instance=ExtResource("1_g8k1t")]
-collision_layer = 524545
 _item = SubResource("Resource_cilfw")
 
 [node name="CollisionShape3D" parent="." index="0"]
@@ -30,8 +34,10 @@ shape = SubResource("BoxShape3D_78a4x")
 transform = Transform3D(45, 0, 0, 0, -50, 7.54979e-07, 0, -7.54979e-06, -5, 0, 0, 0)
 mesh = ExtResource("4_fq6o0")
 
-[node name="WaterCollision" type="MeshInstance3D" parent="Mesh" index="1"]
-transform = Transform3D(45, 0, 0, 0, -50, 7.54979e-07, 0, -7.54979e-06, -5, 0, 0, 0)
-layers = 524288
-material_override = ExtResource("5_eenc5")
+[node name="Grass" parent="Collisions" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.110612, 0)
+mesh = SubResource("SphereMesh_l031w")
+
+[node name="Water" parent="Collisions" index="1"]
+transform = Transform3D(45, 0, 0, 0, -50, -4.37114e-07, 0, 4.37114e-06, -5, 0, 0, 0)
 mesh = ExtResource("4_fq6o0")

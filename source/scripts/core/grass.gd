@@ -1,10 +1,13 @@
 class_name Grass
 extends MultiMeshInstance3D
 
-@export_node_path("RigidBody3D") var _character_node_path # to do multiple targets
+@onready var _collision_viewport = $"../GrassSim/Collision"
+@onready var _simulation_viewport = $"../GrassSim/Simulation"
+@onready var _simulation_material = $"../GrassSim/Simulation/ColorRect".material
+@onready var _grass_material = material_override
 
-@onready var _character = get_node(_character_node_path)
-
-func _process(delta):
-	material_override.set_shader_parameter(
-		"character_position", _character.global_transform.origin)
+func _ready() -> void:
+	_simulation_material.set_shader_parameter(
+			"collision_texture", _collision_viewport.get_texture())
+	_grass_material.set_shader_parameter(
+			"simulation_texture", _simulation_viewport.get_texture())

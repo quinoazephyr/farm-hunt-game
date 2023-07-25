@@ -3,9 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://blffd60rwe60c" path="res://source/nodes/items/item_3d.tscn" id="1_3dh58"]
 [ext_resource type="Script" path="res://source/scripts/items/item.gd" id="2_1tlbs"]
 [ext_resource type="ArrayMesh" uid="uid://bu6ttj7s0v2u8" path="res://source/resources/models/items/radish_mesh.res" id="2_54fgr"]
-[ext_resource type="Texture2D" uid="uid://cxal7g3jfgitx" path="res://assets/images/items/radish.png" id="2_ii7yd"]
+[ext_resource type="Texture2D" uid="uid://cxal7g3jfgitx" path="res://assets/textures/ui/items/radish.png" id="2_ii7yd"]
 [ext_resource type="Shape3D" uid="uid://xvxtdunhuyca" path="res://source/resources/models/items/radish_collision_shape.res" id="4_wnkbf"]
-[ext_resource type="Material" uid="uid://toq2t3hxn018" path="res://source/resources/materials/environment/water_collision_material.tres" id="6_6k883"]
 
 [sub_resource type="Resource" id="Resource_wbmg7"]
 script = ExtResource("2_1tlbs")
@@ -15,6 +14,12 @@ _description = "Such beauty! Such grace!"
 _max_count = 999
 _type = 0
 _image = ExtResource("2_ii7yd")
+
+[sub_resource type="SphereMesh" id="SphereMesh_umxa8"]
+radius = 0.4
+height = 0.8
+radial_segments = 8
+rings = 4
 
 [node name="Radish" instance=ExtResource("1_3dh58")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0632658, 0)
@@ -28,8 +33,10 @@ shape = ExtResource("4_wnkbf")
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 mesh = ExtResource("2_54fgr")
 
-[node name="WaterCollision" type="MeshInstance3D" parent="Mesh" index="1"]
+[node name="Grass" parent="Collisions" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0753996, 0)
+mesh = SubResource("SphereMesh_umxa8")
+
+[node name="Water" parent="Collisions" index="1"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
-layers = 524288
-material_override = ExtResource("6_6k883")
 mesh = ExtResource("2_54fgr")
