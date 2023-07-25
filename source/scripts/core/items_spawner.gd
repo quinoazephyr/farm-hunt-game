@@ -26,6 +26,8 @@ func despawn(item : Item3D):
 	if item.get_parent() == self:
 		remove_child(item)
 		var item_id = item._item.id
+		item.linear_velocity = Vector3.ZERO
+		item.angular_velocity = Vector3.ZERO
 		_items_loaded_pool[item_id].append(item)
 
 func _get_loaded_item(item_id : int) -> Item3D:
