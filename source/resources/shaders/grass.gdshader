@@ -1,4 +1,5 @@
 shader_type spatial;
+#include "helpers.gdshaderinc"
 render_mode cull_disabled;
 
 uniform float wind_speed = 0.2;
@@ -17,12 +18,6 @@ uniform sampler2D wind_noise : hint_default_black;
 uniform sampler2D simulation_texture : hint_default_black;
 
 varying vec3 world_vert;
-
-vec3 rotate_about_axis(vec3 point, vec3 axis, float angle) {
-	return point * cos(angle) + 
-		cross(axis, point) * sin(angle) + 
-		axis * dot(axis, point) * (1.0 - cos(angle));
-}
 
 void vertex() {
 	world_vert = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -59,11 +54,8 @@ void vertex() {
 	world_uv_interact /= cam_size;
 	world_uv_interact += vec2(0.5);
 	vec2 simulation = texture(simulation_texture, world_uv_interact).rg;
-//	simulation = simulation * 2.0 - 1.0;
-//	vec3 v = cross(vec3(simulation, 0.0), vec3(0.0, 0.0, -1.0));
 	VERTEX = rotate_about_axis(VERTEX, normalize(vec3(simulation.x, 0.0, simulation.y)), 
 		clamp(length(simulation), 0.0, 0.9) * PI / 2.0);
-	
 	
 	VERTEX += mix(bump_wind * displacement_affect, vec3(0.0), length(simulation));
 	
