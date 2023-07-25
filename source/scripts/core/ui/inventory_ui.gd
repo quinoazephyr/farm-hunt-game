@@ -16,6 +16,8 @@ var is_open:
 @onready var _name_label = $DescriptionRect/Name
 @onready var _description_label = $DescriptionRect/Description
 @onready var _quick_menu = $QuickMenu
+@onready var _background_overlay = $ContrastedBlur
+@onready var _viewport = get_viewport()
 
 func _ready() -> void:
 	_tabs.slot_focus_entered.connect(_show_item_description)
@@ -53,6 +55,11 @@ func close_menu():
 func open_inventory():
 	_tabs.set_slots_focusable()
 	_tabs.grab_default_slot_focus()
+	
+	var image = _viewport.get_texture().get_image()
+	var texture = ImageTexture.create_from_image(image)
+	_background_overlay.material.set_shader_parameter("_texture", texture)
+	
 	visible = true
 	opened.emit()
 	self_focused.emit()

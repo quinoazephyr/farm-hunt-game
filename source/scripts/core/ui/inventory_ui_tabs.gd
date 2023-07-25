@@ -23,7 +23,7 @@ var _current_focused_slot_index : int
 @onready var _next_tab_button = $TabsRect/InputR
 @onready var _prev_tab_button = $TabsRect/InputL
 @onready var _tab_bar = $TabsRect/TabBar # DO NOT get .current_tab here
-@onready var _tab_container = $TabContainer # GET .current_tab HERE
+@onready var _tab_container = $TabContainerMask/TabContainer # GET .current_tab HERE
 @onready var _tab_label_container = $TabLabel
 @onready var _tab_label = $TabLabel/Label
 

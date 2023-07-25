@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://xopw8jd5wmyh"]
+[gd_scene load_steps=116 format=3 uid="uid://xopw8jd5wmyh"]
 
 [ext_resource type="Environment" uid="uid://1vi1iwjunjii" path="res://source/resources/world_environments/soft_bloom_environment.tres" id="1_5snjs"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/timescale_control.gd" id="1_oi6un"]
@@ -39,7 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://vmmvtyj6sb1h" path="res://assets/textures/ui/controls/pc/escape.png" id="23_hgi70"]
 [ext_resource type="StyleBox" uid="uid://ftx7x70vj1un" path="res://source/resources/styles/buttons/change_tab_button_R_normal.tres" id="24_g738u"]
 [ext_resource type="StyleBox" uid="uid://bb5s2yob452ga" path="res://source/resources/styles/buttons/change_tab_button_R_pressed.tres" id="25_ngq34"]
-[ext_resource type="Shader" path="res://source/resources/shaders/contrasted_blur.gdshader" id="26_73dfd"]
+[ext_resource type="Shader" path="res://source/resources/shaders/contrasted_blur_snapshot.gdshader" id="28_6yi0q"]
 [ext_resource type="FontFile" uid="uid://b7jhigkp6qa06" path="res://assets/fonts/roboto/Roboto-Italic.ttf" id="30_gkuxa"]
 [ext_resource type="Texture2D" uid="uid://bfchxage7j6dl" path="res://assets/textures/ui/inventory/bag_icon.png" id="31_v6kcg"]
 [ext_resource type="Texture2D" uid="uid://c7oaj63muyf16" path="res://assets/textures/ui/inventory/potion_icon.png" id="32_ccgfc"]
@@ -77,17 +77,21 @@
 [ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="73_ptk63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1srsq"]
-shader = ExtResource("26_73dfd")
-shader_parameter/blur_amount = 3.0
-shader_parameter/brightness = 0.15
-shader_parameter/contrast = 1.4
-shader_parameter/saturation = 2.0
+resource_local_to_scene = true
+shader = ExtResource("28_6yi0q")
+shader_parameter/blur_samples = 35
+shader_parameter/blur_LOD = 2
+shader_parameter/brightness = -0.25
+shader_parameter/contrast = 1.1
+shader_parameter/saturation = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmq23"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_6a0fi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k5jbh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tugf0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvu3d"]
 
@@ -116,7 +120,7 @@ font_size = 34
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5lfp"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6h40e"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_djiyk"]
 viewport_path = NodePath("WaterSim/Collision")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gcwxr"]
@@ -125,16 +129,16 @@ shader = ExtResource("69_6h3tn")
 shader_parameter/phase = 0.18
 shader_parameter/attenuation = 0.995
 shader_parameter/deltaUV = 1.5
-shader_parameter/col_tex = SubResource("ViewportTexture_6h40e")
+shader_parameter/col_tex = SubResource("ViewportTexture_djiyk")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2de80"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mfqq2"]
 viewport_path = NodePath("GrassSim/Collision")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3ada8"]
 resource_local_to_scene = true
 shader = ExtResource("70_lkood")
 shader_parameter/trail_length = 1.0
-shader_parameter/collision_texture = SubResource("ViewportTexture_2de80")
+shader_parameter/collision_texture = SubResource("ViewportTexture_mfqq2")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bnx2v"]
 fractal_octaves = 3
@@ -154,7 +158,7 @@ seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_6xboo")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yqhli"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_rtsgm"]
 viewport_path = NodePath("WaterSim/Simulation")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bipcw"]
@@ -178,7 +182,7 @@ shader_parameter/wave_height = 0.03
 shader_parameter/refraction = 0.5
 shader_parameter/surfaceNoise = ExtResource("73_ag3sk")
 shader_parameter/distortNoise = ExtResource("72_admmm")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_yqhli")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_rtsgm")
 shader_parameter/noise_1 = SubResource("NoiseTexture2D_7btt1")
 shader_parameter/noise_2 = SubResource("NoiseTexture2D_bv7me")
 
@@ -196,7 +200,7 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_m3yhi"]
 gradient = SubResource("Gradient_nagip")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fkyjp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_oawbx"]
 viewport_path = NodePath("GrassSim/Simulation")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_u8fkt"]
@@ -222,7 +226,7 @@ shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
 shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
 shader_parameter/color_texture = SubResource("GradientTexture1D_m3yhi")
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_fkyjp")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_oawbx")
 
 [sub_resource type="Gradient" id="Gradient_d7dkj"]
 offsets = PackedFloat32Array(0.00417537, 1)
@@ -419,17 +423,6 @@ mouse_filter = 1
 color = Color(0.0941176, 0.101961, 0.0941176, 0.501961)
 script = ExtResource("16_y837w")
 
-[node name="ColorRect" type="ColorRect" parent="PauseUI/InventoryUI"]
-visible = false
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.941176, 0.94902, 0.921569, 0.4)
-
 [node name="ContrastedBlur" type="ColorRect" parent="PauseUI/InventoryUI"]
 material = SubResource("ShaderMaterial_1srsq")
 layout_mode = 1
@@ -491,6 +484,7 @@ theme_override_constants/h_separation = 40
 theme_override_fonts/font = ExtResource("30_gkuxa")
 theme_override_font_sizes/font_size = 34
 theme_override_styles/tab_selected = SubResource("StyleBoxEmpty_k5jbh")
+theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_tugf0")
 theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_hvu3d")
 theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_2nh22")
 tab_alignment = 1
@@ -534,41 +528,64 @@ theme_override_styles/pressed = ExtResource("25_ngq34")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lmq23")
 icon = SubResource("ImageTexture_6a0fi")
 
-[node name="TabContainer" type="TabContainer" parent="PauseUI/InventoryUI/Tabs"]
-layout_mode = 2
-offset_left = 70.0
-offset_top = 330.0
-offset_right = 930.0
-offset_bottom = 670.0
+[node name="TabContainerMask" type="Control" parent="PauseUI/InventoryUI/Tabs"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -905.0
+offset_top = -225.0
+offset_right = -15.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="PauseUI/InventoryUI/Tabs/TabContainerMask"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -430.0
+offset_top = -340.0
+offset_right = 430.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_8gtw8")
 tab_alignment = 1
 clip_tabs = false
 tabs_visible = false
 all_tabs_in_front = true
 
-[node name="Resources" type="ScrollContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer"]
+[node name="Resources" type="ScrollContainer" parent="PauseUI/InventoryUI/Tabs/TabContainerMask/TabContainer"]
+clip_contents = false
 custom_minimum_size = Vector2(860, 340)
 layout_mode = 2
 theme = ExtResource("47_18vfj")
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="Slots" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer/Resources"]
+[node name="Slots" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainerMask/TabContainer/Resources"]
 material = SubResource("ShaderMaterial_pw4je")
 layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 6
 
-[node name="Equipment" type="ScrollContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer"]
+[node name="Equipment" type="ScrollContainer" parent="PauseUI/InventoryUI/Tabs/TabContainerMask/TabContainer"]
 visible = false
+clip_contents = false
 custom_minimum_size = Vector2(860, 340)
 layout_mode = 2
 theme = ExtResource("47_18vfj")
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="Slots" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainer/Equipment"]
+[node name="Slots" type="GridContainer" parent="PauseUI/InventoryUI/Tabs/TabContainerMask/TabContainer/Equipment"]
 material = SubResource("ShaderMaterial_pw4je")
 layout_mode = 2
 theme_override_constants/h_separation = 20
@@ -876,9 +893,6 @@ _pause_ui_path = NodePath("../PauseUI")
 script = ExtResource("3_7k0u2")
 
 [node name="terrain_test" parent="." instance=ExtResource("69_5id0v")]
-
-[node name="Simulation" parent="terrain_test/WaterSim" index="1"]
-render_target_update_mode = 1
 
 [node name="ColorRect" parent="terrain_test/WaterSim/Simulation" index="0"]
 material = SubResource("ShaderMaterial_gcwxr")
