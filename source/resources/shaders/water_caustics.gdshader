@@ -25,7 +25,7 @@ void fragment() {
 	caustics_uv -= 0.07 * n.xyz;
 	n = snoise(caustics_uv);
 	float intensity = exp(n.w * caustics_intensity - caustics_intensity) * 
-		step(world_vert.y, water_level) * step(caustics_depth, world_vert.y);
+		 step(world_vert.y, water_level) * smoothstep(caustics_depth, water_level, world_vert.y);
 	
 	ALBEDO = _albedo + intensity;
 	EMISSION = vec3(intensity);

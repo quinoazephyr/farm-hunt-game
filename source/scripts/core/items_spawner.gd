@@ -17,17 +17,15 @@ func _ready() -> void:
 
 func spawn(item_id : int, position : Vector3, rotation : Quaternion) -> Item3D:
 	var loaded_item = _get_loaded_item(item_id)
-	add_child(loaded_item)
+	_activate_item(loaded_item, true)
 	loaded_item.position = position
 	loaded_item.quaternion = rotation
 	return loaded_item
 
 func despawn(item : Item3D):
 	if item.get_parent() == self:
-		remove_child(item)
 		var item_id = item._item.id
-		item.linear_velocity = Vector3.ZERO
-		item.angular_velocity = Vector3.ZERO
+		_activate_item(item, false)
 		_items_loaded_pool[item_id].append(item)
 
 func _get_loaded_item(item_id : int) -> Item3D:
@@ -41,7 +39,13 @@ func _load_item_pool(item_id : int) -> void:
 	assert(item_resource != null)
 	for i in range(0, _pool_size):
 		var loaded_item = item_resource.instantiate()
+		add_child(loaded_item)
+		_activate_item(loaded_item, false)
 		_items_loaded_pool[item_id].append(loaded_item)
 
 func _get_item_resource(item_id : int) -> PackedScene:
 	return _items_resources[item_id]
+
+func _activate_item(item : Item3D, enable : bool) -> void:
+	item.visible = enable
+	item.freeze = !enable

@@ -23,21 +23,20 @@ rings = 4
 
 [node name="Daikon" instance=ExtResource("1_y8lae")]
 center_of_mass_mode = 1
-center_of_mass = Vector3(0, 0.68, 0)
 _item = SubResource("Resource_gfmwg")
 
 [node name="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -0.68, 0)
 shape = ExtResource("4_7sopd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -0.68, 0)
 mesh = ExtResource("2_2p6ub")
 
 [node name="Grass" parent="Collisions" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.885, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.210503, 0)
 mesh = SubResource("SphereMesh_xh867")
 
 [node name="Water" parent="Collisions" index="1"]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -0.68, 0)
 mesh = ExtResource("2_2p6ub")

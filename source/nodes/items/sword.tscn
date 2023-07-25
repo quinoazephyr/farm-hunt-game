@@ -25,19 +25,20 @@ rings = 4
 
 [node name="Sword" instance=ExtResource("1_wdcq4")]
 center_of_mass_mode = 1
-center_of_mass = Vector3(1.06, 1.29, 0)
 _item = SubResource("Resource_41pb1")
 
 [node name="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.058, 1.65574, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.373, 0)
 shape = SubResource("BoxShape3D_26hr1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.058, -1.283, 0)
 mesh = ExtResource("2_egvf4")
 
 [node name="Grass" parent="Collisions" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05633, 1.64943, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.293986, 0)
 mesh = SubResource("SphereMesh_texlq")
 
 [node name="Water" parent="Collisions" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.058, -1.283, 0)
 mesh = ExtResource("2_egvf4")

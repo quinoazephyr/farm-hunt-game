@@ -73,6 +73,7 @@ func resize_tab(tab_index : int, new_size : int) -> void:
 		for i in range(old_size - 1, new_size - 1, -1):
 			var slot = slot_array[i]
 			container.remove_child(slot)
+			slot.queue_free()
 		slot_array.resize(new_size)
 	
 	for i in range(max(0, tab_index - 1), \
