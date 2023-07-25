@@ -8,25 +8,25 @@
 [ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="6_88nvd"]
 [ext_resource type="Texture2D" uid="uid://b3eh1gwnkb6s4" path="res://assets/textures/materials/water/perlin_noise.png" id="6_kd2iy"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_djcej"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_dejdm"]
 viewport_path = NodePath("WaterSim/Collision")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugusu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmx8q"]
 resource_local_to_scene = true
 shader = ExtResource("2_3h86n")
 shader_parameter/phase = 0.18
 shader_parameter/attenuation = 0.995
 shader_parameter/deltaUV = 1.5
-shader_parameter/col_tex = SubResource("ViewportTexture_djcej")
+shader_parameter/col_tex = SubResource("ViewportTexture_dejdm")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_pguep"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_k8b5u"]
 viewport_path = NodePath("GrassSim/Collision")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kqsl3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_78hwi"]
 resource_local_to_scene = true
 shader = ExtResource("3_xlk7h")
 shader_parameter/trail_length = 1.0
-shader_parameter/collision_texture = SubResource("ViewportTexture_pguep")
+shader_parameter/collision_texture = SubResource("ViewportTexture_k8b5u")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bnx2v"]
 fractal_octaves = 3
@@ -46,10 +46,10 @@ seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_6xboo")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_h08x3"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_roxwk"]
 viewport_path = NodePath("WaterSim/Simulation")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_324c0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blile"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_43mw1")
@@ -70,7 +70,7 @@ shader_parameter/wave_height = 0.03
 shader_parameter/refraction = 0.5
 shader_parameter/surfaceNoise = ExtResource("6_kd2iy")
 shader_parameter/distortNoise = ExtResource("5_pced1")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_h08x3")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_roxwk")
 shader_parameter/noise_1 = SubResource("NoiseTexture2D_7btt1")
 shader_parameter/noise_2 = SubResource("NoiseTexture2D_bv7me")
 
@@ -88,7 +88,7 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_m3yhi"]
 gradient = SubResource("Gradient_nagip")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ymntm"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wipiw"]
 viewport_path = NodePath("GrassSim/Simulation")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_u8fkt"]
@@ -102,7 +102,7 @@ seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_u8fkt")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1hrf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11a87"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("6_88nvd")
@@ -114,7 +114,7 @@ shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
 shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
 shader_parameter/color_texture = SubResource("GradientTexture1D_m3yhi")
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_ymntm")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_wipiw")
 
 [sub_resource type="Gradient" id="Gradient_d7dkj"]
 offsets = PackedFloat32Array(0.00417537, 1)
@@ -196,17 +196,20 @@ transform = Transform3D(0.518477, -0.642601, -0.564132, 0.778265, 0.627936, 2.48
 [node name="Sword" parent="Spawners/PlaceholderSpawner/Placeholders" index="12" instance_placeholder="res://source/nodes/items/sword.tscn"]
 transform = Transform3D(-2.46073e-07, 0.825685, -0.564132, -1, -2.98023e-07, 1.27966e-14, -1.68124e-07, 0.564132, 0.825685, 1.68257, 4.14259, 12.2053)
 
+[node name="Simulation" parent="terrain_test/WaterSim" index="1"]
+render_target_update_mode = 1
+
 [node name="ColorRect" parent="terrain_test/WaterSim/Simulation" index="0"]
-material = SubResource("ShaderMaterial_ugusu")
+material = SubResource("ShaderMaterial_fmx8q")
 
 [node name="ColorRect" parent="terrain_test/GrassSim/Simulation" index="0"]
-material = SubResource("ShaderMaterial_kqsl3")
+material = SubResource("ShaderMaterial_78hwi")
 
 [node name="Water" parent="terrain_test" index="4"]
-material_override = SubResource("ShaderMaterial_324c0")
+material_override = SubResource("ShaderMaterial_blile")
 
 [node name="Grass" parent="terrain_test" index="5"]
-material_override = SubResource("ShaderMaterial_v1hrf")
+material_override = SubResource("ShaderMaterial_11a87")
 
 [node name="GrassMeshSingle" parent="terrain_test" index="7"]
 material_override = SubResource("ShaderMaterial_gqwwl")

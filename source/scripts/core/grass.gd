@@ -1,3 +1,4 @@
+@tool
 class_name Grass
 extends MultiMeshInstance3D
 
@@ -7,7 +8,7 @@ extends MultiMeshInstance3D
 @onready var _grass_material = material_override
 
 func _ready() -> void:
-	_simulation_material.set_shader_parameter(
-			"collision_texture", _collision_viewport.get_texture())
 	_grass_material.set_shader_parameter(
 			"simulation_texture", _simulation_viewport.get_texture())
+	_simulation_material.set_shader_parameter(
+			"collision_texture", _collision_viewport.get_texture())

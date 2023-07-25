@@ -1,3 +1,4 @@
+@tool
 class_name Water
 extends GeometryInstance3D
 
