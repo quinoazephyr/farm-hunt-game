@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3 uid="uid://cj0huykkc8cej"]
+
+[ext_resource type="Script" path="res://source/scripts/core/water.gd" id="1_x38hj"]
+[ext_resource type="Shader" path="res://source/resources/shaders/water_simulation.gdshader" id="2_caihc"]
+[ext_resource type="Shader" path="res://source/resources/shaders/water.gdshader" id="3_sc446"]
+[ext_resource type="Texture2D" uid="uid://cvyp708x1bgf2" path="res://assets/textures/materials/water/water_distortion.png" id="4_5c41g"]
+[ext_resource type="Texture2D" uid="uid://b3eh1gwnkb6s4" path="res://assets/textures/materials/water/perlin_noise.png" id="5_ftrw7"]
+
+[sub_resource type="Environment" id="Environment_yqnwh"]
+background_mode = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mufxf"]
+viewport_path = NodePath("Collision")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_li3ye"]
+resource_local_to_scene = true
+shader = ExtResource("2_caihc")
+shader_parameter/phase = 0.18
+shader_parameter/attenuation = 0.995
+shader_parameter/deltaUV = 1.5
+shader_parameter/col_tex = SubResource("ViewportTexture_mufxf")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bnx2v"]
+fractal_octaves = 3
+fractal_lacunarity = 4.0
+fractal_gain = 0.64
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7btt1"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_bnx2v")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6xboo"]
+fractal_gain = 0.64
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bv7me"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_6xboo")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8dgep"]
+viewport_path = NodePath("Simulation")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7eqh1"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_sc446")
+shader_parameter/beer_factor = 1.2
+shader_parameter/foam_distance = 0.01
+shader_parameter/foam_max_distance = 0.4
+shader_parameter/foam_min_distance = 0.04
+shader_parameter/foam_color = Color(1, 1, 1, 1)
+shader_parameter/surface_noise_tiling = Vector2(1, 1)
+shader_parameter/surface_noise_scroll = Vector3(0.03, 0.03, 0)
+shader_parameter/surface_noise_cutoff = 1.0
+shader_parameter/surface_distortion_amount = 0.0
+shader_parameter/_DepthMaxDistance = 1.0
+shader_parameter/_DepthFactor = 1.0
+shader_parameter/_DepthGradientShallow = Color(0.380392, 0.811765, 1, 0.470588)
+shader_parameter/_DepthGradientDeep = Color(0.0941176, 0.666667, 0.929412, 0.784314)
+shader_parameter/wave_height = 0.03
+shader_parameter/refraction = 0.5
+shader_parameter/surfaceNoise = ExtResource("5_ftrw7")
+shader_parameter/distortNoise = ExtResource("4_5c41g")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_8dgep")
+shader_parameter/noise_1 = SubResource("NoiseTexture2D_7btt1")
+shader_parameter/noise_2 = SubResource("NoiseTexture2D_bv7me")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d1ps4"]
+size = Vector2(40, 40)
+subdivide_width = 256
+subdivide_depth = 256
+
+[node name="WaterSim" type="Node"]
+script = ExtResource("1_x38hj")
+_skip_frames_count = 1
+
+[node name="Collision" type="SubViewport" parent="."]
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.1, 0)
+cull_mask = 524288
+environment = SubResource("Environment_yqnwh")
+projection = 1
+size = 40.0
+far = 0.1
+
+[node name="Simulation" type="SubViewport" parent="."]
+render_target_clear_mode = 1
+render_target_update_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="Simulation"]
+material = SubResource("ShaderMaterial_li3ye")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaterPlane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+material_override = SubResource("ShaderMaterial_7eqh1")
+mesh = SubResource("PlaneMesh_d1ps4")
+skeleton = NodePath("../..")

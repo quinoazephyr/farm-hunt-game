@@ -1,15 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://d2tly11k332cs"]
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://d2tly11k332cs"]
 
 [ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="1_5tqhf"]
-
-[sub_resource type="Curve" id="Curve_yrokj"]
-_data = [Vector2(0, 0), 0.0, 3.05174, 0, 0, Vector2(0.503484, 0.503782), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_orll6"]
-width = 64
-texture_mode = 1
-curve = SubResource("Curve_yrokj")
 
 [sub_resource type="Gradient" id="Gradient_027sp"]
 colors = PackedColorArray(0.222333, 0.46, 0, 1, 0.3625, 0.75, 0, 1)
@@ -45,9 +36,6 @@ shader_parameter/wind_strength = 0.2
 shader_parameter/wind_texture_tile_size = 20.0
 shader_parameter/wind_vertical_strength = 0.0
 shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
-shader_parameter/character_radius = 0.5
-shader_parameter/character_push_strength = 0.2
 shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
 shader_parameter/color_texture = SubResource("GradientTexture1D_m3yhi")
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
-shader_parameter/character_distance_falloff_curve = SubResource("CurveTexture_orll6")

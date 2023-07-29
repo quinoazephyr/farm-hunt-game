@@ -1,11 +1,11 @@
 @tool
 class_name Grass
-extends MultiMeshInstance3D
+extends Node
 
-@onready var _collision_viewport = $"../GrassSim/Collision"
-@onready var _simulation_viewport = $"../GrassSim/Simulation"
-@onready var _simulation_material = $"../GrassSim/Simulation/ColorRect".material
-@onready var _grass_material = material_override
+@onready var _collision_viewport = $Collision
+@onready var _simulation_viewport = $Simulation
+@onready var _simulation_material = $Simulation/ColorRect.material
+@onready var _grass_material = $Grass.material_override
 
 func _ready() -> void:
 	_grass_material.set_shader_parameter(

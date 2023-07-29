@@ -48,7 +48,7 @@ func _populate_surface(multimesh_node : MultiMeshInstance3D,
 	
 	
 	var target_surface_aabb = target_surface.get_aabb()
-	var span = (target_surface_aabb.size + Vector3.ONE * 0.05) / 2.0
+	var span = (target_surface_aabb.size  * target_surface.scale + Vector3.ONE * 0.05) / 2.0
 	var height_map_image = _height_map.get_image()
 	
 	for i in instance_count:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://xopw8jd5wmyh"]
+[gd_scene load_steps=109 format=3 uid="uid://xopw8jd5wmyh"]
 
 [ext_resource type="Environment" uid="uid://1vi1iwjunjii" path="res://source/resources/world_environments/soft_bloom_environment.tres" id="1_5snjs"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/timescale_control.gd" id="1_oi6un"]
@@ -68,13 +68,13 @@
 [ext_resource type="Texture2D" uid="uid://dib43qo3hwu5o" path="res://assets/textures/ui/controls/pc/down-arrow.png" id="55_4iopt"]
 [ext_resource type="Texture2D" uid="uid://bbnrf4ati72ty" path="res://assets/textures/ui/controls/pc/left-arrow.png" id="56_drlpx"]
 [ext_resource type="Texture2D" uid="uid://c65l21x17vlpv" path="res://assets/textures/ui/controls/pc/enter.png" id="57_0rljx"]
-[ext_resource type="PackedScene" uid="uid://do7vu66m36vsf" path="res://source/resources/models/terrain_test.tscn" id="69_5id0v"]
 [ext_resource type="Shader" path="res://source/resources/shaders/water_simulation.gdshader" id="69_6h3tn"]
-[ext_resource type="Shader" path="res://source/resources/shaders/grass_simulation.gdshader" id="70_lkood"]
+[ext_resource type="PackedScene" uid="uid://mekn1muu4ve0" path="res://source/nodes/test/terrain_textured_test.tscn" id="69_lrlmh"]
 [ext_resource type="Shader" path="res://source/resources/shaders/water.gdshader" id="71_656cs"]
 [ext_resource type="Texture2D" uid="uid://cvyp708x1bgf2" path="res://assets/textures/materials/water/water_distortion.png" id="72_admmm"]
 [ext_resource type="Texture2D" uid="uid://b3eh1gwnkb6s4" path="res://assets/textures/materials/water/perlin_noise.png" id="73_ag3sk"]
-[ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="73_ptk63"]
+[ext_resource type="Shader" path="res://source/resources/shaders/grass_simulation.gdshader" id="74_lsofl"]
+[ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="75_hcmdw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1srsq"]
 resource_local_to_scene = true
@@ -120,25 +120,16 @@ font_size = 34
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5lfp"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8dxj7"]
-viewport_path = NodePath("WaterSim/Collision")
+[sub_resource type="ViewportTexture" id="ViewportTexture_2osfy"]
+viewport_path = NodePath("Collision")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gcwxr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ujrcc"]
 resource_local_to_scene = true
 shader = ExtResource("69_6h3tn")
 shader_parameter/phase = 0.18
 shader_parameter/attenuation = 0.995
 shader_parameter/deltaUV = 1.5
-shader_parameter/col_tex = SubResource("ViewportTexture_8dxj7")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_dxwnd"]
-viewport_path = NodePath("GrassSim/Collision")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ada8"]
-resource_local_to_scene = true
-shader = ExtResource("70_lkood")
-shader_parameter/trail_length = 1.0
-shader_parameter/collision_texture = SubResource("ViewportTexture_dxwnd")
+shader_parameter/col_tex = SubResource("ViewportTexture_2osfy")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bnx2v"]
 fractal_octaves = 3
@@ -158,10 +149,10 @@ seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_6xboo")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_b5nlx"]
-viewport_path = NodePath("WaterSim/Simulation")
+[sub_resource type="ViewportTexture" id="ViewportTexture_eymuk"]
+viewport_path = NodePath("Simulation")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bipcw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0fl3e"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("71_656cs")
@@ -182,12 +173,21 @@ shader_parameter/wave_height = 0.03
 shader_parameter/refraction = 0.5
 shader_parameter/surfaceNoise = ExtResource("73_ag3sk")
 shader_parameter/distortNoise = ExtResource("72_admmm")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_b5nlx")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_eymuk")
 shader_parameter/noise_1 = SubResource("NoiseTexture2D_7btt1")
 shader_parameter/noise_2 = SubResource("NoiseTexture2D_bv7me")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_288mm"]
+viewport_path = NodePath("Collision")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yoyni"]
+resource_local_to_scene = true
+shader = ExtResource("74_lsofl")
+shader_parameter/trail_length = 2.0
+shader_parameter/collision_texture = SubResource("ViewportTexture_288mm")
+
 [sub_resource type="Gradient" id="Gradient_027sp"]
-colors = PackedColorArray(0.222333, 0.46, 0, 1, 0.3625, 0.75, 0, 1)
+colors = PackedColorArray(0.265833, 0.55, 0, 1, 0.406, 0.84, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wv4j5"]
 gradient = SubResource("Gradient_027sp")
@@ -200,8 +200,8 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_m3yhi"]
 gradient = SubResource("Gradient_nagip")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_bw7h4"]
-viewport_path = NodePath("GrassSim/Simulation")
+[sub_resource type="ViewportTexture" id="ViewportTexture_rtmee"]
+viewport_path = NodePath("Simulation")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_u8fkt"]
 noise_type = 0
@@ -214,10 +214,10 @@ seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_u8fkt")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_do2hd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_su0aq"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("73_ptk63")
+shader = ExtResource("75_hcmdw")
 shader_parameter/wind_speed = 0.2
 shader_parameter/wind_strength = 0.2
 shader_parameter/wind_texture_tile_size = 20.0
@@ -226,46 +226,7 @@ shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
 shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
 shader_parameter/color_texture = SubResource("GradientTexture1D_m3yhi")
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_bw7h4")
-
-[sub_resource type="Gradient" id="Gradient_d7dkj"]
-offsets = PackedFloat32Array(0.00417537, 1)
-colors = PackedColorArray(0.23123, 0.38, 0.0494, 1, 0.3535, 0.7, 0.07, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_kif2l"]
-gradient = SubResource("Gradient_d7dkj")
-width = 64
-
-[sub_resource type="Gradient" id="Gradient_safqm"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_w78dw"]
-gradient = SubResource("Gradient_safqm")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4cnuf"]
-noise_type = 0
-fractal_octaves = 3
-fractal_lacunarity = 0.44
-fractal_gain = 1.246
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ta0ki"]
-seamless = true
-seamless_blend_skirt = 1.0
-noise = SubResource("FastNoiseLite_4cnuf")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rqb1"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("73_ptk63")
-shader_parameter/wind_speed = 0.2
-shader_parameter/wind_strength = 2.0
-shader_parameter/wind_texture_tile_size = 20.0
-shader_parameter/wind_vertical_strength = 0.3
-shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
-shader_parameter/color_ramp = SubResource("GradientTexture1D_kif2l")
-shader_parameter/color_texture = SubResource("GradientTexture1D_w78dw")
-shader_parameter/wind_noise = SubResource("NoiseTexture2D_ta0ki")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_rtmee")
 
 [node name="TestSceneBase" type="Node3D"]
 
@@ -306,6 +267,7 @@ environment = ExtResource("1_5snjs")
 transform = Transform3D(0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, -0.25, 0.433013, 0, 30, 0)
 shadow_enabled = true
 directional_shadow_mode = 1
+directional_shadow_max_distance = 300.0
 
 [node name="WorldUI" type="CanvasLayer" parent="."]
 script = ExtResource("11_ehqoi")
@@ -892,27 +854,27 @@ _pause_ui_path = NodePath("../PauseUI")
 [node name="ActionInputControl" type="Node" parent="MenuInputControls"]
 script = ExtResource("3_7k0u2")
 
-[node name="terrain_test" parent="." instance=ExtResource("69_5id0v")]
-
-[node name="ColorRect" parent="terrain_test/WaterSim/Simulation" index="0"]
-material = SubResource("ShaderMaterial_gcwxr")
-
-[node name="ColorRect" parent="terrain_test/GrassSim/Simulation" index="0"]
-material = SubResource("ShaderMaterial_3ada8")
-
-[node name="Water" parent="terrain_test" index="4"]
-material_override = SubResource("ShaderMaterial_bipcw")
-
-[node name="Grass" parent="terrain_test" index="5"]
-material_override = SubResource("ShaderMaterial_do2hd")
-
-[node name="GrassMeshSingle" parent="terrain_test" index="7"]
-material_override = SubResource("ShaderMaterial_4rqb1")
-
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_hn0y1")]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 4.87302, 0.995871, -11.925)
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -8.86508, 1.41764, -5.5691)
 _camera_player_path = NodePath("../CameraParent")
 _angular_speed = 20.0
+
+[node name="terrain_textured_test" parent="." instance=ExtResource("69_lrlmh")]
+
+[node name="ColorRect" parent="terrain_textured_test/WaterSim/Simulation" index="0"]
+material = SubResource("ShaderMaterial_ujrcc")
+
+[node name="WaterPlane" parent="terrain_textured_test/WaterSim" index="2"]
+material_override = SubResource("ShaderMaterial_0fl3e")
+
+[node name="ColorRect" parent="terrain_textured_test/GrassSim/Simulation" index="0"]
+material = SubResource("ShaderMaterial_yoyni")
+
+[node name="Grass" parent="terrain_textured_test/GrassSim" index="4"]
+material_override = SubResource("ShaderMaterial_su0aq")
+
+[node name="CollisionShape3D" parent="terrain_textured_test/Plane/StaticBody3D" index="0"]
+visible = true
 
 [node name="DebugUI" type="CanvasLayer" parent="."]
 
@@ -929,4 +891,6 @@ grow_vertical = 0
 text = "ver-0.1"
 
 [editable path="PauseUI/InventoryUI/QuickMenu"]
-[editable path="terrain_test"]
+[editable path="terrain_textured_test"]
+[editable path="terrain_textured_test/WaterSim"]
+[editable path="terrain_textured_test/GrassSim"]

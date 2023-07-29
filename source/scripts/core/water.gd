@@ -1,19 +1,20 @@
 @tool
 class_name Water
-extends GeometryInstance3D
+extends Node
 
 @export var _skip_frames_count = 2
 
 var _frame_counter = 0
 
-@onready var _simulation_viewport = $"../WaterSim/Simulation"
-@onready var _collision_material = $"../WaterSim/Simulation/ColorRect".material
-@onready var _collision_viewport = $"../WaterSim/Collision"
+@onready var _simulation_viewport = $Simulation
+@onready var _simulation_material = $Simulation/ColorRect.material
+@onready var _collision_viewport = $Collision
+@onready var _water_plane = $WaterPlane
 
 func _ready():
-	material_override.set_shader_parameter(
+	_water_plane.material_override.set_shader_parameter(
 		"simulation_texture", _simulation_viewport.get_texture())
-	_collision_material.set_shader_parameter(
+	_simulation_material.set_shader_parameter(
 		"col_tex", _collision_viewport.get_texture())
 
 func _process(delta):

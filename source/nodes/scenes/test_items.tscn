@@ -1,13 +1,13 @@
-[gd_scene load_steps=35 format=3 uid="uid://b5wjp1mfa1lyp"]
+[gd_scene load_steps=28 format=3 uid="uid://b5wjp1mfa1lyp"]
 
 [ext_resource type="PackedScene" uid="uid://xopw8jd5wmyh" path="res://source/nodes/scenes/test_scene_base.tscn" id="1_occme"]
 [ext_resource type="Shader" path="res://source/resources/shaders/water_simulation.gdshader" id="2_3h86n"]
 [ext_resource type="Shader" path="res://source/resources/shaders/contrasted_blur_snapshot.gdshader" id="2_lns2e"]
-[ext_resource type="Shader" path="res://source/resources/shaders/grass_simulation.gdshader" id="3_xlk7h"]
-[ext_resource type="Shader" path="res://source/resources/shaders/water.gdshader" id="4_43mw1"]
-[ext_resource type="Texture2D" uid="uid://cvyp708x1bgf2" path="res://assets/textures/materials/water/water_distortion.png" id="5_pced1"]
-[ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="6_88nvd"]
-[ext_resource type="Texture2D" uid="uid://b3eh1gwnkb6s4" path="res://assets/textures/materials/water/perlin_noise.png" id="6_kd2iy"]
+[ext_resource type="Shader" path="res://source/resources/shaders/water.gdshader" id="4_e0g7g"]
+[ext_resource type="Texture2D" uid="uid://cvyp708x1bgf2" path="res://assets/textures/materials/water/water_distortion.png" id="5_txwjf"]
+[ext_resource type="Texture2D" uid="uid://b3eh1gwnkb6s4" path="res://assets/textures/materials/water/perlin_noise.png" id="6_138n1"]
+[ext_resource type="Shader" path="res://source/resources/shaders/grass_simulation.gdshader" id="7_xmx2b"]
+[ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="8_1igbu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ab2yl"]
 resource_local_to_scene = true
@@ -18,25 +18,16 @@ shader_parameter/brightness = -0.25
 shader_parameter/contrast = 1.1
 shader_parameter/saturation = 1.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_rhlek"]
-viewport_path = NodePath("WaterSim/Collision")
+[sub_resource type="ViewportTexture" id="ViewportTexture_ixrfe"]
+viewport_path = NodePath("Collision")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmx8q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25tka"]
 resource_local_to_scene = true
 shader = ExtResource("2_3h86n")
 shader_parameter/phase = 0.18
 shader_parameter/attenuation = 0.995
 shader_parameter/deltaUV = 1.5
-shader_parameter/col_tex = SubResource("ViewportTexture_rhlek")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_c2e24"]
-viewport_path = NodePath("GrassSim/Collision")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_78hwi"]
-resource_local_to_scene = true
-shader = ExtResource("3_xlk7h")
-shader_parameter/trail_length = 1.0
-shader_parameter/collision_texture = SubResource("ViewportTexture_c2e24")
+shader_parameter/col_tex = SubResource("ViewportTexture_ixrfe")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bnx2v"]
 fractal_octaves = 3
@@ -56,13 +47,13 @@ seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_6xboo")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_bkdt2"]
-viewport_path = NodePath("WaterSim/Simulation")
+[sub_resource type="ViewportTexture" id="ViewportTexture_pg7g7"]
+viewport_path = NodePath("Simulation")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_blile"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vhjk4"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("4_43mw1")
+shader = ExtResource("4_e0g7g")
 shader_parameter/beer_factor = 1.2
 shader_parameter/foam_distance = 0.01
 shader_parameter/foam_max_distance = 0.4
@@ -78,14 +69,23 @@ shader_parameter/_DepthGradientShallow = Color(0.380392, 0.811765, 1, 0.470588)
 shader_parameter/_DepthGradientDeep = Color(0.0941176, 0.666667, 0.929412, 0.784314)
 shader_parameter/wave_height = 0.03
 shader_parameter/refraction = 0.5
-shader_parameter/surfaceNoise = ExtResource("6_kd2iy")
-shader_parameter/distortNoise = ExtResource("5_pced1")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_bkdt2")
+shader_parameter/surfaceNoise = ExtResource("6_138n1")
+shader_parameter/distortNoise = ExtResource("5_txwjf")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_pg7g7")
 shader_parameter/noise_1 = SubResource("NoiseTexture2D_7btt1")
 shader_parameter/noise_2 = SubResource("NoiseTexture2D_bv7me")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_ebka3"]
+viewport_path = NodePath("Collision")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vrior"]
+resource_local_to_scene = true
+shader = ExtResource("7_xmx2b")
+shader_parameter/trail_length = 2.0
+shader_parameter/collision_texture = SubResource("ViewportTexture_ebka3")
+
 [sub_resource type="Gradient" id="Gradient_027sp"]
-colors = PackedColorArray(0.222333, 0.46, 0, 1, 0.3625, 0.75, 0, 1)
+colors = PackedColorArray(0.265833, 0.55, 0, 1, 0.406, 0.84, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wv4j5"]
 gradient = SubResource("Gradient_027sp")
@@ -98,8 +98,8 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_m3yhi"]
 gradient = SubResource("Gradient_nagip")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_36ip3"]
-viewport_path = NodePath("GrassSim/Simulation")
+[sub_resource type="ViewportTexture" id="ViewportTexture_x87wq"]
+viewport_path = NodePath("Simulation")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_u8fkt"]
 noise_type = 0
@@ -112,10 +112,10 @@ seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_u8fkt")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_11a87"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45kyb"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("6_88nvd")
+shader = ExtResource("8_1igbu")
 shader_parameter/wind_speed = 0.2
 shader_parameter/wind_strength = 0.2
 shader_parameter/wind_texture_tile_size = 20.0
@@ -124,109 +124,69 @@ shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
 shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
 shader_parameter/color_texture = SubResource("GradientTexture1D_m3yhi")
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_36ip3")
-
-[sub_resource type="Gradient" id="Gradient_d7dkj"]
-offsets = PackedFloat32Array(0.00417537, 1)
-colors = PackedColorArray(0.23123, 0.38, 0.0494, 1, 0.3535, 0.7, 0.07, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_kif2l"]
-gradient = SubResource("Gradient_d7dkj")
-width = 64
-
-[sub_resource type="Gradient" id="Gradient_safqm"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_w78dw"]
-gradient = SubResource("Gradient_safqm")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4cnuf"]
-noise_type = 0
-fractal_octaves = 3
-fractal_lacunarity = 0.44
-fractal_gain = 1.246
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ta0ki"]
-seamless = true
-seamless_blend_skirt = 1.0
-noise = SubResource("FastNoiseLite_4cnuf")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqwwl"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("6_88nvd")
-shader_parameter/wind_speed = 0.2
-shader_parameter/wind_strength = 2.0
-shader_parameter/wind_texture_tile_size = 20.0
-shader_parameter/wind_vertical_strength = 0.3
-shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
-shader_parameter/color_ramp = SubResource("GradientTexture1D_kif2l")
-shader_parameter/color_texture = SubResource("GradientTexture1D_w78dw")
-shader_parameter/wind_noise = SubResource("NoiseTexture2D_ta0ki")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_x87wq")
 
 [node name="TestItems" instance=ExtResource("1_occme")]
 
 [node name="Banana" parent="Spawners/PlaceholderSpawner/Placeholders" index="0" instance_placeholder="res://source/nodes/items/banana.tscn"]
-transform = Transform3D(0.825685, 0.564132, 2.4659e-08, 0, -4.37114e-08, 1, 0.564132, -0.825685, -3.60918e-08, 5.80856, 1.09422, 14.8316)
+transform = Transform3D(0.825685, 0.564132, 2.4659e-08, 0, -4.37114e-08, 1, 0.564132, -0.825685, -3.60918e-08, 4.05676, 2.64991, 15.5675)
 
 [node name="Daikon" parent="Spawners/PlaceholderSpawner/Placeholders" index="1" instance_placeholder="res://source/nodes/items/daikon.tscn"]
-transform = Transform3D(-3.60918e-08, -0.825685, -0.564132, 1, -4.37114e-08, 0, -2.4659e-08, -0.564132, 0.825685, 6.84764, 0.945188, 11.5984)
+transform = Transform3D(-3.60918e-08, -0.825685, -0.564132, 1, -4.37114e-08, 0, -2.4659e-08, -0.564132, 0.825685, 5.09584, 2.50087, 12.3343)
 
 [node name="RedApple" parent="Spawners/PlaceholderSpawner/Placeholders" index="2" instance_placeholder="res://source/nodes/items/red_apple.tscn"]
-transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, 1.35629, 0.897878, 10.9492)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -0.395507, 2.45357, 11.6851)
 
 [node name="Watermelon" parent="Spawners/PlaceholderSpawner/Placeholders" index="3" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
-transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -3.16086, 1.0851, 12.5085)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -4.91263, 2.64079, 13.2444)
 
 [node name="Watermelon2" parent="Spawners/PlaceholderSpawner/Placeholders" index="4" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
-transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -3.20604, 1.0851, 12.811)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -4.95783, 2.64079, 13.5469)
 
 [node name="Watermelon3" parent="Spawners/PlaceholderSpawner/Placeholders" index="5" instance_placeholder="res://source/nodes/test/watermelon.tscn"]
-transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -2.77732, 1.0851, 12.7098)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, -4.52913, 2.64079, 13.4457)
 
 [node name="MeatSlice" parent="Spawners/PlaceholderSpawner/Placeholders" index="6" instance_placeholder="res://source/nodes/items/meat_slice.tscn"]
-transform = Transform3D(0.825685, 0.564132, 2.4659e-08, 0, -4.37114e-08, 1, 0.564132, -0.825685, -3.60918e-08, 1.49849, 0.760728, 14.1232)
+transform = Transform3D(0.825685, 0.564132, 2.4659e-08, 0, -4.37114e-08, 1, 0.564132, -0.825685, -3.60918e-08, -0.253307, 2.31642, 14.8591)
 
 [node name="MeatChunk" parent="Spawners/PlaceholderSpawner/Placeholders" index="7" instance_placeholder="res://source/nodes/items/meat_chunk.tscn"]
-transform = Transform3D(-0.525753, -0.783849, 0.330401, -7.31914e-08, -0.388416, -0.921484, 0.850637, -0.484474, 0.204211, 3.71406, 1.06073, 14.4257)
+transform = Transform3D(-0.525753, -0.783849, 0.330401, -7.31914e-08, -0.388416, -0.921484, 0.850637, -0.484474, 0.204211, 1.96226, 2.61642, 15.1616)
 
 [node name="Orange" parent="Spawners/PlaceholderSpawner/Placeholders" index="8" instance_placeholder="res://source/nodes/items/orange.tscn"]
-transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, 3.14986, 0.760728, 15.2515)
+transform = Transform3D(0.825685, 0, -0.564132, 0, 1, 0, 0.564132, 0, 0.825685, 1.39806, 2.31642, 15.9874)
 
 [node name="Parsnip" parent="Spawners/PlaceholderSpawner/Placeholders" index="9" instance_placeholder="res://source/nodes/items/parsnip.tscn"]
-transform = Transform3D(0.825685, 0.488552, -0.282065, 0, 0.5, 0.866025, 0.564132, -0.715064, 0.412843, -0.716976, 1.56073, 13.8206)
+transform = Transform3D(0.825685, 0.488552, -0.282065, 0, 0.5, 0.866025, 0.564132, -0.715064, 0.412843, -2.46878, 3.11642, 14.5565)
 
 [node name="Pear" parent="Spawners/PlaceholderSpawner/Placeholders" index="10" instance_placeholder="res://source/nodes/items/pear.tscn"]
-transform = Transform3D(0.681568, 0.466069, -0.564132, -0.564463, 0.825458, 1.56544e-08, 0.465667, 0.318432, 0.825685, 4.72942, 0.779728, 16.1007)
+transform = Transform3D(0.681568, 0.466069, -0.564132, -0.564463, 0.825458, 1.56544e-08, 0.465667, 0.318432, 0.825685, 2.97762, 2.33542, 16.8366)
 
 [node name="Radish" parent="Spawners/PlaceholderSpawner/Placeholders" index="11" instance_placeholder="res://source/nodes/items/radish.tscn"]
-transform = Transform3D(0.518477, -0.642601, -0.564132, 0.778265, 0.627936, 2.4852e-08, 0.354238, -0.439044, 0.825685, -0.440113, 0.832638, 13.44)
+transform = Transform3D(0.518477, -0.642601, -0.564132, 0.778265, 0.627936, 2.4852e-08, 0.354238, -0.439044, 0.825685, -2.19191, 2.38833, 14.1759)
 
 [node name="Sword" parent="Spawners/PlaceholderSpawner/Placeholders" index="12" instance_placeholder="res://source/nodes/items/sword.tscn"]
-transform = Transform3D(-2.46073e-07, 0.825685, -0.564132, -1, -2.98023e-07, 1.27966e-14, -1.68124e-07, 0.564132, 0.825685, 1.68257, 4.14259, 12.2053)
+transform = Transform3D(-2.46073e-07, 0.825685, -0.564132, -1, -2.98023e-07, 1.27966e-14, -1.68124e-07, 0.564132, 0.825685, 1.45216, 1.50179, 8.75709)
 
 [node name="ContrastedBlur" parent="PauseUI/InventoryUI" index="0"]
 material = SubResource("ShaderMaterial_ab2yl")
 
-[node name="ColorRect" parent="terrain_test/WaterSim/Simulation" index="0"]
-material = SubResource("ShaderMaterial_fmx8q")
+[node name="PlayerCharacter" parent="." index="9"]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -2.34556, 3.72623, 11.4528)
 
-[node name="ColorRect" parent="terrain_test/GrassSim/Simulation" index="0"]
-material = SubResource("ShaderMaterial_78hwi")
+[node name="ColorRect" parent="terrain_textured_test/WaterSim/Simulation" index="0"]
+material = SubResource("ShaderMaterial_25tka")
 
-[node name="Water" parent="terrain_test" index="4"]
-material_override = SubResource("ShaderMaterial_blile")
+[node name="WaterPlane" parent="terrain_textured_test/WaterSim" index="2"]
+material_override = SubResource("ShaderMaterial_vhjk4")
 
-[node name="Grass" parent="terrain_test" index="5"]
-material_override = SubResource("ShaderMaterial_11a87")
+[node name="ColorRect" parent="terrain_textured_test/GrassSim/Simulation" index="0"]
+material = SubResource("ShaderMaterial_vrior")
 
-[node name="GrassMeshSingle" parent="terrain_test" index="7"]
-material_override = SubResource("ShaderMaterial_gqwwl")
-
-[node name="PlayerCharacter" parent="." index="10"]
-transform = Transform3D(0.652098, 0, -0.758134, 0, 1, 0, 0.758134, 0, 0.652098, -2.57899, 0.894873, -6.81278)
+[node name="Grass" parent="terrain_textured_test/GrassSim" index="4"]
+material_override = SubResource("ShaderMaterial_45kyb")
 
 [editable path="CameraParent"]
 [editable path="PauseUI/InventoryUI/QuickMenu"]
-[editable path="terrain_test"]
+[editable path="terrain_textured_test"]
+[editable path="terrain_textured_test/WaterSim"]
+[editable path="terrain_textured_test/GrassSim"]
