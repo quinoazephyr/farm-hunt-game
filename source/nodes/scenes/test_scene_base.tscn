@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://xopw8jd5wmyh"]
+[gd_scene load_steps=100 format=3 uid="uid://xopw8jd5wmyh"]
 
 [ext_resource type="Environment" uid="uid://1vi1iwjunjii" path="res://source/resources/world_environments/soft_bloom_environment.tres" id="1_5snjs"]
 [ext_resource type="Script" path="res://source/scripts/core/controls/timescale_control.gd" id="1_oi6un"]
@@ -70,9 +70,6 @@
 [ext_resource type="Texture2D" uid="uid://c65l21x17vlpv" path="res://assets/textures/ui/controls/pc/enter.png" id="57_0rljx"]
 [ext_resource type="Shader" path="res://source/resources/shaders/water_simulation.gdshader" id="69_6h3tn"]
 [ext_resource type="PackedScene" uid="uid://mekn1muu4ve0" path="res://source/nodes/test/terrain_textured_test.tscn" id="69_lrlmh"]
-[ext_resource type="Shader" path="res://source/resources/shaders/water.gdshader" id="71_656cs"]
-[ext_resource type="Texture2D" uid="uid://cvyp708x1bgf2" path="res://assets/textures/materials/water/water_distortion.png" id="72_admmm"]
-[ext_resource type="Texture2D" uid="uid://b3eh1gwnkb6s4" path="res://assets/textures/materials/water/perlin_noise.png" id="73_ag3sk"]
 [ext_resource type="Shader" path="res://source/resources/shaders/grass_simulation.gdshader" id="74_lsofl"]
 [ext_resource type="Shader" path="res://source/resources/shaders/grass.gdshader" id="75_hcmdw"]
 
@@ -120,7 +117,7 @@ font_size = 34
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5lfp"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2osfy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_dd1hl"]
 viewport_path = NodePath("Collision")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujrcc"]
@@ -129,62 +126,16 @@ shader = ExtResource("69_6h3tn")
 shader_parameter/phase = 0.18
 shader_parameter/attenuation = 0.995
 shader_parameter/deltaUV = 1.5
-shader_parameter/col_tex = SubResource("ViewportTexture_2osfy")
+shader_parameter/col_tex = SubResource("ViewportTexture_dd1hl")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bnx2v"]
-fractal_octaves = 3
-fractal_lacunarity = 4.0
-fractal_gain = 0.64
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7btt1"]
-seamless = true
-seamless_blend_skirt = 1.0
-noise = SubResource("FastNoiseLite_bnx2v")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_6xboo"]
-fractal_gain = 0.64
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bv7me"]
-seamless = true
-seamless_blend_skirt = 1.0
-noise = SubResource("FastNoiseLite_6xboo")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_eymuk"]
-viewport_path = NodePath("Simulation")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0fl3e"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("71_656cs")
-shader_parameter/beer_factor = 1.2
-shader_parameter/foam_distance = 0.01
-shader_parameter/foam_max_distance = 0.4
-shader_parameter/foam_min_distance = 0.04
-shader_parameter/foam_color = Color(1, 1, 1, 1)
-shader_parameter/surface_noise_tiling = Vector2(1, 1)
-shader_parameter/surface_noise_scroll = Vector3(0.03, 0.03, 0)
-shader_parameter/surface_noise_cutoff = 1.0
-shader_parameter/surface_distortion_amount = 0.0
-shader_parameter/_DepthMaxDistance = 1.0
-shader_parameter/_DepthFactor = 1.0
-shader_parameter/_DepthGradientShallow = Color(0.380392, 0.811765, 1, 0.470588)
-shader_parameter/_DepthGradientDeep = Color(0.0941176, 0.666667, 0.929412, 0.784314)
-shader_parameter/wave_height = 0.03
-shader_parameter/refraction = 0.5
-shader_parameter/surfaceNoise = ExtResource("73_ag3sk")
-shader_parameter/distortNoise = ExtResource("72_admmm")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_eymuk")
-shader_parameter/noise_1 = SubResource("NoiseTexture2D_7btt1")
-shader_parameter/noise_2 = SubResource("NoiseTexture2D_bv7me")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_288mm"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3f6qb"]
 viewport_path = NodePath("Collision")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yoyni"]
 resource_local_to_scene = true
 shader = ExtResource("74_lsofl")
 shader_parameter/trail_length = 2.0
-shader_parameter/collision_texture = SubResource("ViewportTexture_288mm")
+shader_parameter/collision_texture = SubResource("ViewportTexture_3f6qb")
 
 [sub_resource type="Gradient" id="Gradient_027sp"]
 colors = PackedColorArray(0.265833, 0.55, 0, 1, 0.406, 0.84, 0, 1)
@@ -200,7 +151,7 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_m3yhi"]
 gradient = SubResource("Gradient_nagip")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_rtmee"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3ycvp"]
 viewport_path = NodePath("Simulation")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_u8fkt"]
@@ -226,7 +177,7 @@ shader_parameter/wind_horizontal_direction = Vector2(1, 0.5)
 shader_parameter/color_ramp = SubResource("GradientTexture1D_wv4j5")
 shader_parameter/color_texture = SubResource("GradientTexture1D_m3yhi")
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_08c7x")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_rtmee")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_3ycvp")
 
 [node name="TestSceneBase" type="Node3D"]
 
@@ -863,9 +814,6 @@ _angular_speed = 20.0
 
 [node name="ColorRect" parent="terrain_textured_test/WaterSim/Simulation" index="0"]
 material = SubResource("ShaderMaterial_ujrcc")
-
-[node name="WaterPlane" parent="terrain_textured_test/WaterSim" index="2"]
-material_override = SubResource("ShaderMaterial_0fl3e")
 
 [node name="ColorRect" parent="terrain_textured_test/GrassSim/Simulation" index="0"]
 material = SubResource("ShaderMaterial_yoyni")

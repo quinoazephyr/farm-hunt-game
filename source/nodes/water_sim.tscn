@@ -9,7 +9,7 @@
 [sub_resource type="Environment" id="Environment_yqnwh"]
 background_mode = 1
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mufxf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_28e6d"]
 viewport_path = NodePath("Collision")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_li3ye"]
@@ -18,7 +18,7 @@ shader = ExtResource("2_caihc")
 shader_parameter/phase = 0.18
 shader_parameter/attenuation = 0.995
 shader_parameter/deltaUV = 1.5
-shader_parameter/col_tex = SubResource("ViewportTexture_mufxf")
+shader_parameter/col_tex = SubResource("ViewportTexture_28e6d")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bnx2v"]
 fractal_octaves = 3
@@ -38,7 +38,7 @@ seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_6xboo")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8dgep"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_to3kv"]
 viewport_path = NodePath("Simulation")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7eqh1"]
@@ -62,7 +62,7 @@ shader_parameter/wave_height = 0.03
 shader_parameter/refraction = 0.5
 shader_parameter/surfaceNoise = ExtResource("5_ftrw7")
 shader_parameter/distortNoise = ExtResource("4_5c41g")
-shader_parameter/simulation_texture = SubResource("ViewportTexture_8dgep")
+shader_parameter/simulation_texture = SubResource("ViewportTexture_to3kv")
 shader_parameter/noise_1 = SubResource("NoiseTexture2D_7btt1")
 shader_parameter/noise_2 = SubResource("NoiseTexture2D_bv7me")
 
