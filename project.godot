@@ -133,6 +133,10 @@ action_y={
 "events": []
 }
 
+[physics]
+
+3d/physics_engine="JoltPhysics3D"
+
 [rendering]
 
 renderer/rendering_method="mobile"
